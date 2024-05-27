@@ -37,8 +37,6 @@ Unicomp plus Logic Analyzer:
 
 * Input board:
 	- a simple board to connect the signals to a linux SBC like a Raspberry Pi or an Olimex A20
-	- also generates the main clock with a DS1085 chip (in v2 this will be moved to the RAMROM board).
-	- no CPLD
 
 * CPU board:
 	- can be any 8-bit CPU (6502, 6802, 6809, 68008, 6803, 8051,...)
@@ -73,7 +71,6 @@ Multi Serial Board:
 * Prototype board:
 	- empty board for prototyping
 	- no CPLD
-    - SRAM for address decoding
 
 * MAX-II (EPM240) board:
 	- CPLD plus Buffers
