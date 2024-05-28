@@ -1,0 +1,5 @@
+Just type make to build and make clean to clean up.
+For your own implementation modify the following files:
+Makefile Line 8,9,65 and maybe Line 14,15,56
+$(PROJECT)_pins.qsf for the Pin assignments
+$(PROJECT).vhd obviously

@@ -5,14 +5,14 @@
 # Settings File (.qsf)
 ###################################################################
 
-PROJECT = 6802_D2_Board
-TOP_LEVEL_ENTITY = cpldD2
+PROJECT = dream6800_max2
+TOP_LEVEL_ENTITY = dream6800_video
 ASSIGNMENT_FILES = $(PROJECT).qpf $(PROJECT).qsf
 
 ###################################################################
 # Part, Family, Boardfile DE1 or DE2
-FAMILY = "MAX 7000S"
-PART = "EPM7128SLC84-15"
+FAMILY = "MAX II"
+PART = "EPM240T100C5"
 BOARDFILE = $(PROJECT)_pins.qsf
 ###################################################################
 
@@ -36,7 +36,7 @@ SRCS = $(wildcard ../fpga/*.sv) \
 all: smart.log $(PROJECT).asm.rpt $(PROJECT).sta.rpt convert
 
 clean:
-	$(RM) -rf *.qws *.rpt *.chg smart.log *.htm *.eqn *.pin *.sof *.pof db incremental_db *.summary *.smsg *.jdi $(ASSIGNMENT_FILES) output_files/* output_files
+	$(RM) -rf *.qws *.rpt *.chg smart.log *.htm *.eqn *.pin *.sof *.pof db incremental_db *.summary *.smsg *.jdi $(ASSIGNMENT_FILES) build/* build
 
 map: smart.log $(PROJECT).map.rpt
 fit: smart.log $(PROJECT).fit.rpt
@@ -74,7 +74,7 @@ FIT_ARGS = $(QUARTUS_ARGS) --part=$(PART) --read_settings_files=on
 ASM_ARGS = $(QUARTUS_ARGS)
 STA_ARGS = $(QUARTUS_ARGS)
 SH_ARGS  = $(QUARTUS_ARGS)
-CPF_ARGS  = $(QUARTUS_ARGS) -c -g3.3 -q10MHz -np
+CPF_ARGS  = $(QUARTUS_ARGS) -c -g3.3 -q18MHz -np
 PGM_ARGS = $(QUARTUS_ARGS) --no_banner --mode=jtag 
 #PGM_ARGS = $(QUARTUS_ARGS) --no_banner --mode=jtag 
 
@@ -122,11 +122,11 @@ asm.chg:
 # Programming the device
 ###################################################################
 convert:
-	$(QUARTUS_CPF) $(CPF_ARGS) output_files/$(PROJECT).pof output_files/$(PROJECT).svf
-	$(SVF2XSVF) -i output_files/$(PROJECT).svf -o output_files/$(PROJECT).xsvf
-
+	$(QUARTUS_CPF) $(CPF_ARGS) build/$(PROJECT).pof build/$(PROJECT).svf
+	$(SVF2XSVF) -i build/$(PROJECT).svf -o build/$(PROJECT).xsvf
+	
 program: #$(PROJECT).sof
-	$(QUARTUS_PGM) $(PGM_ARGS) -o "p;output_files/$(PROJECT).sof"
+	$(QUARTUS_PGM) $(PGM_ARGS) -o "p;build/$(PROJECT).sof"
 
 program-pof: #$(PROJECT).pof
-	$(QUARTUS_PGM) $(PGM_ARGS) -o "BVP;output_files/$(PROJECT).pof"
+	$(QUARTUS_PGM) $(PGM_ARGS) -o "BVP;build/$(PROJECT).pof"
