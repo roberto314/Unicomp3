@@ -25984,7 +25984,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "IS61WV10248EDBLL"
+		(property "Value" "IS61WV10248EDBLL-10TL"
 			(at 262.5441 207.01 0)
 			(effects
 				(font
@@ -29280,7 +29280,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "IS61WV102416"
+		(property "Value" "IS61WV102416FBLL1T2"
 			(at 261.2741 115.57 0)
 			(effects
 				(font
@@ -29307,7 +29307,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "512K x 8 HIGH-SPEED CMOS STATIC RAM, 10ns, TSOP II-44"
+		(property "Description" "512K x 8 HIGH-SPEED CMOS STATIC RAM, 10ns, TSOP II-54"
 			(at 259.08 148.59 0)
 			(effects
 				(font
@@ -35060,7 +35060,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3_Handsoldering"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-223-3_TabPin2"
 			(at 120.65 20.32 0)
 			(effects
 				(font

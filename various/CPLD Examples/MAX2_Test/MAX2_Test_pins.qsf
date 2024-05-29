@@ -1,0 +1,3 @@
+# Pin definitions for external RAM (with As)
+set_location_assignment PIN_12  -to clk50
+set_location_assignment PIN_77  -to LED

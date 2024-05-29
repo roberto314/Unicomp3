@@ -5,8 +5,8 @@
 # Settings File (.qsf)
 ###################################################################
 
-PROJECT = 6802_D2_Board
-TOP_LEVEL_ENTITY = cpldD2
+PROJECT = EPM7128_Test
+TOP_LEVEL_ENTITY = blinky
 ASSIGNMENT_FILES = $(PROJECT).qpf $(PROJECT).qsf
 
 ###################################################################

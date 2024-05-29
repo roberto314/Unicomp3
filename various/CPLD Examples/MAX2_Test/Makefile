@@ -5,8 +5,8 @@
 # Settings File (.qsf)
 ###################################################################
 
-PROJECT = dream6800_max2
-TOP_LEVEL_ENTITY = dream6800_video
+PROJECT = MAX2_Test
+TOP_LEVEL_ENTITY = blinky
 ASSIGNMENT_FILES = $(PROJECT).qpf $(PROJECT).qsf
 
 ###################################################################

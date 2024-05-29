@@ -1,0 +1,3 @@
+#
+set_location_assignment PIN_83 -to CLKIN
+set_location_assignment PIN_10 -to LED
