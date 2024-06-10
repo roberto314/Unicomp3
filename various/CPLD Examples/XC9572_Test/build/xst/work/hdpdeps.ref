@@ -1,0 +1,8 @@
+V3 3
+FL "/home/rob/Projects/Unicomp3/various/CPLD Examples/XC9572_Test/XC9572_Test.vhd" 2024/06/08.18:15:47 P.20131013
+EN work/XC9572_Test 1717863617 \
+      FL "/home/rob/Projects/Unicomp3/various/CPLD Examples/XC9572_Test/XC9572_Test.vhd" \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/XC9572_Test/Behavioral 1717863618 \
+      FL "/home/rob/Projects/Unicomp3/various/CPLD Examples/XC9572_Test/XC9572_Test.vhd" \
+      EN work/XC9572_Test 1717863617

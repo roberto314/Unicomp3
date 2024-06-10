@@ -4,12 +4,12 @@
 ## To the extent possible under law, the author(s) have dedicated all copyright
 ## and related and neighboring rights to this software to the public domain
 ## worldwide. This software is distributed without any warranty.
-#  Modified for XC9500 series by Robert Offner in 2023
 ###########################################################################
+# Modified for XC9500 series by Robert Offner in 2023
 
-PROJECT = board_6502
+PROJECT = XC9572_Test
 TARGET_PART = XC9572XL-10-VQ44
-XILINX = /home/rob/Data/14.7/ISE_DS/ISE/
+XILINX = /home/rob/Xilinx/14.7/ISE_DS/ISE/
 VHDSOURCE  ?= $(PROJECT).vhd
 
 ###########################################################################
@@ -43,8 +43,8 @@ BITGEN_OPTS     ?=
 TRACE_OPTS      ?=
 FUSE_OPTS       ?= -incremental
 
-PROGRAMMER      ?= xc3sprog
-#PROGRAMMER      ?= impact
+#PROGRAMMER      ?= xc3sprog
+PROGRAMMER      ?= impact
 
 IMPACT_OPTS     ?= -batch impact.cmd
 
@@ -53,10 +53,12 @@ DJTG_DEVICE     ?= DJTG_DEVICE-NOT-SET
 DJTG_INDEX      ?= 0
 
 XC3SPROG_EXE    ?= xc3sprog
-XC3SPROG_CABLE  ?= none
-XC3SPROG_OPTS   ?=
+XC3SPROG_CABLE  ?= xpc
+XC3SPROG_OPTS   ?= -v
 OLIMEXIP        ?= 192.168.2.216
+OLIMEXIPTGM     ?= 10.0.108.44
 
+XSFXFER         ?= ../../chibios_xsvf_player/python/xsvf_upload.py
 ###########################################################################
 # Internal variables, platform-specific definitions, and macros
 ###########################################################################
@@ -87,14 +89,12 @@ export XILINX
 # Default build
 ###########################################################################
 
-default: $(BITFILE) convert
+default: $(BITFILE) prog
 
 clean:
 	rm -rf build
-	rm -f impact.cmd
-	rm -f _impactbatch.log
 
-build/$(PROJECT).prj:
+build/$(PROJECT).prj: 
 	@echo "Updating $@"
 	@mkdir -p build
 	@rm -f $@
@@ -143,7 +143,8 @@ $(BITFILE):  $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr
 # Programming
 ###########################################################################
 
-convert:
+ifeq ($(PROGRAMMER), impact)
+prog: #$(BITFILE)
 	@echo "setMode -bs" > impact.cmd
 	@echo "setCable -port xsvf -file "build/$(PROJECT).xsvf"" >> impact.cmd
 	@echo "addDevice -p 1 -file "build/$(PROJECT).jed"" >> impact.cmd
@@ -156,6 +157,7 @@ convert:
 #	@echo "Program -p 1 -e -defaultVersion 0" >> impact.cmd
 #	@echo "quit" >> impact.cmd
 #	$(XILINX)/bin/$(XILINX_PLATFORM)/impact $(IMPACT_OPTS)
+endif
 
 ifeq ($(PROGRAMMER), digilent)
 prog: $(BITFILE)
@@ -163,8 +165,8 @@ prog: $(BITFILE)
 endif
 
 ifeq ($(PROGRAMMER), xc3sprog)
-prog: $(BITFILE)
-	$(XC3SPROG_EXE) -c $(XC3SPROG_CABLE) $(XC3SPROG_OPTS) $(BITFILE)
+prog: #$(BITFILE)
+	$(XC3SPROG_EXE) -c $(XC3SPROG_CABLE) $(XC3SPROG_OPTS) build/$(PROJECT).jed  #$(BITFILE)
 endif
 
 ifeq ($(PROGRAMMER), none)
@@ -175,8 +177,12 @@ endif
 ###########################################################################
 # Tansfer
 
-transfer: # $(BITFILE)
-	sshpass -p olimex scp build/$(PROJECT).jed olimex@$(OLIMEXIP):~/work
+transfer:
+	$(XSFXFER) build/$(PROJECT).xsvf
+#transfer: # $(BITFILE)
+#	sshpass -p olimex scp build/$(PROJECT).jed olimex@$(OLIMEXIP):~/work
+#transferTGM: #$(BITFILE)
+#	sshpass -p olimex scp build/$(PROJECT).jed olimex@$(OLIMEXIPTGM):~/work
 ###########################################################################
 
 

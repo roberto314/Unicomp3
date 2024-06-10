@@ -1,0 +1,3 @@
+NET "button"  LOC = "p33" ;
+NET "LED"     LOC = "p44" ;
+NET "CLK"     LOC = "1"   ;

@@ -1,0 +1,1 @@
+run -ifn XC9572_Test.prj -ofn XC9572_Test.ngc -ifmt mixed  -top XC9572_Test -ofmt NGC -p XC9572XL-10-VQ44

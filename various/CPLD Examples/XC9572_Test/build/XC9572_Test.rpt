@@ -1,0 +1,431 @@
+ 
+cpldfit:  version P.20131013                        Xilinx Inc.
+                                  Fitter Report
+Design Name: XC9572_Test                         Date:  6- 8-2024,  6:20PM
+Device Used: XC9572XL-10-VQ44
+Fitting Status: Successful
+
+*************************  Mapped Resource Summary  **************************
+
+Macrocells     Product Terms    Function Block   Registers      Pins           
+Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
+19 /72  ( 26%) 18  /360  (  5%) 35 /216 ( 16%)   19 /72  ( 26%) 2  /34  (  6%)
+
+** Function Block Resources **
+
+Function    Mcells      FB Inps     Pterms      IO          
+Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
+FB1           1/18       18/54        1/90       2/ 9
+FB2          18/18*      17/54       17/90       0/ 9
+FB3           0/18        0/54        0/90       0/ 9
+FB4           0/18        0/54        0/90       0/ 7
+             -----       -----       -----      -----    
+             19/72       35/216      18/360      2/34 
+
+* - Resource is exhausted
+
+** Global Control Resources **
+
+Signal 'CLK' mapped onto global clock net GCK3.
+Global output enable net(s) unused.
+Global set/reset net(s) unused.
+
+** Pin Resources **
+
+Signal Type    Required     Mapped  |  Pin Type            Used    Total 
+------------------------------------|------------------------------------
+Input         :    0           0    |  I/O              :     0      28
+Output        :    1           1    |  GCK/IO           :     2       3
+Bidirectional :    0           0    |  GTS/IO           :     0       2
+GCK           :    1           1    |  GSR/IO           :     0       1
+GTS           :    0           0    |
+GSR           :    0           0    |
+                 ----        ----
+        Total      2           2
+
+** Power Data **
+
+There are 19 macrocells in high performance mode (MCHP).
+There are 0 macrocells in low power mode (MCLP).
+End of Mapped Resource Summary
+**************************  Errors and Warnings  ***************************
+
+WARNING:Cpld - Unable to retrieve the path to the iSE Project Repository. Will
+   use the default filename of 'XC9572_Test.ise'.
+WARNING:Cpld:1007 - Removing unused input(s) 'button'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+*************************  Summary of Mapped Logic  ************************
+
+** 1 Outputs **
+
+Signal              Total Total Loc     Pin  Pin     Pin     Pwr  Slew Reg Init
+Name                Pts   Inps          No.  Type    Use     Mode Rate State
+LED                 1     18    FB1_11  44   GCK/I/O O       STD  FAST RESET
+
+** 18 Buried Nodes **
+
+Signal              Total Total Loc     Pwr  Reg Init
+Name                Pts   Inps          Mode State
+clk_divider<9>      1     9     FB2_1   STD  RESET
+clk_divider<8>      1     8     FB2_2   STD  RESET
+clk_divider<7>      1     7     FB2_3   STD  RESET
+clk_divider<6>      1     6     FB2_4   STD  RESET
+clk_divider<5>      1     5     FB2_5   STD  RESET
+clk_divider<4>      1     4     FB2_6   STD  RESET
+clk_divider<3>      1     3     FB2_7   STD  RESET
+clk_divider<2>      1     2     FB2_8   STD  RESET
+clk_divider<1>      1     1     FB2_9   STD  RESET
+clk_divider<17>     1     17    FB2_10  STD  RESET
+clk_divider<16>     1     16    FB2_11  STD  RESET
+clk_divider<15>     1     15    FB2_12  STD  RESET
+clk_divider<14>     1     14    FB2_13  STD  RESET
+clk_divider<13>     1     13    FB2_14  STD  RESET
+clk_divider<12>     1     12    FB2_15  STD  RESET
+clk_divider<11>     1     11    FB2_16  STD  RESET
+clk_divider<10>     1     10    FB2_17  STD  RESET
+clk_divider<0>      0     0     FB2_18  STD  RESET
+
+** 1 Inputs **
+
+Signal              Loc     Pin  Pin     Pin     
+Name                        No.  Type    Use     
+CLK                 FB1_14  1~   GCK/I/O GCK
+
+Legend:
+Pin No. - ~ - User Assigned
+**************************  Function Block Details  ************************
+Legend:
+Total Pt     - Total product terms used by the macrocell signal
+Imp Pt       - Product terms imported from other macrocells
+Exp Pt       - Product terms exported to other macrocells
+               in direction shown
+Unused Pt    - Unused local product terms remaining in macrocell
+Loc          - Location where logic was mapped in device
+Pin Type/Use - I  - Input             GCK - Global Clock
+               O  - Output            GTS - Global Output Enable
+              (b) - Buried macrocell  GSR - Global Set/Reset
+X            - Signal used as input to the macrocell logic.
+Pin No.      - ~  - User Assigned
+*********************************** FB1  ***********************************
+Number of function block inputs used/remaining:               18/36
+Number of signals used by logic mapping into function block:  18
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB1_1         (b)     
+(unused)              0       0     0   5     FB1_2   39    I/O     
+(unused)              0       0     0   5     FB1_3         (b)     
+(unused)              0       0     0   5     FB1_4         (b)     
+(unused)              0       0     0   5     FB1_5   40    I/O     
+(unused)              0       0     0   5     FB1_6   41    I/O     
+(unused)              0       0     0   5     FB1_7         (b)     
+(unused)              0       0     0   5     FB1_8   42    I/O     
+(unused)              0       0     0   5     FB1_9   43    GCK/I/O 
+(unused)              0       0     0   5     FB1_10        (b)     
+LED                   1       0     0   4     FB1_11  44    GCK/I/O O
+(unused)              0       0     0   5     FB1_12        (b)     
+(unused)              0       0     0   5     FB1_13        (b)     
+(unused)              0       0     0   5     FB1_14  1     GCK/I/O GCK
+(unused)              0       0     0   5     FB1_15  2     I/O     
+(unused)              0       0     0   5     FB1_16        (b)     
+(unused)              0       0     0   5     FB1_17  3     I/O     
+(unused)              0       0     0   5     FB1_18        (b)     
+
+Signals Used by Logic in Function Block
+  1: clk_divider<0>     7: clk_divider<15>   13: clk_divider<4> 
+  2: clk_divider<10>    8: clk_divider<16>   14: clk_divider<5> 
+  3: clk_divider<11>    9: clk_divider<17>   15: clk_divider<6> 
+  4: clk_divider<12>   10: clk_divider<1>    16: clk_divider<7> 
+  5: clk_divider<13>   11: clk_divider<2>    17: clk_divider<8> 
+  6: clk_divider<14>   12: clk_divider<3>    18: clk_divider<9> 
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+LED                  XXXXXXXXXXXXXXXXXX...................... 18
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB2  ***********************************
+Number of function block inputs used/remaining:               17/37
+Number of signals used by logic mapping into function block:  17
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+clk_divider<9>        1       0     0   4     FB2_1         (b)     (b)
+clk_divider<8>        1       0     0   4     FB2_2   29    I/O     (b)
+clk_divider<7>        1       0     0   4     FB2_3         (b)     (b)
+clk_divider<6>        1       0     0   4     FB2_4         (b)     (b)
+clk_divider<5>        1       0     0   4     FB2_5   30    I/O     (b)
+clk_divider<4>        1       0     0   4     FB2_6   31    I/O     (b)
+clk_divider<3>        1       0     0   4     FB2_7         (b)     (b)
+clk_divider<2>        1       0     0   4     FB2_8   32    I/O     (b)
+clk_divider<1>        1       0     0   4     FB2_9   33    GSR/I/O (b)
+clk_divider<17>       1       0     0   4     FB2_10        (b)     (b)
+clk_divider<16>       1       0     0   4     FB2_11  34    GTS/I/O (b)
+clk_divider<15>       1       0     0   4     FB2_12        (b)     (b)
+clk_divider<14>       1       0     0   4     FB2_13        (b)     (b)
+clk_divider<13>       1       0     0   4     FB2_14  36    GTS/I/O (b)
+clk_divider<12>       1       0     0   4     FB2_15  37    I/O     (b)
+clk_divider<11>       1       0     0   4     FB2_16        (b)     (b)
+clk_divider<10>       1       0     0   4     FB2_17  38    I/O     (b)
+clk_divider<0>        0       0     0   5     FB2_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: clk_divider<0>     7: clk_divider<15>   13: clk_divider<5> 
+  2: clk_divider<10>    8: clk_divider<16>   14: clk_divider<6> 
+  3: clk_divider<11>    9: clk_divider<1>    15: clk_divider<7> 
+  4: clk_divider<12>   10: clk_divider<2>    16: clk_divider<8> 
+  5: clk_divider<13>   11: clk_divider<3>    17: clk_divider<9> 
+  6: clk_divider<14>   12: clk_divider<4>   
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+clk_divider<9>       X.......XXXXXXXX........................ 9
+clk_divider<8>       X.......XXXXXXX......................... 8
+clk_divider<7>       X.......XXXXXX.......................... 7
+clk_divider<6>       X.......XXXXX........................... 6
+clk_divider<5>       X.......XXXX............................ 5
+clk_divider<4>       X.......XXX............................. 4
+clk_divider<3>       X.......XX.............................. 3
+clk_divider<2>       X.......X............................... 2
+clk_divider<1>       X....................................... 1
+clk_divider<17>      XXXXXXXXXXXXXXXXX....................... 17
+clk_divider<16>      XXXXXXX.XXXXXXXXX....................... 16
+clk_divider<15>      XXXXXX..XXXXXXXXX....................... 15
+clk_divider<14>      XXXXX...XXXXXXXXX....................... 14
+clk_divider<13>      XXXX....XXXXXXXXX....................... 13
+clk_divider<12>      XXX.....XXXXXXXXX....................... 12
+clk_divider<11>      XX......XXXXXXXXX....................... 11
+clk_divider<10>      X.......XXXXXXXXX....................... 10
+clk_divider<0>       ........................................ 0
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB3  ***********************************
+Number of function block inputs used/remaining:               0/54
+Number of signals used by logic mapping into function block:  0
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB3_1         (b)     
+(unused)              0       0     0   5     FB3_2   5     I/O     
+(unused)              0       0     0   5     FB3_3         (b)     
+(unused)              0       0     0   5     FB3_4         (b)     
+(unused)              0       0     0   5     FB3_5   6     I/O     
+(unused)              0       0     0   5     FB3_6         (b)     
+(unused)              0       0     0   5     FB3_7         (b)     
+(unused)              0       0     0   5     FB3_8   7     I/O     
+(unused)              0       0     0   5     FB3_9   8     I/O     
+(unused)              0       0     0   5     FB3_10        (b)     
+(unused)              0       0     0   5     FB3_11  12    I/O     
+(unused)              0       0     0   5     FB3_12        (b)     
+(unused)              0       0     0   5     FB3_13        (b)     
+(unused)              0       0     0   5     FB3_14  13    I/O     
+(unused)              0       0     0   5     FB3_15  14    I/O     
+(unused)              0       0     0   5     FB3_16  18    I/O     
+(unused)              0       0     0   5     FB3_17  16    I/O     
+(unused)              0       0     0   5     FB3_18        (b)     
+*********************************** FB4  ***********************************
+Number of function block inputs used/remaining:               0/54
+Number of signals used by logic mapping into function block:  0
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB4_1         (b)     
+(unused)              0       0     0   5     FB4_2   19    I/O     
+(unused)              0       0     0   5     FB4_3         (b)     
+(unused)              0       0     0   5     FB4_4         (b)     
+(unused)              0       0     0   5     FB4_5   20    I/O     
+(unused)              0       0     0   5     FB4_6         (b)     
+(unused)              0       0     0   5     FB4_7         (b)     
+(unused)              0       0     0   5     FB4_8   21    I/O     
+(unused)              0       0     0   5     FB4_9         (b)     
+(unused)              0       0     0   5     FB4_10        (b)     
+(unused)              0       0     0   5     FB4_11  22    I/O     
+(unused)              0       0     0   5     FB4_12        (b)     
+(unused)              0       0     0   5     FB4_13        (b)     
+(unused)              0       0     0   5     FB4_14  23    I/O     
+(unused)              0       0     0   5     FB4_15  27    I/O     
+(unused)              0       0     0   5     FB4_16        (b)     
+(unused)              0       0     0   5     FB4_17  28    I/O     
+(unused)              0       0     0   5     FB4_18        (b)     
+*******************************  Equations  ********************************
+
+********** Mapped Logic **********
+
+FTCPE_LED: FTCPE port map (LED,LED_T,CLK,'0','0');
+LED_T <= (clk_divider(0) AND clk_divider(10) AND 
+	clk_divider(11) AND clk_divider(12) AND clk_divider(13) AND 
+	clk_divider(14) AND clk_divider(15) AND clk_divider(16) AND 
+	clk_divider(17) AND clk_divider(1) AND clk_divider(2) AND clk_divider(3) AND 
+	clk_divider(4) AND clk_divider(5) AND clk_divider(6) AND clk_divider(7) AND 
+	clk_divider(8) AND clk_divider(9));
+
+FTCPE_clk_divider0: FTCPE port map (clk_divider(0),'1',CLK,'0','0');
+
+FTCPE_clk_divider1: FTCPE port map (clk_divider(1),clk_divider(0),CLK,'0','0');
+
+FTCPE_clk_divider2: FTCPE port map (clk_divider(2),clk_divider_T(2),CLK,'0','0');
+clk_divider_T(2) <= (clk_divider(0) AND clk_divider(1));
+
+FTCPE_clk_divider3: FTCPE port map (clk_divider(3),clk_divider_T(3),CLK,'0','0');
+clk_divider_T(3) <= (clk_divider(0) AND clk_divider(1) AND clk_divider(2));
+
+FTCPE_clk_divider4: FTCPE port map (clk_divider(4),clk_divider_T(4),CLK,'0','0');
+clk_divider_T(4) <= (clk_divider(0) AND clk_divider(1) AND clk_divider(2) AND 
+	clk_divider(3));
+
+FTCPE_clk_divider5: FTCPE port map (clk_divider(5),clk_divider_T(5),CLK,'0','0');
+clk_divider_T(5) <= (clk_divider(0) AND clk_divider(1) AND clk_divider(2) AND 
+	clk_divider(3) AND clk_divider(4));
+
+FTCPE_clk_divider6: FTCPE port map (clk_divider(6),clk_divider_T(6),CLK,'0','0');
+clk_divider_T(6) <= (clk_divider(0) AND clk_divider(1) AND clk_divider(2) AND 
+	clk_divider(3) AND clk_divider(4) AND clk_divider(5));
+
+FTCPE_clk_divider7: FTCPE port map (clk_divider(7),clk_divider_T(7),CLK,'0','0');
+clk_divider_T(7) <= (clk_divider(0) AND clk_divider(1) AND clk_divider(2) AND 
+	clk_divider(3) AND clk_divider(4) AND clk_divider(5) AND clk_divider(6));
+
+FTCPE_clk_divider8: FTCPE port map (clk_divider(8),clk_divider_T(8),CLK,'0','0');
+clk_divider_T(8) <= (clk_divider(0) AND clk_divider(1) AND clk_divider(2) AND 
+	clk_divider(3) AND clk_divider(4) AND clk_divider(5) AND clk_divider(6) AND 
+	clk_divider(7));
+
+FTCPE_clk_divider9: FTCPE port map (clk_divider(9),clk_divider_T(9),CLK,'0','0');
+clk_divider_T(9) <= (clk_divider(0) AND clk_divider(1) AND clk_divider(2) AND 
+	clk_divider(3) AND clk_divider(4) AND clk_divider(5) AND clk_divider(6) AND 
+	clk_divider(7) AND clk_divider(8));
+
+FTCPE_clk_divider10: FTCPE port map (clk_divider(10),clk_divider_T(10),CLK,'0','0');
+clk_divider_T(10) <= (clk_divider(0) AND clk_divider(1) AND clk_divider(2) AND 
+	clk_divider(3) AND clk_divider(4) AND clk_divider(5) AND clk_divider(6) AND 
+	clk_divider(7) AND clk_divider(8) AND clk_divider(9));
+
+FTCPE_clk_divider11: FTCPE port map (clk_divider(11),clk_divider_T(11),CLK,'0','0');
+clk_divider_T(11) <= (clk_divider(0) AND clk_divider(10) AND 
+	clk_divider(1) AND clk_divider(2) AND clk_divider(3) AND clk_divider(4) AND 
+	clk_divider(5) AND clk_divider(6) AND clk_divider(7) AND clk_divider(8) AND 
+	clk_divider(9));
+
+FTCPE_clk_divider12: FTCPE port map (clk_divider(12),clk_divider_T(12),CLK,'0','0');
+clk_divider_T(12) <= (clk_divider(0) AND clk_divider(10) AND 
+	clk_divider(11) AND clk_divider(1) AND clk_divider(2) AND clk_divider(3) AND 
+	clk_divider(4) AND clk_divider(5) AND clk_divider(6) AND clk_divider(7) AND 
+	clk_divider(8) AND clk_divider(9));
+
+FTCPE_clk_divider13: FTCPE port map (clk_divider(13),clk_divider_T(13),CLK,'0','0');
+clk_divider_T(13) <= (clk_divider(0) AND clk_divider(10) AND 
+	clk_divider(11) AND clk_divider(12) AND clk_divider(1) AND 
+	clk_divider(2) AND clk_divider(3) AND clk_divider(4) AND clk_divider(5) AND 
+	clk_divider(6) AND clk_divider(7) AND clk_divider(8) AND clk_divider(9));
+
+FTCPE_clk_divider14: FTCPE port map (clk_divider(14),clk_divider_T(14),CLK,'0','0');
+clk_divider_T(14) <= (clk_divider(0) AND clk_divider(10) AND 
+	clk_divider(11) AND clk_divider(12) AND clk_divider(13) AND 
+	clk_divider(1) AND clk_divider(2) AND clk_divider(3) AND clk_divider(4) AND 
+	clk_divider(5) AND clk_divider(6) AND clk_divider(7) AND clk_divider(8) AND 
+	clk_divider(9));
+
+FTCPE_clk_divider15: FTCPE port map (clk_divider(15),clk_divider_T(15),CLK,'0','0');
+clk_divider_T(15) <= (clk_divider(0) AND clk_divider(10) AND 
+	clk_divider(11) AND clk_divider(12) AND clk_divider(13) AND 
+	clk_divider(14) AND clk_divider(1) AND clk_divider(2) AND clk_divider(3) AND 
+	clk_divider(4) AND clk_divider(5) AND clk_divider(6) AND clk_divider(7) AND 
+	clk_divider(8) AND clk_divider(9));
+
+FTCPE_clk_divider16: FTCPE port map (clk_divider(16),clk_divider_T(16),CLK,'0','0');
+clk_divider_T(16) <= (clk_divider(0) AND clk_divider(10) AND 
+	clk_divider(11) AND clk_divider(12) AND clk_divider(13) AND 
+	clk_divider(14) AND clk_divider(15) AND clk_divider(1) AND 
+	clk_divider(2) AND clk_divider(3) AND clk_divider(4) AND clk_divider(5) AND 
+	clk_divider(6) AND clk_divider(7) AND clk_divider(8) AND clk_divider(9));
+
+FTCPE_clk_divider17: FTCPE port map (clk_divider(17),clk_divider_T(17),CLK,'0','0');
+clk_divider_T(17) <= (clk_divider(0) AND clk_divider(10) AND 
+	clk_divider(11) AND clk_divider(12) AND clk_divider(13) AND 
+	clk_divider(14) AND clk_divider(15) AND clk_divider(16) AND 
+	clk_divider(1) AND clk_divider(2) AND clk_divider(3) AND clk_divider(4) AND 
+	clk_divider(5) AND clk_divider(6) AND clk_divider(7) AND clk_divider(8) AND 
+	clk_divider(9));
+
+Register Legend:
+ FDCPE (Q,D,C,CLR,PRE,CE); 
+ FTCPE (Q,D,C,CLR,PRE,CE); 
+ LDCP  (Q,D,G,CLR,PRE); 
+
+******************************  Device Pin Out *****************************
+
+Device : XC9572XL-10-VQ44
+
+
+   --------------------------------  
+  /44 43 42 41 40 39 38 37 36 35 34 \
+ | 1                             33 | 
+ | 2                             32 | 
+ | 3                             31 | 
+ | 4                             30 | 
+ | 5        XC9572XL-10-VQ44     29 | 
+ | 6                             28 | 
+ | 7                             27 | 
+ | 8                             26 | 
+ | 9                             25 | 
+ | 10                            24 | 
+ | 11                            23 | 
+ \ 12 13 14 15 16 17 18 19 20 21 22 /
+   --------------------------------  
+
+
+Pin Signal                         Pin Signal                        
+No. Name                           No. Name                          
+  1 CLK                              23 KPR                           
+  2 KPR                              24 TDO                           
+  3 KPR                              25 GND                           
+  4 GND                              26 VCC                           
+  5 KPR                              27 KPR                           
+  6 KPR                              28 KPR                           
+  7 KPR                              29 KPR                           
+  8 KPR                              30 KPR                           
+  9 TDI                              31 KPR                           
+ 10 TMS                              32 KPR                           
+ 11 TCK                              33 KPR                           
+ 12 KPR                              34 KPR                           
+ 13 KPR                              35 VCC                           
+ 14 KPR                              36 KPR                           
+ 15 VCC                              37 KPR                           
+ 16 KPR                              38 KPR                           
+ 17 GND                              39 KPR                           
+ 18 KPR                              40 KPR                           
+ 19 KPR                              41 KPR                           
+ 20 KPR                              42 KPR                           
+ 21 KPR                              43 KPR                           
+ 22 KPR                              44 LED                           
+
+
+Legend :  NC  = Not Connected, unbonded pin
+         PGND = Unused I/O configured as additional Ground pin
+         TIE  = Unused I/O floating -- must tie to VCC, GND or other signal
+         KPR  = Unused I/O with weak keeper (leave unconnected)
+         VCC  = Dedicated Power Pin
+         GND  = Dedicated Ground Pin
+         TDI  = Test Data In, JTAG pin
+         TDO  = Test Data Out, JTAG pin
+         TCK  = Test Clock, JTAG pin
+         TMS  = Test Mode Select, JTAG pin
+  PROHIBITED  = User reserved pin
+****************************  Compiler Options  ****************************
+
+Following is a list of all global compiler options used by the fitter run.
+
+Device(s) Specified                         : XC9572XL-10-VQ44
+Optimization Method                         : SPEED
+Multi-Level Logic Optimization              : ON
+Ignore Timing Specifications                : OFF
+Default Register Power Up Value             : LOW
+Keep User Location Constraints              : ON
+What-You-See-Is-What-You-Get                : OFF
+Exhaustive Fitting                          : OFF
+Keep Unused Inputs                          : OFF
+Slew Rate                                   : FAST
+Power Mode                                  : STD
+Ground on Unused IOs                        : OFF
+Set I/O Pin Termination                     : KEEPER
+Global Clock Optimization                   : ON
+Global Set/Reset Optimization               : ON
+Global Ouput Enable Optimization            : ON
+Input Limit                                 : 54
+Pterm Limit                                 : 25

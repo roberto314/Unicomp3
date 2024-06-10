@@ -1,0 +1,20 @@
+Pin Freeze File:  version P.20131013
+
+9572XL44VQ XC9572XL-10-VQ44
+CLK S:PIN1
+LED S:PIN44
+
+
+;The remaining section of the .gyd file is for documentation purposes only.
+;It shows where your internal equations were placed in the last successful fit.
+
+PARTITION FB1_11 clk_divider<18>
+
+PARTITION FB2_1 clk_divider<9> clk_divider<8> clk_divider<7> clk_divider<6>
+		 clk_divider<5> clk_divider<4> clk_divider<3> clk_divider<2>
+		 clk_divider<1> clk_divider<17> clk_divider<16> clk_divider<15>
+		 clk_divider<14> clk_divider<13> clk_divider<12> clk_divider<11>
+		 clk_divider<10> clk_divider<0>
+
+
+
