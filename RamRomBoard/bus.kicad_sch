@@ -1493,6 +1493,126 @@
 				)
 			)
 		)
+		(symbol "power:+5VA"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+5VA"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5VA\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+5VA_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5VA_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers hide)
@@ -4617,6 +4737,16 @@
 		)
 		(uuid "ffe04e17-ecff-4753-b1a7-e479b8d431a8")
 	)
+	(text "5VA is always on,\n5V is switched."
+		(exclude_from_sim no)
+		(at 111.506 85.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "6521f3e9-3a7c-4996-a704-d4e73c9ad350")
+	)
 	(label "D7"
 		(at 63.5 46.99 0)
 		(fields_autoplaced yes)
@@ -6865,6 +6995,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+5VA")
+		(at 130.81 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "140880db-4bce-4586-a0c1-05e420f21c5e")
+		(property "Reference" "#PWR097"
+			(at 130.81 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5VA"
+			(at 130.556 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 130.81 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 130.81 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5VA\""
+			(at 130.81 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c3d7a097-6f39-424b-aee5-5a75e44017f8")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR097")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 91.44 140.97 0)
 		(unit 1)
@@ -7261,73 +7456,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 91.44 90.17 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "544b3bb7-c76f-43b3-ab18-5256781302b2")
-		(property "Reference" "#PWR091"
-			(at 91.44 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 91.44 86.5942 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 91.44 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 91.44 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 91.44 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "49d74843-c8e0-484f-a9d0-3f19d5e3462d")
-		)
-		(instances
-			(project "RamRomBoard"
-				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "#PWR091")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 91.44 76.2 0)
 		(unit 1)
@@ -7460,73 +7588,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 157.48 90.17 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "7cf29099-ea5a-4285-8e32-2488b212e00a")
-		(property "Reference" "#PWR0103"
-			(at 157.48 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 157.48 86.5942 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 157.48 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 157.48 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 157.48 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "82c50ae6-4670-4eec-b936-7e421f2783dd")
-		)
-		(instances
-			(project "RamRomBoard"
-				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "#PWR0103")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3V3")
 		(at 60.96 134.62 0)
 		(unit 1)
@@ -7653,6 +7714,71 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "#PWR096")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5VA")
+		(at 74.93 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8ff1ab57-b409-481e-a8fa-3bf267efcd66")
+		(property "Reference" "#PWR086"
+			(at 74.93 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5VA"
+			(at 74.676 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 74.93 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 74.93 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5VA\""
+			(at 74.93 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b990ae3c-01fe-4b85-87e7-a24f0c74c613")
+		)
+		(instances
+			(project ""
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR086")
 					(unit 1)
 				)
 			)
@@ -7835,72 +7961,6 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "J3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 74.93 90.17 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a08cc067-e213-43e6-8756-53c2d392b789")
-		(property "Reference" "#PWR086"
-			(at 74.93 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 74.93 86.5942 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 74.93 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 74.93 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2d765a6b-7990-4462-884a-6eab08bf2ea8")
-		)
-		(instances
-			(project "RamRomBoard"
-				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "#PWR086")
 					(unit 1)
 				)
 			)
@@ -8336,6 +8396,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+5VA")
+		(at 157.48 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ca663a15-bf9e-48e7-bdd8-b8086b6e8667")
+		(property "Reference" "#PWR0103"
+			(at 157.48 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5VA"
+			(at 157.226 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 157.48 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 157.48 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5VA\""
+			(at 157.48 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "81621563-1b15-4e49-bd66-15c38bcb0747")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0103")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 149.86 25.4 0)
 		(mirror y)
@@ -8397,72 +8522,6 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "#PWR0101")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 130.81 90.17 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e342bc38-97fc-4bfa-acd4-df4653d5ec76")
-		(property "Reference" "#PWR097"
-			(at 130.81 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 130.81 86.5942 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 130.81 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 130.81 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 130.81 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f6da1522-b013-43e3-81db-dcdf986b6b48")
-		)
-		(instances
-			(project "RamRomBoard"
-				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "#PWR097")
 					(unit 1)
 				)
 			)
@@ -8595,6 +8654,71 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "#PWR0100")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5VA")
+		(at 91.44 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "eab1ab72-f797-4f5f-8e68-97c481db2847")
+		(property "Reference" "#PWR091"
+			(at 91.44 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5VA"
+			(at 91.186 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 91.44 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 91.44 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5VA\""
+			(at 91.44 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b2f6eb40-d2d1-4fcd-83e1-c413a70820b3")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR091")
 					(unit 1)
 				)
 			)
