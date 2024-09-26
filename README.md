@@ -84,7 +84,7 @@ Multi Serial Board:
 
 ### Configuration RAM ###
 
-The configuration is done with 1Mx16 fast ram on the peripheral boards. These will be configured from the STM32F401.
+The configuration is done with 1Mx16 fast ram on the RAMROM board. It is configured from the STM32F401.
 The cs = 15 is for writing the main RAM, cs = 14 is the chip select for the RAMROM board.
 The rest is free.
 
@@ -170,7 +170,7 @@ tmux serial window:
 
 ### Used Software and OS ###
 
-* Linux Mint (20.3 cinnamon) (Link: https://linuxmint.com/)
+* Linux Mint (21.3 cinnamon) (Link: https://linuxmint.com/)
 * Sublime Text 3 (Link: https://www.sublimetext.com/)
 * 010 Editor (Hex Editor) (Link: https://www.sweetscape.com/010editor/)
 * Chibi Studio 20 (IDE for ChibiOS) (Link: https://www.chibios.org/dokuwiki/doku.php?id=chibios:products:chibistudio:start)
