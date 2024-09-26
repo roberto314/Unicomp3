@@ -1,5 +1,7 @@
 # UNICOMP #
 
+# NOT FINISHED - DO NOT BUILD!
+
 Version 3.00
 
 A modular 8-bit Computer able to recreate (nearly) every microcomputer of the mid 70s to early 80s 
@@ -7,7 +9,7 @@ in Hardware without FPGAs (although an FPGA can be added). Can also be used as a
 
 * VHDL or Verilog
 * C
-* RTOS (STM32F401 runs ChibiOS Link: https://www.chibios.org)
+* RTOS (STM32F401 runs ChibiOS. Link: https://www.chibios.org)
 * Python
 * bash and linux in general (Olimex board runs linux with fbterm and tmux)
 * Harwaredesign
@@ -19,11 +21,11 @@ in Hardware without FPGAs (although an FPGA can be added). Can also be used as a
 It is different from other designs because of these points:
 
 * it uses a 3.3V only Bus,
-* it uses fast RAM for chipselect with one byte resolution over the whole 1MB range,
+* it uses fast RAM for 16 chipselect outputs with single address resolution over the whole 1MB range,
 * it uses one SRAM for RAM and ROM replacement (can be write writeprotected) with 1MB,
 * it uses a clock generator chip (DS1085) - no more crystals to change,
 * it is configureable via STM32 (RAM and ROM content, Clock frequency, chip select lines),
-* it can program the CPLDs (only XC9572 and XC9536 tested) from the STM32- no external programmer needed.
+* it can program the CPLDs (only XC9572 and XC9536 tested) from the STM32, no external programmer needed.
 * Board size is 100mm x 100mm - no backplane (like the PC/104 standard. Link: https://en.wikipedia.org/wiki/PC/104).
 * and maybe most convenient: it can change RAM and ROM content on the fly without crashing the CPU. 
   For example starting the Apple I, going into Basic and uploading the program in about half a second is really nice.
