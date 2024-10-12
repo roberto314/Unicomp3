@@ -2334,6 +2334,16 @@
 		)
 		(uuid "05e7d86d-f3e9-40a7-bbc4-df154534b1b0")
 	)
+	(wire
+		(pts
+			(xy 215.9 49.53) (xy 222.25 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0930ece9-6281-4ef7-9764-10ce21e9826e")
+	)
 	(bus
 		(pts
 			(xy 31.75 31.75) (xy 31.75 29.21)
@@ -2486,16 +2496,6 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 52.07) (xy 223.52 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "14396a53-db11-462e-82b5-5f98e227d847")
-	)
-	(wire
-		(pts
 			(xy 130.81 90.17) (xy 130.81 91.44)
 		)
 		(stroke
@@ -2553,6 +2553,26 @@
 			(type default)
 		)
 		(uuid "1b90653a-0e1a-4ad4-ad8b-25eb5d584a36")
+	)
+	(wire
+		(pts
+			(xy 237.49 38.1) (xy 243.84 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1feb7e6e-26fe-4300-ad18-2d6cb7298011")
+	)
+	(wire
+		(pts
+			(xy 215.9 38.1) (xy 222.25 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "207516d4-9c5b-4a52-9c35-2bf95361e0bc")
 	)
 	(wire
 		(pts
@@ -2696,6 +2716,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 60.96) (xy 212.09 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2dfc54a4-b9c7-4a79-adff-18d4bdfde20a")
+	)
+	(wire
+		(pts
 			(xy 90.17 116.84) (xy 102.87 116.84)
 		)
 		(stroke
@@ -2703,6 +2733,16 @@
 			(type default)
 		)
 		(uuid "2ff5a218-a929-46c0-86fd-3a363b01ffbf")
+	)
+	(wire
+		(pts
+			(xy 184.15 72.39) (xy 190.5 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30277d96-a168-4d9f-9053-894c12f8a61c")
 	)
 	(wire
 		(pts
@@ -2746,6 +2786,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 49.53) (xy 212.09 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3452ea18-bccf-49cc-a360-58eeb561ec1e")
+	)
+	(wire
+		(pts
 			(xy 148.59 76.2) (xy 148.59 74.93)
 		)
 		(stroke
@@ -2753,6 +2803,16 @@
 			(type default)
 		)
 		(uuid "34d565bc-1e80-4b54-9c29-57fe8f09018d")
+	)
+	(wire
+		(pts
+			(xy 205.74 72.39) (xy 212.09 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "350c63ac-6415-40a0-8827-d0d702e9d832")
 	)
 	(wire
 		(pts
@@ -2773,6 +2833,16 @@
 			(type default)
 		)
 		(uuid "3580c6f0-1d95-4250-b05f-fcf07b72d19e")
+	)
+	(wire
+		(pts
+			(xy 215.9 26.67) (xy 222.25 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "35d9b608-73b2-41be-880c-5b68fe558bfa")
 	)
 	(bus
 		(pts
@@ -2926,16 +2996,6 @@
 	)
 	(wire
 		(pts
-			(xy 256.54 72.39) (xy 264.16 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "46b6fe25-24c4-451d-aff2-11602b8e79ce")
-	)
-	(wire
-		(pts
 			(xy 39.37 49.53) (xy 34.29 49.53)
 		)
 		(stroke
@@ -3016,6 +3076,16 @@
 	)
 	(wire
 		(pts
+			(xy 184.15 26.67) (xy 190.5 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "494a0b8d-8e58-4fbc-8e2e-2a2923d5b34d")
+	)
+	(wire
+		(pts
 			(xy 64.77 101.6) (xy 77.47 101.6)
 		)
 		(stroke
@@ -3033,16 +3103,6 @@
 			(type default)
 		)
 		(uuid "4af7430d-dcde-49ef-94d3-906f36cf7146")
-	)
-	(wire
-		(pts
-			(xy 238.76 52.07) (xy 246.38 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4c842d72-5666-4c12-87f7-39f4b93d7391")
 	)
 	(bus
 		(pts
@@ -3103,6 +3163,16 @@
 			(type default)
 		)
 		(uuid "50a5e317-4b3a-4a8a-80c0-f738ff55d51d")
+	)
+	(wire
+		(pts
+			(xy 237.49 49.53) (xy 243.84 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50b4c572-a994-4b8f-9775-7ca8d2ba6c7a")
 	)
 	(wire
 		(pts
@@ -3273,16 +3343,6 @@
 			(type default)
 		)
 		(uuid "5cfd583b-7877-4b61-8675-6693ab42466f")
-	)
-	(wire
-		(pts
-			(xy 229.87 41.91) (xy 237.49 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5df140c6-c997-44c8-acc3-47bec8b70a16")
 	)
 	(wire
 		(pts
@@ -3486,13 +3546,13 @@
 	)
 	(wire
 		(pts
-			(xy 233.68 72.39) (xy 241.3 72.39)
+			(xy 237.49 26.67) (xy 243.84 26.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "720a464e-71c4-4cdd-8f1f-0bd1b32418cd")
+		(uuid "71f9f8a6-fcc1-4f39-975b-09c71d212505")
 	)
 	(bus
 		(pts
@@ -3776,16 +3836,6 @@
 	)
 	(wire
 		(pts
-			(xy 224.79 62.23) (xy 232.41 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "869a0e39-37fe-4d4b-a9f0-dd67fb70dcdf")
-	)
-	(wire
-		(pts
 			(xy 125.73 72.39) (xy 132.08 72.39)
 		)
 		(stroke
@@ -3966,6 +4016,16 @@
 	)
 	(wire
 		(pts
+			(xy 237.49 60.96) (xy 243.84 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9695e595-3008-4fb4-aff3-c0c76eb63926")
+	)
+	(wire
+		(pts
 			(xy 90.17 62.23) (xy 104.14 62.23)
 		)
 		(stroke
@@ -4033,6 +4093,26 @@
 			(type default)
 		)
 		(uuid "9e6b7b89-9f33-4461-b104-568735e3b6d1")
+	)
+	(wire
+		(pts
+			(xy 205.74 26.67) (xy 212.09 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ec42b3d-dd24-4e9f-a1b1-57fe1226146d")
+	)
+	(wire
+		(pts
+			(xy 184.15 49.53) (xy 190.5 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f87ae7d-394a-4e34-8001-3ec175fe3af3")
 	)
 	(wire
 		(pts
@@ -4444,6 +4524,16 @@
 		)
 		(uuid "cb7b1cb6-a47d-4f70-92d2-21c51309c730")
 	)
+	(wire
+		(pts
+			(xy 184.15 38.1) (xy 190.5 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd5c2d5b-9903-4a26-90e8-bf252e7eff22")
+	)
 	(bus
 		(pts
 			(xy 201.93 92.71) (xy 201.93 95.25)
@@ -4466,16 +4556,6 @@
 	)
 	(wire
 		(pts
-			(xy 247.65 62.23) (xy 255.27 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d12fe64d-02a1-435d-991f-09f4b4b2d736")
-	)
-	(wire
-		(pts
 			(xy 90.17 101.6) (xy 102.87 101.6)
 		)
 		(stroke
@@ -4493,6 +4573,16 @@
 			(type default)
 		)
 		(uuid "d2c4b36d-edf7-4823-a27b-949e9876c768")
+	)
+	(wire
+		(pts
+			(xy 215.9 60.96) (xy 222.25 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d3181c72-c909-46f5-aca2-7b041cfb9965")
 	)
 	(bus
 		(pts
@@ -4666,6 +4756,16 @@
 	)
 	(wire
 		(pts
+			(xy 184.15 60.96) (xy 190.5 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e24541c3-8b52-495e-a822-4ff557d9456f")
+	)
+	(wire
+		(pts
 			(xy 90.17 67.31) (xy 104.14 67.31)
 		)
 		(stroke
@@ -4736,16 +4836,6 @@
 	)
 	(wire
 		(pts
-			(xy 207.01 41.91) (xy 214.63 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e890d799-aa27-46ca-a86f-51116d104388")
-	)
-	(wire
-		(pts
 			(xy 39.37 26.67) (xy 34.29 26.67)
 		)
 		(stroke
@@ -4813,6 +4903,16 @@
 			(type default)
 		)
 		(uuid "ec31b621-9dc8-4374-b70e-fe2aafdebcb3")
+	)
+	(wire
+		(pts
+			(xy 215.9 72.39) (xy 222.25 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed17622d-b1be-497c-bd37-57183370a0c8")
 	)
 	(bus
 		(pts
@@ -4906,6 +5006,16 @@
 	)
 	(wire
 		(pts
+			(xy 237.49 72.39) (xy 243.84 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f6623ca9-011a-47e7-b66a-0138b0a0a21c")
+	)
+	(wire
+		(pts
 			(xy 90.17 46.99) (xy 104.14 46.99)
 		)
 		(stroke
@@ -4953,6 +5063,16 @@
 			(type default)
 		)
 		(uuid "fb463ac4-41e1-4335-8c47-7871839a2f03")
+	)
+	(wire
+		(pts
+			(xy 205.74 38.1) (xy 212.09 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc4228c0-f2ff-4dd3-9792-3c00c32b2fe0")
 	)
 	(wire
 		(pts
@@ -5045,6 +5165,17 @@
 		)
 		(uuid "03cd4a5c-654a-4164-b9b5-67c24e538e33")
 	)
+	(label "A2"
+		(at 184.15 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "042a5605-f244-4895-bbeb-2aeee4aba420")
+	)
 	(label "~{CE_EXT8}"
 		(at 64.77 124.46 0)
 		(fields_autoplaced yes)
@@ -5056,6 +5187,17 @@
 		)
 		(uuid "0848dcd2-5413-4c9c-8fb9-6ad2ee090eae")
 	)
+	(label "A7"
+		(at 215.9 60.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0920a7bd-b08e-48b8-9815-faf4cd49cd77")
+	)
 	(label "~{CE_EXT1}"
 		(at 102.87 134.62 180)
 		(fields_autoplaced yes)
@@ -5066,6 +5208,28 @@
 			(justify right bottom)
 		)
 		(uuid "095257af-667e-421a-ab3e-fd291b636469")
+	)
+	(label "A3"
+		(at 212.09 38.1 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0b24fd2f-c846-46d4-9712-7ff9c8d7fed0")
+	)
+	(label "A12"
+		(at 243.84 38.1 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0c46f9c2-d64e-437b-ba45-67ed50f68049")
 	)
 	(label "~{CE_EXT7}"
 		(at 184.15 113.03 0)
@@ -5144,6 +5308,17 @@
 		)
 		(uuid "14a4c89b-5651-4646-a1fc-23428404ea25")
 	)
+	(label "A6"
+		(at 243.84 72.39 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "160aea63-1794-43cb-957c-a2027142aafa")
+	)
 	(label "A17"
 		(at 39.37 69.85 180)
 		(fields_autoplaced yes)
@@ -5154,6 +5329,17 @@
 			(justify right bottom)
 		)
 		(uuid "16df812a-ebb9-4fe2-b188-709b78e83462")
+	)
+	(label "A13"
+		(at 215.9 26.67 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1a830b39-7b68-49f6-b806-1a5b7ad6b561")
 	)
 	(label "A17"
 		(at 104.14 69.85 180)
@@ -5353,28 +5539,6 @@
 		)
 		(uuid "33e031df-2798-4153-9dd8-b6f7a5c56103")
 	)
-	(label "D7"
-		(at 264.16 72.39 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "34dd0c6e-7fb0-4f32-a6de-4dbb0df39bbe")
-	)
-	(label "D0"
-		(at 207.01 41.91 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "35ccc593-7c69-403c-b1ab-eebc55fbc30c")
-	)
 	(label "A16"
 		(at 63.5 69.85 0)
 		(fields_autoplaced yes)
@@ -5429,17 +5593,6 @@
 			(justify left bottom)
 		)
 		(uuid "383e540d-8221-4abe-81c4-305dddcec06c")
-	)
-	(label "D3"
-		(at 246.38 52.07 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "3ae08d32-2e37-4dd6-9dab-ea070d81170e")
 	)
 	(label "A4"
 		(at 125.73 54.61 0)
@@ -5540,6 +5693,17 @@
 		)
 		(uuid "41c46013-6853-48b0-8f90-279139e75292")
 	)
+	(label "A9"
+		(at 215.9 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "43aaeaf3-542b-4075-9103-2aba2415dbc0")
+	)
 	(label "SDA"
 		(at 102.87 101.6 180)
 		(fields_autoplaced yes)
@@ -5639,6 +5803,28 @@
 		)
 		(uuid "5496d1f4-7c68-4fe5-9e5b-31ae9852be0b")
 	)
+	(label "A17"
+		(at 212.09 26.67 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "552822ad-aa80-4164-9c9d-26ca7ed5e62b")
+	)
+	(label "A19"
+		(at 212.09 60.96 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "5b30481b-32c8-45ef-9550-69f236b2b6b2")
+	)
 	(label "A11"
 		(at 104.14 62.23 180)
 		(fields_autoplaced yes)
@@ -5672,17 +5858,6 @@
 		)
 		(uuid "5df3a5cd-e792-45db-8249-f4ff04a74764")
 	)
-	(label "D1"
-		(at 237.49 41.91 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "5f11d4bb-5b4b-4851-97ef-120d7eadbf50")
-	)
 	(label "A10"
 		(at 39.37 52.07 180)
 		(fields_autoplaced yes)
@@ -5693,17 +5868,6 @@
 			(justify right bottom)
 		)
 		(uuid "5fd6eaf3-097e-4aaf-b865-e4a31a204bc0")
-	)
-	(label "D2"
-		(at 215.9 52.07 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "62c52bad-c37b-4e32-903c-60dc06fae18d")
 	)
 	(label "A16"
 		(at 125.73 69.85 0)
@@ -5782,17 +5946,6 @@
 		)
 		(uuid "6dfd2dec-0be2-400c-ae82-dc0e4eaacc9d")
 	)
-	(label "D5"
-		(at 255.27 62.23 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "6e8792d3-d2a7-49c7-85a4-a04a106e556a")
-	)
 	(label "~{CE_EXT7}"
 		(at 102.87 127 180)
 		(fields_autoplaced yes)
@@ -5825,6 +5978,17 @@
 			(justify left bottom)
 		)
 		(uuid "710ffe74-cf13-442d-a5e0-24addc817bb5")
+	)
+	(label "A18"
+		(at 184.15 26.67 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7328fada-030b-488b-89c3-bdf7c38a284d")
 	)
 	(label "D0"
 		(at 39.37 86.36 180)
@@ -5891,6 +6055,17 @@
 			(justify left bottom)
 		)
 		(uuid "7969a8d2-af4b-46ba-9420-658dfba8493e")
+	)
+	(label "A5"
+		(at 215.9 72.39 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "798fb0fc-8735-4ba6-813a-157e7e72308e")
 	)
 	(label "TX0"
 		(at 102.87 96.52 180)
@@ -6023,6 +6198,17 @@
 			(justify right bottom)
 		)
 		(uuid "8e664263-f4c0-426d-b51b-966ed3d65c8e")
+	)
+	(label "A4"
+		(at 184.15 38.1 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9071da3f-52ef-467a-ad5c-7305a9a33eb5")
 	)
 	(label "D1"
 		(at 125.73 39.37 0)
@@ -6233,6 +6419,17 @@
 		)
 		(uuid "aeb1f928-5203-40ce-b602-2ba9e761eed8")
 	)
+	(label "A16"
+		(at 212.09 72.39 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "aecd82aa-bf80-4835-aaf1-e11dc77d0298")
+	)
 	(label "D5"
 		(at 63.5 44.45 0)
 		(fields_autoplaced yes)
@@ -6243,17 +6440,6 @@
 			(justify left bottom)
 		)
 		(uuid "b14029cf-4bfd-4814-8909-fab46bd051b2")
-	)
-	(label "D4"
-		(at 224.79 62.23 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b16891a5-1e17-4ef2-a71a-08e53def83a3")
 	)
 	(label "R{slash}~{W}_e"
 		(at 104.14 31.75 180)
@@ -6298,6 +6484,17 @@
 			(justify right bottom)
 		)
 		(uuid "b3167f9e-c745-4f57-82d4-49b5c611ccff")
+	)
+	(label "A1"
+		(at 212.09 49.53 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b3df44fd-3295-4e90-8edc-f341836af208")
 	)
 	(label "D1"
 		(at 63.5 39.37 0)
@@ -6353,6 +6550,17 @@
 			(justify right bottom)
 		)
 		(uuid "bf08544b-17b7-49b4-9408-095554468d93")
+	)
+	(label "A14"
+		(at 243.84 26.67 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c24fe22a-954f-4191-831a-047163b395e8")
 	)
 	(label "A18"
 		(at 39.37 72.39 180)
@@ -6430,6 +6638,17 @@
 			(justify right bottom)
 		)
 		(uuid "cb7154d1-7062-46e1-adb4-a7e723942288")
+	)
+	(label "A15"
+		(at 184.15 72.39 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cca241de-95f2-46bb-8d91-3e0fce9065e1")
 	)
 	(label "~{CE_EXT11}"
 		(at 102.87 121.92 180)
@@ -6651,17 +6870,6 @@
 		)
 		(uuid "e051072a-e372-44de-999a-7a454be0890d")
 	)
-	(label "D6"
-		(at 233.68 72.39 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e1c0b47f-3c70-4c10-91d1-6e168af69f18")
-	)
 	(label "D0"
 		(at 104.14 36.83 180)
 		(fields_autoplaced yes)
@@ -6728,7 +6936,18 @@
 		)
 		(uuid "ee487b21-5bd4-4b46-94d2-6376bce61a74")
 	)
-	(label "RES0"
+	(label "A8"
+		(at 243.84 60.96 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "ef35a17c-25d0-405f-8648-6211b51f2959")
+	)
+	(label "~{STM32BUS}"
 		(at 102.87 111.76 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6750,6 +6969,28 @@
 		)
 		(uuid "ef97481d-a0f1-4c28-aee6-f629b8b50daa")
 	)
+	(label "A10"
+		(at 243.84 49.53 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "f36d57c6-cd92-441d-aa24-a0c3ab777049")
+	)
+	(label "A0"
+		(at 184.15 60.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f3cfb94b-eddf-4790-a79f-ca119c2143f2")
+	)
 	(label "A16"
 		(at 39.37 67.31 180)
 		(fields_autoplaced yes)
@@ -6760,6 +7001,17 @@
 			(justify right bottom)
 		)
 		(uuid "f5c8820b-6a4d-408e-90fa-61281b75c1a7")
+	)
+	(label "A11"
+		(at 215.9 38.1 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f926b7e7-dc4e-4221-8666-3a0b99d3e53d")
 	)
 	(label "A8"
 		(at 39.37 46.99 180)
@@ -6877,7 +7129,7 @@
 		(uuid "3e4c6f41-3a8a-4416-96e4-9e8590c12749")
 	)
 	(hierarchical_label "A[0..19]"
-		(shape input)
+		(shape output)
 		(at 29.21 22.86 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6948,7 +7200,7 @@
 		)
 		(uuid "70526988-a848-44cc-aae9-d9e48baf50b0")
 	)
-	(hierarchical_label "RES0"
+	(hierarchical_label "~{STM32BUS}"
 		(shape output)
 		(at 162.56 111.76 0)
 		(fields_autoplaced yes)
@@ -7189,77 +7441,6 @@
 		(uuid "f988490c-a648-44ed-8b4b-155305b40c22")
 	)
 	(symbol
-		(lib_id "Diode:BAV70")
-		(at 248.92 72.39 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "0c6d0cad-e658-4292-92ba-0b2990a87836")
-		(property "Reference" "D5"
-			(at 254 66.802 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BAV70"
-			(at 254 69.342 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 248.92 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
-			(at 248.92 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
-			(at 248.92 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "192165f3-b91a-4c84-8b5f-b78d147afcfe")
-		)
-		(pin "2"
-			(uuid "600b9163-5152-4708-85b8-06934d911c46")
-		)
-		(pin "3"
-			(uuid "9dcfa3d5-2867-4671-835e-d011acc1bf9b")
-		)
-		(instances
-			(project "RamRomBoard"
-				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "D5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector_Generic:Conn_02x20_Odd_Even")
 		(at 146.05 116.84 180)
 		(unit 1)
@@ -7441,72 +7622,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 240.03 57.15 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1273937c-7488-4989-ad0c-e85d8cbcfab5")
-		(property "Reference" "#PWR0124"
-			(at 240.03 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 240.03 53.5742 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 240.03 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 240.03 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 240.03 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5b114055-b525-4848-b3f6-bf939773c6eb")
-		)
-		(instances
-			(project "RamRomBoard"
-				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "#PWR0124")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5VA")
 		(at 130.81 90.17 0)
 		(unit 1)
@@ -7566,6 +7681,77 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "#PWR097")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:BAV70")
+		(at 229.87 38.1 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "16aab469-a988-41ad-9a6c-aca5019515cf")
+		(property "Reference" "D8"
+			(at 233.934 32.258 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 233.934 34.798 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 229.87 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 229.87 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 229.87 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "397077dd-db63-4bdf-978d-bd1b7cfc5645")
+		)
+		(pin "2"
+			(uuid "5e9223dd-5d76-4d20-99d4-c2137e1bf36d")
+		)
+		(pin "1"
+			(uuid "d31ccf6d-3224-451e-961a-caf02901703d")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "D8")
 					(unit 1)
 				)
 			)
@@ -7639,16 +7825,16 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 248.92 67.31 0)
+		(at 229.87 33.02 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "2e854130-f283-42ed-ae54-27f12e649a9a")
-		(property "Reference" "#PWR0125"
-			(at 248.92 71.12 0)
+		(uuid "1a8a6a77-7953-4960-8320-bbddaab3cdd2")
+		(property "Reference" "#PWR0129"
+			(at 229.87 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7657,7 +7843,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 248.92 63.7342 0)
+			(at 229.87 29.4442 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7665,7 +7851,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 248.92 67.31 0)
+			(at 229.87 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7674,7 +7860,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 67.31 0)
+			(at 229.87 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7683,7 +7869,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 248.92 67.31 0)
+			(at 229.87 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7692,12 +7878,215 @@
 			)
 		)
 		(pin "1"
-			(uuid "6be8f8ee-cbe3-45b9-9a53-246602f51de8")
+			(uuid "64a93854-acea-406d-8dd3-eb375e4ce2c5")
 		)
 		(instances
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "#PWR0125")
+					(reference "#PWR0129")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 229.87 55.88 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "20f4c2c1-7056-434c-ad46-cda4c43f8414")
+		(property "Reference" "#PWR0131"
+			(at 229.87 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 229.87 52.3042 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 229.87 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 229.87 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 229.87 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dba56e25-a3ff-4485-aa08-95c60e129f7c")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0131")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:BAV70")
+		(at 198.12 49.53 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "266c2a97-4597-4a16-97bb-dfd483d775d7")
+		(property "Reference" "D3"
+			(at 202.184 43.688 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 202.184 46.228 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 198.12 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 198.12 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 198.12 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "0e835585-3272-4d59-adc2-238fe81212c5")
+		)
+		(pin "2"
+			(uuid "7557a7b9-867d-4152-bd53-65d968f2aa69")
+		)
+		(pin "1"
+			(uuid "117359e5-73af-4a7f-af3a-d621ff434d25")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "D3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 229.87 44.45 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2db66be0-b479-49d7-89e2-9cd74a910e9c")
+		(property "Reference" "#PWR0130"
+			(at 229.87 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 229.87 40.8742 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 229.87 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 229.87 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 229.87 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "91fc1556-644d-4738-9286-1330f002bbfa")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0130")
 					(unit 1)
 				)
 			)
@@ -7770,6 +8159,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Diode:BAV70")
+		(at 198.12 60.96 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3c7ffb20-4438-4598-878a-526697ae7179")
+		(property "Reference" "D4"
+			(at 202.184 55.118 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 202.184 57.658 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 198.12 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 198.12 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 198.12 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "e583c01c-7fa5-4ab5-8b13-21bbe26e99c2")
+		)
+		(pin "2"
+			(uuid "70f876ea-45be-4ac5-800e-4a00eeaaea56")
+		)
+		(pin "1"
+			(uuid "d1bfe435-aa4a-4774-8158-e29aa2175ca5")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 76.2 25.4 0)
 		(unit 1)
@@ -7830,6 +8290,72 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "#PWR087")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 229.87 21.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "427adfed-9271-44a8-b5ab-244bb335c316")
+		(property "Reference" "#PWR0128"
+			(at 229.87 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 229.87 18.0142 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 229.87 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 229.87 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 229.87 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1c009c14-cd8e-4bbb-9bd2-64b15b55b206")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0128")
 					(unit 1)
 				)
 			)
@@ -8034,33 +8560,17 @@
 		)
 	)
 	(symbol
-		(lib_id "Diode:BAV70")
-		(at 240.03 62.23 0)
-		(mirror x)
+		(lib_id "power:+3V3")
+		(at 198.12 44.45 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "52ddb6c8-7626-4895-8f41-c39b7c69e31d")
-		(property "Reference" "D4"
-			(at 245.11 56.642 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BAV70"
-			(at 245.11 59.182 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 240.03 62.23 0)
+		(fields_autoplaced yes)
+		(uuid "565e1733-db1a-42e3-a52c-c31f91674248")
+		(property "Reference" "#PWR0123"
+			(at 198.12 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8068,8 +8578,16 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
-			(at 240.03 62.23 0)
+		(property "Value" "+3V3"
+			(at 198.12 40.8742 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.12 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8077,8 +8595,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
-			(at 240.03 62.23 0)
+		(property "Datasheet" ""
+			(at 198.12 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 198.12 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8087,18 +8614,154 @@
 			)
 		)
 		(pin "1"
-			(uuid "2d75d261-199b-4222-826a-594e369876d5")
-		)
-		(pin "2"
-			(uuid "55abd7a0-31bd-4efd-954e-47eb63958649")
-		)
-		(pin "3"
-			(uuid "669c8074-2d38-4621-a1c1-3968f97449e3")
+			(uuid "942f7242-aa6b-4bc2-9c13-17eb7adf9763")
 		)
 		(instances
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "D4")
+					(reference "#PWR0123")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:BAV70")
+		(at 229.87 26.67 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5d9ae1b9-9feb-484d-a883-c4dc02050c70")
+		(property "Reference" "D7"
+			(at 233.934 20.828 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 233.934 23.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 229.87 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 229.87 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 229.87 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "bceedcc5-95df-4542-bb1e-9f11c14bc816")
+		)
+		(pin "2"
+			(uuid "d75b2ffb-a00c-4289-8e5e-ae6cc532ca1e")
+		)
+		(pin "1"
+			(uuid "d34b8bb6-8815-4429-b0d1-e82484b83356")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "D7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:BAV70")
+		(at 229.87 72.39 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "65a74243-bbe3-42ff-8b3b-1f458f578c51")
+		(property "Reference" "D11"
+			(at 233.934 66.548 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 233.934 69.088 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 229.87 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 229.87 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 229.87 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "430ba258-1308-4d42-a08f-dc1e36d30f80")
+		)
+		(pin "2"
+			(uuid "c143f33d-f6d3-4744-879a-19c4902776ff")
+		)
+		(pin "1"
+			(uuid "38d4cf9a-dada-4f5b-ba4c-8e42f7acc7a7")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "D11")
 					(unit 1)
 				)
 			)
@@ -8171,17 +8834,33 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 231.14 46.99 0)
+		(lib_id "Diode:BAV70")
+		(at 198.12 72.39 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "71bf6c0a-297c-4752-b057-bc2ec654a573")
-		(property "Reference" "#PWR0123"
-			(at 231.14 50.8 0)
+		(uuid "6f71b206-080f-40ca-a789-d9b36ad37b55")
+		(property "Reference" "D6"
+			(at 202.184 66.548 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 202.184 69.088 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 198.12 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8189,16 +8868,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 231.14 43.4142 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 231.14 46.99 0)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 198.12 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8206,8 +8877,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 231.14 46.99 0)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 198.12 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8215,22 +8886,19 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 231.14 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
+		(pin "3"
+			(uuid "44f79ea0-6ab0-4bcb-9ea2-daf49294ca82")
+		)
+		(pin "2"
+			(uuid "a9d1c855-8229-4f0d-8708-f6ddedd75f21")
 		)
 		(pin "1"
-			(uuid "aee78df4-0681-4fb3-a914-7542551aacb3")
+			(uuid "d6f5d278-61b8-45db-a09f-91f45c8b31a8")
 		)
 		(instances
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "#PWR0123")
+					(reference "D6")
 					(unit 1)
 				)
 			)
@@ -8297,6 +8965,72 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "#PWR0102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 198.12 21.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "88d2f1b4-e0a4-491a-bd06-2652ed8b4e3a")
+		(property "Reference" "#PWR0125"
+			(at 198.12 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 198.12 18.0142 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.12 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 198.12 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 198.12 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3103be48-a2ce-4e95-9dd5-9d96ca178d4a")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0125")
 					(unit 1)
 				)
 			)
@@ -8435,17 +9169,33 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 222.25 36.83 0)
+		(lib_id "Diode:BAV70")
+		(at 229.87 49.53 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8e118075-69ac-43e8-b6bf-a72cd9b5f720")
-		(property "Reference" "#PWR0122"
-			(at 222.25 40.64 0)
+		(uuid "8e55d88d-b342-4b5b-a3c1-0547e9cbb299")
+		(property "Reference" "D9"
+			(at 233.934 43.688 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 233.934 46.228 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 229.87 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8453,16 +9203,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 222.25 33.2542 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 222.25 36.83 0)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 229.87 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8470,8 +9212,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 222.25 36.83 0)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 229.87 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8479,22 +9221,19 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 222.25 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
+		(pin "3"
+			(uuid "16193f8a-77c0-4b17-bdb2-9434a732b173")
+		)
+		(pin "2"
+			(uuid "60d1ea51-52e7-44e3-a952-501fbdefa1d1")
 		)
 		(pin "1"
-			(uuid "a88cebf3-7d2e-4ae3-8f49-a77a7f8e9ad8")
+			(uuid "9010755b-5ce3-4ea5-bf6a-48fe5cff02a2")
 		)
 		(instances
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "#PWR0122")
+					(reference "D9")
 					(unit 1)
 				)
 			)
@@ -8742,6 +9481,72 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 198.12 67.31 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "974f74bf-415c-46a7-bd59-7714723e1e2e")
+		(property "Reference" "#PWR0127"
+			(at 198.12 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 198.12 63.7342 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.12 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 198.12 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 198.12 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "97ed49de-5b7e-4c86-87b1-dc73806024a5")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0127")
 					(unit 1)
 				)
 			)
@@ -9111,77 +9916,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Diode:BAV70")
-		(at 231.14 52.07 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b62f178d-18a7-477b-b3ba-80cab1e8deb4")
-		(property "Reference" "D2"
-			(at 236.22 46.482 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BAV70"
-			(at 236.22 49.022 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 231.14 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
-			(at 231.14 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
-			(at 231.14 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e63010f5-b356-4289-b6ac-39bc5a8caa55")
-		)
-		(pin "2"
-			(uuid "c8ba72bc-66e2-459f-846b-72e91bdfb469")
-		)
-		(pin "3"
-			(uuid "0c0cc0be-4a56-4753-afa0-68ae129556ef")
-		)
-		(instances
-			(project "RamRomBoard"
-				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "D2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 76.2 140.97 0)
 		(unit 1)
@@ -9313,6 +10047,280 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 198.12 55.88 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d2b89399-1796-4972-b64a-f9597feb3056")
+		(property "Reference" "#PWR0124"
+			(at 198.12 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 198.12 52.3042 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.12 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 198.12 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 198.12 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dde98627-abef-4574-a76a-bc5b3043e4fb")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0124")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:BAV70")
+		(at 198.12 26.67 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d594d62c-da24-4695-876c-baa3a660e27b")
+		(property "Reference" "D5"
+			(at 202.184 20.828 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 202.184 23.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 198.12 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 198.12 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 198.12 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "ea2c3801-0393-4332-8b0c-ff98e502ebf4")
+		)
+		(pin "2"
+			(uuid "084612e1-6af8-4b8f-b6be-5188e1765ea6")
+		)
+		(pin "1"
+			(uuid "5e5886d8-b2cb-4592-be04-a59d40d5c21c")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "D5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:BAV70")
+		(at 198.12 38.1 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d75a049a-ab31-4671-a0df-ab3018f7fb27")
+		(property "Reference" "D2"
+			(at 202.184 32.258 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 202.184 34.798 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 198.12 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 198.12 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 198.12 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "d12c0378-889f-4953-b9ca-07b8cc12cc6f")
+		)
+		(pin "2"
+			(uuid "856583ae-6787-496e-917d-4a13943034db")
+		)
+		(pin "1"
+			(uuid "218be9bd-afb4-46cc-95a9-747387e9b967")
+		)
+		(instances
+			(project ""
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "D2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 229.87 67.31 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dabd8643-a5e7-47fd-9461-9de1910a6a7c")
+		(property "Reference" "#PWR0132"
+			(at 229.87 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 229.87 63.7342 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 229.87 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 229.87 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 229.87 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "52b31a5c-d9ff-4163-9de9-9895a3d0985b")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0132")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 149.86 25.4 0)
 		(mirror y)
@@ -9380,6 +10388,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 198.12 33.02 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ded68da8-98f1-4048-9cbb-96ce74ceaa08")
+		(property "Reference" "#PWR0122"
+			(at 198.12 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 198.12 29.4442 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.12 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 198.12 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 198.12 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dcbe2173-520c-45c9-9378-49c86dbd4e04")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "#PWR0122")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 132.08 76.2 0)
 		(unit 1)
@@ -9440,6 +10514,77 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "#PWR098")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Diode:BAV70")
+		(at 229.87 60.96 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e8ecbf37-f043-4913-8917-c4094138cb04")
+		(property "Reference" "D10"
+			(at 233.934 55.118 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAV70"
+			(at 233.934 57.658 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 229.87 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
+			(at 229.87 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
+			(at 229.87 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "1e591281-c211-4680-8292-951429f3247d")
+		)
+		(pin "2"
+			(uuid "dde9c8c2-756e-4c98-8235-0fab5c57b868")
+		)
+		(pin "1"
+			(uuid "c5d29e38-9d40-49a5-b5a1-4c32f04bcf43")
+		)
+		(instances
+			(project "RamRomBoard"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
+					(reference "D10")
 					(unit 1)
 				)
 			)
@@ -9704,77 +10849,6 @@
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
 					(reference "#PWR093")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:BAV70")
-		(at 222.25 41.91 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f97a9cbe-5f5e-4f1c-a5fe-c8f15b934862")
-		(property "Reference" "D3"
-			(at 227.33 36.322 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BAV70"
-			(at 227.33 38.862 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 222.25 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BAV70_SER.pdf"
-			(at 222.25 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Dual 100V 215mA high-speed switching diodes, common cathode, SOT-23"
-			(at 222.25 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "7439c174-e9fd-4faf-8b84-a8c931fb1a3f")
-		)
-		(pin "2"
-			(uuid "adf6450f-6389-48fd-8462-5e01edc1d3ae")
-		)
-		(pin "3"
-			(uuid "78d4d081-53bf-4968-b5aa-33b7664de9ea")
-		)
-		(instances
-			(project ""
-				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "D3")
 					(unit 1)
 				)
 			)
