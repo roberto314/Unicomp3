@@ -372,7 +372,7 @@
 		(path "/b6a86f62-148d-4f7e-9143-91433851fc22")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -3.87 -1.33)
 			(end -3.87 3.87)
@@ -919,7 +919,7 @@
 		(path "/6e21c1bb-2e19-4954-821d-cfea235d0c1b")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -1858,7 +1858,7 @@
 		(path "/e1968ba2-9918-40a5-abdb-b5b5ef49c885")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.33 -1.33)
 			(end 0 -1.33)
@@ -2203,7 +2203,7 @@
 		(path "/223bb760-95bd-4881-8cc1-ce868ca51322")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.06 -1.06)
 			(end 0 -1.06)
@@ -3165,7 +3165,7 @@
 		(path "/fb0b864f-92c9-4cb7-b5d1-d4315e1fac65")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.33 -1.33)
 			(end 0 -1.33)
@@ -7209,7 +7209,7 @@
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(net_tie_pad_groups "1, 2")
 		(fp_poly
 			(pts
@@ -7770,7 +7770,7 @@
 		(path "/f701e72d-d150-42d6-946e-d4c3b7f10516")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.06 -1.06)
 			(end 0 -1.06)
@@ -8027,7 +8027,7 @@
 		(path "/9272637d-1dcb-4eb8-96b5-e029cf524af1/0ddd1ea5-bb3b-490d-9ace-bf46c571439e")
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -3.87 49.59)
 			(end 1.33 49.59)
@@ -8734,7 +8734,7 @@
 		(path "/8e0621e0-dd09-4283-8b94-c1ebdc8af0e8")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -3.87 -1.33)
 			(end -3.87 3.87)
@@ -9045,7 +9045,7 @@
 		(path "/6e9c19a7-aebb-4ea1-b297-37583e3cbdf6")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -9313,7 +9313,7 @@
 		(path "/5e961002-b3a7-45a8-a1a5-801a724346d9")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.33 19.11)
 			(end 1.33 19.11)
@@ -9647,7 +9647,7 @@
 		(path "/497bad63-1ca5-4080-9cd9-566752c4f6e9")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -10569,7 +10569,7 @@
 			)
 		)
 		(property ki_fp_filters "DIP?16*")
-		(path "/e1a84031-38fa-415c-81b4-5cfd95762fd8")
+		(path "/e964cc6f-1e73-4cfc-b8fc-bf126d23dcea")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
 		(attr smd)
@@ -10970,7 +10970,7 @@
 		(path "/63abffe9-a6f6-4368-8e6e-46c955f9cb07")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -11515,7 +11515,7 @@
 		(path "/9272637d-1dcb-4eb8-96b5-e029cf524af1/d3d9e31b-4a93-4ff3-92a1-a4f239bdab0e")
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.06 -1.06)
 			(end 0 -1.06)
@@ -11772,7 +11772,7 @@
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.4 0.3)
 			(end -1.4 -0.3)
@@ -12043,7 +12043,7 @@
 		(path "/ae0890bd-f238-49bf-a07f-ecae6622727f")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -12309,7 +12309,7 @@
 		(path "/59b9bb57-9522-4133-b00f-1526205c4076")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -12576,7 +12576,7 @@
 		(path "/45334d42-c8ea-4ff0-b65f-b07e9e0423ef")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -12844,7 +12844,7 @@
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start 1.4 -0.3)
 			(end 1.4 0.3)
@@ -13822,7 +13822,7 @@
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.4 0.3)
 			(end -1.4 -0.3)
@@ -14785,7 +14785,7 @@
 		(path "/9272637d-1dcb-4eb8-96b5-e029cf524af1/648beac9-57aa-4d80-ad36-5349f6be2358")
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.06 -1.06)
 			(end 0 -1.06)
@@ -19289,7 +19289,7 @@
 		(path "/9272637d-1dcb-4eb8-96b5-e029cf524af1/0a8ae04e-06a7-43fd-b2a6-54efafc10c5c")
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 3.2 0)
@@ -19405,7 +19405,7 @@
 		(path "/f068439e-fa06-4fbc-824c-2dc7c15d24f6")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -19671,7 +19671,7 @@
 		(path "/fd09e64a-de0b-4101-a845-1e50548d8418")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -20807,7 +20807,7 @@
 		(path "/b1e1be64-4c25-4637-a266-868df7d67d34")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -21073,7 +21073,7 @@
 		(path "/27483b4b-3d3e-4c15-be56-db5a34e312e1")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -21577,7 +21577,7 @@
 		(path "/958b923c-953e-4443-bedf-fa7ab4e0d918")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -22879,7 +22879,7 @@
 		(path "/9272637d-1dcb-4eb8-96b5-e029cf524af1/90d6960f-7a05-42b1-89d5-d9c35ac40d81")
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start 1.33 -1.33)
 			(end 1.33 0)
@@ -23907,7 +23907,7 @@
 		(path "/acc7899e-3be8-4858-b1da-1cb1d33e0da4")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -24679,7 +24679,7 @@
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(net_tie_pad_groups "1, 2")
 		(fp_poly
 			(pts
@@ -24963,7 +24963,7 @@
 		(path "/3e4d3514-59d7-40cd-8f53-2e44c5138fc8")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -25231,7 +25231,7 @@
 		(path "/7978f706-e2ec-45bc-b942-7bb1a6ba1b67")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.33 -1.33)
 			(end 0 -1.33)
@@ -26044,7 +26044,7 @@
 		(path "/9272637d-1dcb-4eb8-96b5-e029cf524af1/0866b180-9d66-4c9b-80b6-f3197b185df0")
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 3.2 0)
@@ -26373,7 +26373,7 @@
 		(path "/b7059735-b966-4f3d-87cd-4aa0aedda169")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.11 -0.76)
 			(end 0 -0.76)
@@ -26877,7 +26877,7 @@
 		(path "/9272637d-1dcb-4eb8-96b5-e029cf524af1/a3200f48-0768-4591-a479-966999cdf6c0")
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 3.2 0)
@@ -27683,7 +27683,7 @@
 		(path "/89d76f4e-57be-4ea1-b66c-56a5324ed964")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start -1.33 -1.33)
 			(end 0 -1.33)
@@ -30059,7 +30059,7 @@
 		(path "/090ce622-24ad-4753-939a-9ccb1f5a9024")
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom)
 		(fp_line
 			(start 1.33 1.27)
 			(end 1.33 41.97)
@@ -30493,7 +30493,7 @@
 		(path "/9272637d-1dcb-4eb8-96b5-e029cf524af1/56f583e6-4ac8-4eb9-ac28-49732f9a4f26")
 		(sheetname "Bus")
 		(sheetfile "bus.kicad_sch")
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_circle
 			(center 0 0)
 			(end 3.2 0)
@@ -39435,7 +39435,7 @@
 		(sheetname "Root")
 		(sheetfile "WD1771_Board.kicad_sch")
 		(zone_connect 1)
-		(attr exclude_from_pos_files)
+		(attr exclude_from_pos_files exclude_from_bom)
 		(fp_line
 			(start -1.4 0.3)
 			(end -1.4 -0.3)

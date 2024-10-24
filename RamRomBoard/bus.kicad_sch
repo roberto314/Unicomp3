@@ -7449,7 +7449,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0ddd1ea5-bb3b-490d-9ace-bf46c571439e")
-		(property "Reference" "J4"
+		(property "Reference" "TP2"
 			(at 144.78 86.344 0)
 			(effects
 				(font
@@ -7615,7 +7615,7 @@
 		(instances
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "J4")
+					(reference "TP2")
 					(unit 1)
 				)
 			)
@@ -9314,7 +9314,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "90d6960f-7a05-42b1-89d5-d9c35ac40d81")
-		(property "Reference" "J3"
+		(property "Reference" "TP1"
 			(at 138.43 20.32 0)
 			(effects
 				(font
@@ -9480,7 +9480,7 @@
 		(instances
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0/9272637d-1dcb-4eb8-96b5-e029cf524af1"
-					(reference "J3")
+					(reference "TP1")
 					(unit 1)
 				)
 			)

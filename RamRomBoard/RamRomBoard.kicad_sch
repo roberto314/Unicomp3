@@ -27122,7 +27122,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3k3"
+		(property "Value" "1k"
 			(at 113.8936 168.0722 0)
 			(effects
 				(font
@@ -28287,7 +28287,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3k3"
+		(property "Value" "1k"
 			(at 106.9086 168.0722 0)
 			(effects
 				(font
@@ -29005,7 +29005,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3k3"
+		(property "Value" "10k"
 			(at 128.4986 168.0722 0)
 			(effects
 				(font
@@ -29936,7 +29936,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4567f576-bb3b-4db2-84c1-e9067a51bc15")
-		(property "Reference" "TP1"
+		(property "Reference" "TP12"
 			(at 113.792 121.158 0)
 			(effects
 				(font
@@ -29987,7 +29987,7 @@
 		(instances
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0"
-					(reference "TP1")
+					(reference "TP12")
 					(unit 1)
 				)
 			)
@@ -32124,7 +32124,7 @@
 		(fields_autoplaced yes)
 		(uuid "66f9f754-54a2-41d1-8fe7-abad8f6273cf")
 		(property "Reference" "R8"
-			(at 151.3586 217.2279 0)
+			(at 152.4 217.1699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -32132,8 +32132,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10k"
-			(at 151.3586 219.6521 0)
+		(property "Value" "1k"
+			(at 152.4 219.7099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -32596,12 +32596,12 @@
 		(at 22.86 220.98 90)
 		(unit 1)
 		(exclude_from_sim yes)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6d1a749c-8b11-4305-8a0d-53f85eac3e4a")
-		(property "Reference" "JP1"
+		(property "Reference" "J3"
 			(at 20.32 219.7099 90)
 			(effects
 				(font
@@ -32658,7 +32658,7 @@
 		(instances
 			(project ""
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0"
-					(reference "JP1")
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -34814,7 +34814,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "560E"
+		(property "Value" "1k"
 			(at 48.26 31.7499 0)
 			(effects
 				(font
@@ -38647,7 +38647,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3k3"
+		(property "Value" "10k"
 			(at 120.8786 168.0722 0)
 			(effects
 				(font
@@ -38783,7 +38783,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d58506e4-703e-46a7-ba9a-63b1a0fb9094")
-		(property "Reference" "TP2"
+		(property "Reference" "TP13"
 			(at 118.872 118.618 0)
 			(effects
 				(font
@@ -38834,7 +38834,7 @@
 		(instances
 			(project "RamRomBoard"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0"
-					(reference "TP2")
+					(reference "TP13")
 					(unit 1)
 				)
 			)
@@ -39371,7 +39371,7 @@
 		(fields_autoplaced yes)
 		(uuid "e07ea9ee-2f9b-4e5d-b8fd-f28de26a2618")
 		(property "Reference" "R7"
-			(at 145.0086 217.2279 0)
+			(at 146.05 217.1699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -39379,8 +39379,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10k"
-			(at 145.0086 219.6521 0)
+		(property "Value" "1k"
+			(at 146.05 219.7099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
