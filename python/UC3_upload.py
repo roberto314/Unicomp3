@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-import sys, os, math
+import sys, os
+from math import log
 import argparse, time
 from serial import Serial
 from serial import SerialException
+from configobj import ConfigObj
 
 # UC3_upload.py
 # This is the upload script for the Unicom Project.
@@ -15,19 +17,20 @@ ver = '3.0'
 port = '/dev/ttyACM0'
 
 #RAMSIZE = 0x80000 # 512kB RAM
-RAMSIZE = 0x100000 # 1MB RAM
+#RAMSIZE = 0x100000 # 1MB RAM
+RAMSIZE = 0x10000 # 64kB RAM
 BLOCKSIZE = 8192 # Chunksize for read
-DEBUG = 1
+DEBUG = 6 # 1: Clock, 2: transmission, 3: config, 4: RAM, 5: reset, 6: tic
 class bcolors:
-    FAIL = '\033[91m'    #red
-    OKGREEN = '\033[92m' #green
-    WARNING = '\033[93m' #yellow
-    OKBLUE = '\033[94m'  #dblue
-    HEADER = '\033[95m'  #purple
-    OKCYAN = '\033[96m'  #cyan
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+	FAIL = '\033[91m'    #red
+	OKGREEN = '\033[92m' #green
+	WARNING = '\033[93m' #yellow
+	OKBLUE = '\033[94m'  #dblue
+	HEADER = '\033[95m'  #purple
+	OKCYAN = '\033[96m'  #cyan
+	ENDC = '\033[0m'
+	BOLD = '\033[1m'
+	UNDERLINE = '\033[4m'
 #print(f'{bcolors.FAIL}{bcolors.ENDC}')
 #print(f'{bcolors.OKGREEN}{bcolors.ENDC}')
 #print(f'{bcolors.WARNING}{bcolors.ENDC}')
@@ -36,24 +39,24 @@ class bcolors:
 #print(f'{bcolors.OKCYAN}{bcolors.ENDC}')
 ##########################################
 def dump_data(data, width):
-    idx = len(data)
-    for w in range(width):
-        print (f'{bcolors.OKCYAN}  {w:02} ', end = '')
-    print(f'{bcolors.ENDC}')
-    for i in range(0, len(data), width):
-        #print(f'idx: {idx}')
-        if idx < width:
-            stop = idx
-        else:
-            stop = width
-        for j in range(0,stop):
-            print(f'{bcolors.WARNING}0x{data[i+j]:02X} ', end = '')
-        idx -= width
-        if (idx >= width):
-        	print(f'{bcolors.ENDC} - {(i+width):>2} ({(i+width):02X})\r')
-        else:
-        	print(f'{bcolors.ENDC}')
-        #print(f'{bcolors.ENDC}\r')
+	idx = len(data)
+	for w in range(width):
+		print (f'{bcolors.OKCYAN}  {w:02} ', end = '')
+	print(f'{bcolors.ENDC}')
+	for i in range(0, len(data), width):
+		#print(f'idx: {idx}')
+		if idx < width:
+			stop = idx
+		else:
+			stop = width
+		for j in range(0,stop):
+			print(f'{bcolors.WARNING}0x{data[i+j]:02X} ', end = '')
+		idx -= width
+		if (idx >= width):
+			print(f'{bcolors.ENDC} - {(i+width):>2} ({(i+width):02X})\r')
+		else:
+			print(f'{bcolors.ENDC}')
+		#print(f'{bcolors.ENDC}\r')
 #------------------------------------------
 def read_file(fn):
 	try:
@@ -108,7 +111,7 @@ def find_registers(freq_fast, freq_slow=1000000):
 		mclk_window_min = (int)((offsetsize * (offset + rangereg)) / p0)
 		if (mclk_window_min < minfreq) and (p0 < 8):
 			mclk_window_min = int(minfreq / p0)
-		if (DEBUG > 2):
+		if (DEBUG == 1):
 			print (f'freq window: {mclk_window_max} - {mclk_window_min}, offset: {offset}, p0: {p0}')
 	dac_off = round((freq_fast - mclk_window_min) * p0 / stepsize)
 	real_freq = (int)((offsetsize * (offset + rangereg) + (dac_off*stepsize)) / p0)
@@ -160,19 +163,19 @@ def read(channel, size = 1):
 	#result = bytearray.fromhex('00')
 	if (channel == None):
 		return result
-    # Read a sequence of bytes
+	# Read a sequence of bytes
 	if size == 0:
 		return
 
 	try:
 		result = channel.read(size)
-        #print(f'Read Result length: {len(result)}')
+		#print(f'Read Result length: {len(result)}')
 		if len(result) != size:
 			print(f'Read error, Size: 0x{result:02X}')
 			raise Exception('Read error')
 	except:
 		print(f'{bcolors.FAIL}Read error!{bcolors.ENDC}')
-        #result = (read_file('rom.bin'))[:size] #only for debug on a pc
+		#result = (read_file('rom.bin'))[:size] #only for debug on a pc
 	return result
 #----------------------------------
 def expect_ok(ser):
@@ -183,34 +186,34 @@ def expect_ok(ser):
 	if response == b'X':
 		print(f'Checksum or Programming Error')
 	elif response == b'O':
-		if (DEBUG > 2):
+		if (DEBUG == 2):
 			print(f'Response OK.')
 	else:
 		#raise Exception('Response error')
 		print(f'{bcolors.FAIL}Response error!{bcolors.ENDC}')
 #----------------------------------
 def expect_done(ser):
-    if ser == '':
-        response = b'X'
-    else:
-        response = read(ser)
-    if response == b'X':
-        print(f'Checksum or Programming Error')
-    elif response == b'Y':
-    	print(f'{bcolors.OKGREEN}Uplaod done.{bcolors.ENDC}')
-    else:
-        raise Exception('Response error')
+	if ser == '':
+		response = b'X'
+	else:
+		response = read(ser)
+	if response == b'X':
+		print(f'Checksum or Programming Error')
+	elif response == b'Y':
+		print(f'{bcolors.OKGREEN}Uplaod done.{bcolors.ENDC}')
+	else:
+		raise Exception('Response error')
 #----------------------------------
 def write_with_checksum(ser, data):
-    cs_file = make_checksum(data)
-    data += bytes([cs_file])
-    write(ser, data)
+	cs_file = make_checksum(data)
+	data += bytes([cs_file])
+	write(ser, data)
 #----------------------------------
 def read_with_checksum(ser, size):
 	data = read(ser, size)
 	checksum = ord(read(ser, 1))
 	cs_file = make_checksum(data)
-	if (DEBUG > 1):
+	if (DEBUG == 2):
 		print(f'Checksum: 0x{checksum:02x}')
 	if checksum != cs_file:
 		#pass # TODO raise Exception('Read checksum does not match')
@@ -235,7 +238,7 @@ def dump_registers(result):
 		temp = result[8]+256*result[7]
 		print(f'-- DIV Register: {temp}')
 #----------------------------------
-def put_data(ser, func, start, data, idx): # size must be <= 256 bytes
+def put_data(ser, func, start, data, idx):
 	size = len(data)
 	#print(f'--------- small put -------------- Size: {size}')
 	message = bytearray([func])
@@ -245,16 +248,11 @@ def put_data(ser, func, start, data, idx): # size must be <= 256 bytes
 	message += data
 	cs = make_checksum(message)
 	message += bytearray((cs,))
-	if (DEBUG > 1):
+	if (DEBUG == 2):
 		dump_data(message,16)
 	write(ser, message)
 	expect_ok(ser)
 	expect_done(ser)
-#------------------------------------------
-def write_memory(ser, data, start_address):
-	print('------ Write Memeory ---------')
-	dump_data(data, 16)
-
 #------------------------------------------
 def get_data(ser, func, start, resp, idx):
 	#print(f'------ big get ---------')
@@ -265,75 +263,13 @@ def get_data(ser, func, start, resp, idx):
 	#message += bytearray.fromhex('00') # just a dummy byte
 	cs = make_checksum(message)
 	message += bytearray((cs,))
-	if (DEBUG > 1):
+	if (DEBUG == 2):
 		dump_data(message,16)
 	write(ser, message)
 	expect_ok(ser)
 	return read_with_checksum(ser, resp)
-
 #------------------------------------------
-def write_config(ser, data):
-	print('-------Write Config ---------')
-
-############################################
-def main(ser, func, data = 0, start = 0, size = 1):
-
-	#try:
-	#	ser = Serial(port, 115200, timeout = 1, writeTimeout = 1)
-	#except IOError:
-	#	print('Port not found!')
-	#ser = ''
-	#	#exit()
-
-	if func == 'version':
-		result = get_data(ser, 125, 0, 5, 0) #125 is for version read, 5 bytes response
-		product = (result[0:3]).decode("utf-8")
-		#print(f'Product: {product}')
-		if (product == 'UC3'):
-			print(f'Unicomp3')
-			print(f'Version Major: {result[3]:02d}')
-			print(f'Version Minor: {result[4]:02d}')
-		else:
-			print(f'different product!')		
-
-	elif func == 'ramw':
-		if (size > BLOCKSIZE):
-			pass
-		else:
-			put_data(ser, 130, start, data, 0)
-
-	elif func == 'ramr':
-		retdata = bytearray()
-		if (size > BLOCKSIZE):
-			chunks = math.ceil(size / BLOCKSIZE) # how many chunks are needed?
-			realchunksize = math.ceil(size / chunks) # we make evenly sized chunks
-			cstart = start # first chunk starts at start 
-			cend = cstart + realchunksize
-			crest = size - realchunksize
-			if (DEBUG > 1):
-				print(f'Making {chunks} chunks with each {(size / chunks):.2f} bytes or {realchunksize} bytes.')
-			for i in range(chunks):
-				if (DEBUG > 1):
-					print(f'Sending chunk {i} from {cstart} to {cend} size: 0x{(cend-cstart):04X} or {(cend-cstart)}')
-				retdata += get_data(ser, 123, cstart, (cend-cstart), i)
-				val = int(100 * (i / chunks))
-				print(f'Progress: {val:02d}%', end = '\r', file=sys.stdout, flush=True)
-				cstart = cend
-				crest -= realchunksize
-				if (DEBUG > 1):
-					print(f'Rest: {crest}')
-				if (crest >= 0 ):
-					cend += realchunksize
-				else:
-					cend = size+start
-			return retdata
-		else:
-			return(get_data(ser, 123, start, size, 0))
-
-	elif func == 'config':
-		write_config(ser, data)
-
-	elif func == 'clockx':
+def make_clockdata(ser, data):
 		p0 = None
 		p1 = None
 		offset = None
@@ -343,7 +279,10 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		div = None
 		f0 = None
 		f1 = None
-		clocksettings = get_data(ser, 124, 0, 9, 0)
+		if (ser != None):
+			clocksettings = get_data(ser, 124, 0, 9, 0)
+		else:
+			clocksettings = [17, 17, 8, 0, 78, 0, 0, 3, 43] # just dummy values for testing
 		def_offset = clocksettings[0]   # first byte is range register
 		o_offset = clocksettings[1]
 		o_address = clocksettings[2]
@@ -427,7 +366,197 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		newval[8] = temp[1]  #Lo
 		#print(f'------ New settings ------')
 		#dump_registers(newval)
-		put_data(ser, 193, 0, bytes(newval), 0)
+		return bytes(newval)	
+#------------------------------------------
+def dump_memorymap(mmap):
+	print(f'Memory Map:')
+	print(f' Start  End    Chipsel. Per.')	
+	for a in mmap:
+		cspos = (~(mmap[a]))&0xFFFF
+		if cspos == 0x8000:
+			per = 'RAM'
+		elif cspos == 0xC000:
+			per = 'ROM'
+		elif cspos == 0xFFFF:
+			per = 'hole'
+		else:
+			per = 'CS' + str(int(log(cspos, 2)))
+		if a % 2 == 0: # even = start
+			start = a
+		else:
+			print(f' 0x{start:04X}-0x{a:04X} 0x{cspos:04X}   {per}')	
+#------------------------------------------
+def config_per(cf): 
+	new_file = bytearray((RAMSIZE*2) * b'\xFF')
+	#dump_data(new_file, 16)
+	keys = len(cf['peripherals'].keys())
+	print(f'{bcolors.OKGREEN}------------------- Configure Peripherals ----------------------{bcolors.ENDC}')
+	if (DEBUG == 3):
+		print(f'found {keys} keys.')
+	csdata = {}
+	for i in range(keys):           # go through keys (like [[ram]])
+		hi = 0
+		low = 0
+		name = cf['peripherals'].keys()[i]
+		if (DEBUG == 3):
+			print(f'Found peripheral: {name}')
+		if (name in 'ram'): # take care of the chipselect for RAM and ROM
+			cs = (~(1 << 15))&0xFFFF
+			if (DEBUG == 3):
+				print(f'    ram found, adding cs 15 0x{cs:04X}')
+		elif (name in 'rom'):
+			cs = (~((1 << 15) | (1 << 14)))&0xFFFF
+			if (DEBUG == 3):
+				print(f'    rom found, adding cs 14+15 0x{cs:04X}')
+		else:
+			if ('cs' in cf['peripherals'][name]):
+				val = int(cf['peripherals'][name]['cs'],0)
+				if (val >= 0 and val <14):
+					cs = (~(1 << val))&0xFFFF
+					if (DEBUG == 3):
+						print(f'    chipselect - OK. {val} - 0x{cs:04X}')
+				else:
+					print(f'{bcolors.FAIL}wrong chipselect range  in {name} - {val}{bcolors.ENDC}')
+					exit()
+		for sk in cf['peripherals'][name]: # go through the values
+			val = int(cf['peripherals'][name][sk],0)
+			if ('cs' in sk): # cs already handled
+				pass
+			elif (('start' in sk) and ((val % 2) == 0)):   # test value (must be even) 
+				low = val
+				if (DEBUG == 3):
+					print(f'    first Value even? - OK.')
+				else:
+					pass
+			elif (('end' in sk) and ((val % 2) == 1)):     # test value (must be odd)
+				high = val
+				if (DEBUG == 3):
+					print(f'    second Value odd? - OK. Adding from 0x{low:04X} - 0x{high:04X} w. cs 0x{cs:04X}')
+				else:
+					pass
+				#print(f'    Adding {name} from 0x{low:04X} - 0x{high:04X} w. cs 0x{cs:04X}')
+				csdata[low]=cs
+				csdata[high]=cs
+			else:
+				print(f'{bcolors.FAIL}found wrong address (odd/even) in {name} at: {val:05X}{bcolors.ENDC}')
+				exit()
+	#print(f'Map1')
+	#dump_memorymap(csdata)
+	sorted_dict = {k: csdata[k] for k in sorted(csdata)}
+	#print(f'Map2')
+	#dump_memorymap(sorted_dict)
+	# This adds all the holes to the memory Map
+	sorted_dict2 = {}
+	end = 0
+	for i,k in enumerate(sorted_dict):
+		#print(f'Key: {k:04X}, index: {i:04X}')
+		if ((k != 0) and (i == 0)):      # first key is 0x0000 ?
+			sorted_dict2.update({0:0})   # start at 0x0000
+			sorted_dict2.update({k-1:0}) # until the first key
+			#print(f'First key NOT 0!')
+		if ((k-end != 1) and (i%2 == 0) and (i != 0)):   # start
+			sorted_dict2.update({end+1:0})   # start at old end+1
+			sorted_dict2.update({k-1:0})
+			#print(f'hole! {k-end}, 0x{k:04X}')
+		if i % 2 == 1: #odd = end
+			end = k
+		sorted_dict2.update({k:sorted_dict[k]})
+	#print(f'Map3')
+	dump_memorymap(sorted_dict2)
+	return (sorted_dict2)
+############################################
+def main(ser, func, data = 0, start = 0, size = 1):
+
+	#try:
+	#	ser = Serial(port, 115200, timeout = 1, writeTimeout = 1)
+	#except IOError:
+	#	print('Port not found!')
+	#ser = ''
+	#	#exit()
+
+	if func == 'version':
+		result = get_data(ser, 125, 0, 5, 0) #125 is for version read, 5 bytes response
+		product = (result[0:3]).decode("utf-8")
+		#print(f'Product: {product}')
+		if (product == 'UC3'):
+			print(f'Unicomp3')
+			print(f'Version Major: {result[3]:02d}')
+			print(f'Version Minor: {result[4]:02d}')
+		else:
+			print(f'different product!')		
+
+	elif func == 'ramw':
+		if (size > BLOCKSIZE):
+			pass
+		else:
+			put_data(ser, 130, start, data, 0)
+
+	elif func == 'ramr':
+		retdata = bytearray()
+		if (size > BLOCKSIZE):
+			chunks = math.ceil(size / BLOCKSIZE) # how many chunks are needed?
+			realchunksize = math.ceil(size / chunks) # we make evenly sized chunks
+			cstart = start # first chunk starts at start 
+			cend = cstart + realchunksize
+			crest = size - realchunksize
+			if (DEBUG == 4):
+				print(f'Making {chunks} chunks with each {(size / chunks):.2f} bytes or {realchunksize} bytes.')
+			for i in range(chunks):
+				if (DEBUG == 4):
+					print(f'Sending chunk {i} from {cstart} to {cend} size: 0x{(cend-cstart):04X} or {(cend-cstart)}')
+				retdata += get_data(ser, 123, cstart, (cend-cstart), i)
+				val = int(100 * (i / chunks))
+				print(f'Progress: {val:02d}%', end = '\r', file=sys.stdout, flush=True)
+				cstart = cend
+				crest -= realchunksize
+				if (DEBUG == 4):
+					print(f'Rest: {crest}')
+				if (crest >= 0 ):
+					cend += realchunksize
+				else:
+					cend = size+start
+			return retdata
+		else:
+			return(get_data(ser, 123, start, size, 0))
+
+	elif func == 'config':
+		cf = data
+		fpath = start
+		appname = cf['app']['name']
+		version = cf['app']['ver']
+		computername = cf['computer']['name']
+		clockfreqf = int(cf['computer']['freqf'])
+		clockfreqs = int(cf['computer']['freqs'])
+		clocktic = float(cf['computer']['tic'])
+		print(f'Appname: {appname}, Version: {version}')
+		print(f'Configure for:\n\t{computername} \n\t{clockfreqf/1E6:#.6f} MHz fast clock, \n\t{clockfreqs/1E6:#.6f} MHz slow clock,\n\t{clocktic:#.2f} Hz TIC.')		
+		print(f'{bcolors.OKGREEN}------------------------ Reset Unicomp -------------------------{bcolors.ENDC}')
+		put_data(ser, 192, 0, bytearray.fromhex('01'), 0)
+		retval = config_per(cf)
+		print(f'{bcolors.OKGREEN}------------------------ Upload Config -------------------------{bcolors.ENDC}')
+		#put_data(ser, 194, 0, retval, 0)
+		print(f'{bcolors.OKGREEN}----------------------- Configure Clock ------------------------{bcolors.ENDC}')
+		freqdata = []
+		freqdata.append('freq')
+		freqdata.append(clockfreqf*8) # fast clock is divided by eight in CPLD
+		freqdata.append(clockfreqs)
+		clockval = make_clockdata(ser, freqdata)
+		print(freqdata, clockval)
+		put_data(ser, 193, 0, clockval, 0)
+		per = int(10000 / clocktic)
+		put_data(ser, 195, 0, per.to_bytes(2, 'big'), 0)
+		print(f'{bcolors.OKGREEN}------------------------ Reset inactive ------------------------{bcolors.ENDC}')
+		put_data(ser, 192, 0, bytearray.fromhex('00'), 0) # Reset inactive - Run
+		print(f'{bcolors.OKGREEN}------------------------ Modifications  ------------------------{bcolors.ENDC}')
+		text1 = cf['modifications']['text']
+		print(f'{bcolors.WARNING}{text1}{bcolors.ENDC}')
+
+		exit()
+
+	elif func == 'clockx':
+		#print(data)
+		clockval = make_clockdata(ser, data)
+		put_data(ser, 193, 0, clockval, 0)
 
 	elif func == 'clockr':
 		clocksettings = get_data(ser, 124, 0, 9, 0)
@@ -435,6 +564,9 @@ def main(ser, func, data = 0, start = 0, size = 1):
 
 	elif func == 'reset':
 		put_data(ser, 192, 0, data, 0)
+
+	elif func == 'tic':
+		put_data(ser, 195, 0, data, 0)
 #------------------------------------------
 def extract_files(img):
 	start = int.from_bytes(img[0:3], 'big', signed=False)
@@ -509,10 +641,10 @@ if __name__ == '__main__':
 	#---------------------------------------------------------------------------------    
 	subparser = subparsers.add_parser(
 		'config',
-		help = 'writes configuration data')
+		help = 'writes configuration data to device. A directory with all the data needs to be supplied.')
 	subparser.add_argument(
 		'file',
-		help = 'input filename')
+		help = 'config directory')
 	#---------------------------------------------------------------------------------    
 	subparser = subparsers.add_parser(
 		'clock',
@@ -535,6 +667,14 @@ if __name__ == '__main__':
 		help = 'input 8-bit data')
 	#---------------------------------------------------------------------------------    
 	subparser = subparsers.add_parser(
+		'tic',
+		help = 'configures the slow tic timer')
+	subparser.add_argument(
+		'data',
+		type = float,
+		help = 'frequency in Hz')
+	#---------------------------------------------------------------------------------    
+	subparser = subparsers.add_parser(
 		'version',
 		help = 'display device version number and exit',
 		add_help = False)
@@ -547,27 +687,36 @@ if __name__ == '__main__':
 	try:
 		ser = Serial(port, 921600, timeout = 3, writeTimeout = 1)
 	except IOError:
-		print('Port not found!')
+		print(f'{bcolors.FAIL}Port not found!{bcolors.ENDC}')
 		#exit()
 	#print(ser)
 	if args.command == 'version':
 		main(ser, 'version')
 
 	elif args.command == 'config':
-		img = read_file(args.file)
-		main(ser, 'config', img)
+		arg = args.file
+		if arg[-1] == '/':
+			arg = arg[:-1]
+		configdir = (arg.split("/"))[-1];
+		configpath = arg
+		configfile = configpath + '/' + configdir + '.cfg';
+		print(f'{bcolors.OKCYAN}Configfile found: {configfile}{bcolors.ENDC}')
+		cf = ConfigObj(configfile)
+		main(ser, 'config', cf, configpath)
 
 	elif args.command == 'reset':
-		mylist = []
-		b = args.data[0:]
-		n = int(b,0)
-		mylist.append(n)
-		if (DEBUG > 1):
-			print(f'Received: {b} interpreted as: {n:02X}')
+		#mylist = []
+		#b = args.data[0:]
+		#n = int(b,0)
+		n = int(args.data, 0)
+		#mylist.append(n)
+		#if (DEBUG == 5):
+		#	print(f'Received: {b} interpreted as: {n:02X}')
 		if (n not in (0,1,2)):
 			print(f'Non-accepted value!')
 			exit()
-		main(ser, 'reset', bytes(mylist))
+		#main(ser, 'reset', bytes(mylist))
+		main(ser, 'reset', n.to_bytes(1, 'big'))
 
 	elif args.command == 'clock':
 		val = None	
@@ -588,7 +737,7 @@ if __name__ == '__main__':
 				for b in (args.data).split(','):
 					val = get_value_with_kM(b)
 					mylist.append(val)
-					if (DEBUG > 2):
+					if (DEBUG == 1):
 						print(f'Data: {b}, {val}')
 				if (func == 'p0' or func == 'p1'):
 					if (val not in (1,2,4,8)):
@@ -621,7 +770,7 @@ if __name__ == '__main__':
 			for b in (args.file[1:]).split(','):
 				if b.isalnum():
 					n = int(b, 16)
-					if (DEBUG > 1):
+					if (DEBUG == 4):
 						print(f'Received: {b} interpreted as: {n:02X}')
 					mylist.append(n)
 				else:
@@ -675,10 +824,16 @@ if __name__ == '__main__':
 		if end > RAMSIZE:
 			print(f'Read goes beyond 0x{(RAMSIZE-1):06X}!')
 			exit()
-		if (DEBUG > 1):
+		if (DEBUG == 4):
 			print(f'Start: 0x{start:06X}, End: 0x{end:06X}, Size: 0x{size:06X}')
 		data = main(ser, 'ramr', 0, start, size)
 		write_file(data, args.file)
+	elif args.command == 'tic':
+		n = float(args.data)
+		per = int(10000 / n)
+		if (DEBUG == 6):
+			print(f'Data: {n}, Period: {per}')
+		main(ser, 'tic', per.to_bytes(2, 'big'))
 	try:
 		ser.close()
 	except:

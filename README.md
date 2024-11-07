@@ -37,38 +37,30 @@ Unicomp plus Logic Analyzer:
 
 ### Unicomp modules ###
 
-* Input board:
-	- a simple board to connect the signals to a linux SBC like a Raspberry Pi or an Olimex A20
+* USB-Serial board:
+	- a simple board with an universal 4x USB to UART module from ebay (FT4232).
 
 * CPU board:
 	- can be any 8-bit CPU (6502, 6802, 6809, 68008, 6803, 8051,...)
 	- a CPLD (XC9572) for clock generation and glue logic
 
-6502 Board:
-![6502 Board](pictures/6502_board.jpg)
-
 * Multi Serial boaŕd:
 	- suggested chip select #0
-	- two chip selects on board (second one not connected, but broken out)
 	- can be used with the following serial interface chips: MC6850, MOS6551, MOS6552 or pin compatible
-
-Multi Serial Board:
-![Multi Serial Board](pictures/serial_board.jpg)
 
 * Multi Parallel boaŕd:
 	- suggested chip select #1
-	- two chip selects on board
 	- can be used with the following parallel interface chips: MC6820, MC6821, MOS6520, MOS6521, MOS6522, MOS6526, MOS8520, MOS6532 in the first slot
     - the first slot can additionally mimic a MOS6530
 	- the second slot can accommodate a MOS6522 or pin compatible
 
 * RAMROM board:
-	- chip select fixed at #14 (for chipselect RAM) and #15 (ROM content),
+	- chip select fixed at #15 (for chipselect RAM or ROM) and #14 for Write Disable (High for ROM),
 	- 1M of SRAM plus an extra 16-bit RAM for address decoding,
 	- a STM32F401 'blackpill' board to fill the SRAMs with data over USB,
 	- USB shell on the STM32 to change ROM content on the fly,
 	- also configures the Address Range of all peripheral modules,
-	- acts as a pXSVF Player to program the CPLDs
+	- acts as a XSVF Player to program the CPLDs
 
 * Prototype board:
 	- empty board for prototyping
@@ -85,7 +77,7 @@ Multi Serial Board:
 ### Configuration RAM ###
 
 The configuration is done with 1Mx16 fast ram on the RAMROM board. It is configured from the STM32F401.
-The cs = 15 is for writing the main RAM, cs = 14 is the chip select for the RAMROM board.
+The cs = 15 is for writing the main RAM, cs = 14 is the Write Disable.
 The rest is free.
 
 
@@ -109,52 +101,11 @@ The rest is free.
 | MC3 Computer             | serial      | HD6303                        | Monitor                          |Link: https://www.waveguide.se/?article=mc3-a-diy-8-bit-computer         |
 | Psion Organizer I        | LCD         | HD6303                        | Psion OS                         |Link: https://www.jaapsch.net/psion/index.htm                            |
 
-### linux single board computer (SBC) ###
-
-I uses an olimex A20 SBC (olinuxino A20) which has a lot of peripherals (4x UART, 2x SPI, 2x I2C, a lot of GPIOs, SATA, 2x SDCARD, VGA, HDMI, LAN,...)
-and it is open hardware. The board is connected with three 40 pin cables (like old IDE cables) plus two 10 pin cables to the input board.
-
-To access all the peripherals i use python with the pyA20 library here: https://pypi.org/project/pyA20/   
-The debian image (bullseye minimal) can be found at: http://images.olimex.com/release/a20/   
-To configure the image after downloading there are helper scripts in the unicomp folder under: olimex Board/config 
-I use fbterm and tmux for a nice terminal output. Here are some pictures:   
-tmux main window:
-![tmux main window](pictures/tmux_main.jpg)
-
-tmux serial window:
-![tmux uart window](pictures/tmux_uart.jpg)
-
 ### python helper scripts ###
 
--- all scripts have to be executed with sudo bacause of direct hardware access!
+* UC3_upload.py: multi-function script. up- or download RAM Content, write or read the clock chip, set the reset pin, upload configuration data from file, upload RAM data from file, gets version number, 
 
-* set_reset.py [0,1,xx]
-	- sets the reset line high or low (low = active)
-	- if value is anything other than 0 or 1 then a reset of approx. 10mS will be performed.
-
-* UC_check_jtag.sh
-	- looks for devices (CPLDs) in the JTAG chain.
-
-* UC_write_cpld.sh [0..?] [.jed file]
-	- writes the .jed file to the selected devices
-	- Example: sudo UC_write_cpld 0 filename.jed - writes .jed file to cpld zero
-
-* Prepare new SD-Card:
-    - copy image to sd-card:
-    sudo dd if=A20-OLinuXino-bullseye-minimal-20230515-130040.img of=/dev/sdb bs=1k status=progress
-    - start olimex and login with 'olimex/olimex'
-    - change password with: 'sudo passwd olimex' to something shorter like 'olim'
-    - alternatively: delete passwird: 'sudo passwd -d olimex'
-    - make update: 'sudo apt update && sudo apt upgrade'
-    - install minimal components: 'sudo apt install git mc'
-    - clone github repository: 'git clone https://github.com/roberto314/Unicomp2.git'
-    - open midnight commander: 'mc'
-    - navigate into Unicomp2/olimex_board/config
-    - Run script: 'install_software.sh'
-    - Run script: 'copy_files.sh'
-    - restart
-
-
+* UC3_make_uploadfile.py: creates an .ucb file for upload. It can have multiple RAM locations and lengths.
 
 ### CPLD programming ###
 
@@ -163,10 +114,7 @@ tmux serial window:
 
 * compiling itself can be done inside ISE or with the supplied makefile (look inside the bord directory in cpld firmware)
 
-* a simple **make** will compile the firmware and a **make transfer** will transfer the file to the sbc (if you changed the ip address to your address inside the makefile and the path inside project.cfg)
-
-* on the sbc in the work folder one can find the .jed file. For programming type: **UC_write_cpld [JTAG-position] [filename.jed]**
-
+* a simple **make** will compile the firmware and a **make prog** will transfer the file to the stm32 for programming.
 
 ### Used Software and OS ###
 

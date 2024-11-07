@@ -9,15 +9,16 @@
 
 PROJECT = XC9572_Test
 TARGET_PART = XC9572XL-10-VQ44
-XILINX = /home/rob/Xilinx/14.7/ISE_DS/ISE/
+XILINX = /home/rob/Xilinx/14.7/ISE_DS
+XILINXBIN = $(XILINX)/ISE/
 VHDSOURCE  ?= $(PROJECT).vhd
 
 ###########################################################################
 # Default values
 ###########################################################################
 
-ifndef XILINX
-    $(error XILINX must be defined)
+ifndef XILINXBIN
+    $(error XILINXBIN must be defined)
 endif
 
 ifndef PROJECT
@@ -44,7 +45,8 @@ TRACE_OPTS      ?=
 FUSE_OPTS       ?= -incremental
 
 #PROGRAMMER      ?= xc3sprog
-PROGRAMMER      ?= impact
+#PROGRAMMER      ?= digilent
+PROGRAMMER      ?= dlc10
 
 IMPACT_OPTS     ?= -batch impact.cmd
 
@@ -64,32 +66,33 @@ XSFXFER         ?= ../../chibios_xsvf_player/python/xsvf_upload.py
 ###########################################################################
 
 ifeq ($(OS),Windows_NT)
-    XILINX := $(shell cygpath -m $(XILINX))
-    CYG_XILINX := $(shell cygpath $(XILINX))
+    XILINXBIN := $(shell cygpath -m $(XILINXBIN))
+    CYG_XILINX := $(shell cygpath $(XILINXBIN))
     EXE := .exe
     XILINX_PLATFORM ?= nt64
     PATH := $(PATH):$(CYG_XILINX)/bin/$(XILINX_PLATFORM)
 else
     EXE :=
     XILINX_PLATFORM ?= lin64
-    PATH := $(PATH):$(XILINX)/bin/$(XILINX_PLATFORM)
+    PATH := $(PATH):$(XILINXBIN)/bin/$(XILINX_PLATFORM)
 endif
 
 TEST_NAMES = $(foreach file,$(VTEST) $(VHDTEST),$(basename $(file)))
 TEST_EXES = $(foreach test,$(TEST_NAMES),build/isim_$(test)$(EXE))
 
 RUN = @echo "\n\n\e[1;33m======== $(1) ========\e[m\n\n"; \
-	cd build && $(XILINX)/bin/$(XILINX_PLATFORM)/$(1)
+	cd build && $(XILINXBIN)/bin/$(XILINX_PLATFORM)/$(1)
 
 # isim executables don't work without this
-export XILINX
-
+export XILINXBIN
+# impact needs this because of windrv6 error
+export LD_PRELOAD=${XILINX}/common/lib/lin64/libusb-driver.so
 
 ###########################################################################
 # Default build
 ###########################################################################
 
-default: $(BITFILE) prog
+default: $(BITFILE) XSVF SVF
 
 clean:
 	rm -rf build
@@ -105,7 +108,7 @@ build/$(PROJECT)_sim.prj: build/$(PROJECT).prj
 	@cp build/$(PROJECT).prj $@
 	@$(foreach file,$(VTEST),echo "verilog work \"../$(file)\"" >> $@;)
 	@$(foreach file,$(VHDTEST),echo "vhdl work \"../$(file)\"" >> $@;)
-	@echo "verilog work $(XILINX)/verilog/src/glbl.v" >> $@
+	@echo "verilog work $(XILINXBIN)/verilog/src/glbl.v" >> $@
 
 build/$(PROJECT).scr: 
 	@echo "Updating $@"
@@ -143,25 +146,37 @@ $(BITFILE):  $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr
 # Programming
 ###########################################################################
 
-ifeq ($(PROGRAMMER), impact)
-prog: #$(BITFILE)
+#ifeq ($(PROGRAMMER), impact)
+XSVF: #$(BITFILE)
 	@echo "setMode -bs" > impact.cmd
 	@echo "setCable -port xsvf -file "build/$(PROJECT).xsvf"" >> impact.cmd
 	@echo "addDevice -p 1 -file "build/$(PROJECT).jed"" >> impact.cmd
 	@echo "Program -p 1 -e -defaultVersion 0" >> impact.cmd
 	@echo "quit" >> impact.cmd
-	$(XILINX)/bin/$(XILINX_PLATFORM)/impact $(IMPACT_OPTS)
-#	@echo "setMode -bs" > impact.cmd
-#	@echo "setCable -port svf -file "build/$(PROJECT).svf"" >> impact.cmd
-#	@echo "addDevice -p 1 -file "build/$(PROJECT).jed"" >> impact.cmd
-#	@echo "Program -p 1 -e -defaultVersion 0" >> impact.cmd
-#	@echo "quit" >> impact.cmd
-#	$(XILINX)/bin/$(XILINX_PLATFORM)/impact $(IMPACT_OPTS)
-endif
+	$(XILINXBIN)/bin/$(XILINX_PLATFORM)/impact -batch impact.cmd
+
+SVF:
+	@echo "setMode -bs" > impact.cmd
+	@echo "setCable -port svf -file "build/$(PROJECT).svf"" >> impact.cmd
+	@echo "addDevice -p 1 -file "build/$(PROJECT).jed"" >> impact.cmd
+	@echo "Program -p 1 -e -defaultVersion 0" >> impact.cmd
+	@echo "quit" >> impact.cmd
+	$(XILINXBIN)/bin/$(XILINX_PLATFORM)/impact -batch impact.cmd
+#endif
 
 ifeq ($(PROGRAMMER), digilent)
-prog: $(BITFILE)
+prog: #$(BITFILE)
 	$(DJTG_EXE) prog -d $(DJTG_DEVICE) -i $(DJTG_INDEX) -f $(BITFILE)
+endif
+
+ifeq ($(PROGRAMMER), dlc10)
+prog: #$(BITFILE)
+	@echo "setMode -bs" > impact.cmd
+	@echo "setCable -port auto" >> impact.cmd
+	@echo "addDevice -p 1 -file "build/$(PROJECT).jed"" >> impact.cmd
+	@echo "Program -p 1 -e -defaultVersion 0" >> impact.cmd
+	@echo "quit" >> impact.cmd
+	$(XILINXBIN)/bin/$(XILINX_PLATFORM)/impact -batch impact.cmd
 endif
 
 ifeq ($(PROGRAMMER), xc3sprog)
