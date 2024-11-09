@@ -132,3 +132,22 @@ The rest is free.
 
 * Oscilloscope: Rigol DS1054Z (4 channel)
 * Logic Analyzer: Hantek 4032L (32 channel)
+
+### History Lesson ###
+
+The unicomp Project started a couple of years ago and is developed in my spare time. It is intended to be a module system to test out different hardware configurations or CPLD- or FPGA- extensions and to recreate old systems and test software and operating systems.
+
+Differences Unicomp2 from Unicomp1:
+
+* chipselect not with CPLD but with RAM on every peripheral board - more flexible,
+* chipselect resolution improved to two,
+
+Differences Unicomp3 from Unicomp2:
+
+* chipselect RAM is on RAMROM Board (16-bit wide) - that leads to:
+* simpler (and cheaper) peripheral modules,
+* no linux SBC needed,
+* CPLD programming from STM32 or with external programmer (JTAG Header on every CPU Module)
+* 3.3V Supply on RAMROM board,
+* RAM has now a backup battery (CR2032) battery,
+* improved documentation.

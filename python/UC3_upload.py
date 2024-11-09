@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import sys, os
-from math import log
+from math import log, ceil
 import argparse, time
 from serial import Serial
 from serial import SerialException
 from configobj import ConfigObj
+#import pickle
 
 # UC3_upload.py
 # This is the upload script for the Unicom Project.
@@ -17,10 +18,25 @@ ver = '3.0'
 port = '/dev/ttyACM0'
 
 #RAMSIZE = 0x80000 # 512kB RAM
-#RAMSIZE = 0x100000 # 1MB RAM
-RAMSIZE = 0x10000 # 64kB RAM
+RAMSIZE = 0x100000 # 1MB RAM
+#RAMSIZE = 0x10000 # 64kB RAM
 BLOCKSIZE = 8192 # Chunksize for read
-DEBUG = 6 # 1: Clock, 2: transmission, 3: config, 4: RAM, 5: reset, 6: tic
+DEBUG = 4 # 1: Clock, 2: transmission, 3: config, 4: RAM, 5: reset, 6: tic
+
+# These Values come from upload.h
+RAMR = 123
+CLOCKR = 124
+VERSION = 125
+#STATUS = 126
+#PROGRESS = 127
+#NO_FUNC = 128
+XSVF = 129
+RAMW = 130
+TRESETW = 192
+CLOCKW = 193
+CONFIGW = 194
+TICW = 195
+
 class bcolors:
 	FAIL = '\033[91m'    #red
 	OKGREEN = '\033[92m' #green
@@ -38,6 +54,15 @@ class bcolors:
 #print(f'{bcolors.HEADER}{bcolors.ENDC}')
 #print(f'{bcolors.OKCYAN}{bcolors.ENDC}')
 ##########################################
+def dict_to_bytearray(dct):
+	retval = bytearray()
+#    return bytearray(pickle.dumps(dct))
+	for a in dct:
+		#print(f'A: {a}, {dct[a]}')
+		retval += a.to_bytes(3, 'big')  # Address
+		retval += dct[a].to_bytes(2, 'big') # Chipselect
+	return retval
+#------------------------------------------
 def dump_data(data, width):
 	idx = len(data)
 	for w in range(width):
@@ -68,7 +93,6 @@ def read_file(fn):
 	except Exception as e:
 		print(f'File {fn} not found!')
 		exit()
-
 def write_file(data, fn):
 	if fn == '':
 		dump_data(data, 16)
@@ -160,9 +184,8 @@ def write(channel, data):
 		pass
 #----------------------------------
 def read(channel, size = 1):
-	#result = bytearray.fromhex('00')
 	if (channel == None):
-		return result
+		return bytearray.fromhex('00')
 	# Read a sequence of bytes
 	if size == 0:
 		return
@@ -174,15 +197,14 @@ def read(channel, size = 1):
 			print(f'Read error, Size: 0x{result:02X}')
 			raise Exception('Read error')
 	except:
-		print(f'{bcolors.FAIL}Read error!{bcolors.ENDC}')
+		print(f'{bcolors.FAIL}Read error!         {bcolors.ENDC}')
 		#result = (read_file('rom.bin'))[:size] #only for debug on a pc
 	return result
 #----------------------------------
 def expect_ok(ser):
-	if ser == '':
-		response = b'X'
-	else:
-		response = read(ser)
+	if ser == None:
+		return
+	response = read(ser)
 	if response == b'X':
 		print(f'Checksum or Programming Error')
 	elif response == b'O':
@@ -193,14 +215,13 @@ def expect_ok(ser):
 		print(f'{bcolors.FAIL}Response error!{bcolors.ENDC}')
 #----------------------------------
 def expect_done(ser):
-	if ser == '':
-		response = b'X'
-	else:
-		response = read(ser)
+	if ser == None:
+		return
+	response = read(ser)
 	if response == b'X':
 		print(f'Checksum or Programming Error')
 	elif response == b'Y':
-		print(f'{bcolors.OKGREEN}Uplaod done.{bcolors.ENDC}')
+		print(f'{bcolors.OKGREEN}Upload done.{bcolors.ENDC}')
 	else:
 		raise Exception('Response error')
 #----------------------------------
@@ -218,6 +239,9 @@ def read_with_checksum(ser, size):
 	if checksum != cs_file:
 		#pass # TODO raise Exception('Read checksum does not match')
 		print(f'Checksum does not match! 0x{checksum:02x} vs 0x{cs_file:02x}')
+	else:
+		if (DEBUG > 0):
+			print(f'{bcolors.OKGREEN}Readchecksum OK.{bcolors.ENDC}')
 	return data
 #----------------------------------
 def dump_registers(result):
@@ -280,7 +304,7 @@ def make_clockdata(ser, data):
 		f0 = None
 		f1 = None
 		if (ser != None):
-			clocksettings = get_data(ser, 124, 0, 9, 0)
+			clocksettings = get_data(ser, CLOCKR, 0, 9, 0)
 		else:
 			clocksettings = [17, 17, 8, 0, 78, 0, 0, 3, 43] # just dummy values for testing
 		def_offset = clocksettings[0]   # first byte is range register
@@ -384,7 +408,7 @@ def dump_memorymap(mmap):
 		if a % 2 == 0: # even = start
 			start = a
 		else:
-			print(f' 0x{start:04X}-0x{a:04X} 0x{cspos:04X}   {per}')	
+			print(f' 0x{start:06X}-0x{a:06X} 0x{cspos:04X}   {per}')	
 #------------------------------------------
 def config_per(cf): 
 	new_file = bytearray((RAMSIZE*2) * b'\xFF')
@@ -463,19 +487,89 @@ def config_per(cf):
 		sorted_dict2.update({k:sorted_dict[k]})
 	#print(f'Map3')
 	dump_memorymap(sorted_dict2)
-	return (sorted_dict2)
+	return dict_to_bytearray(sorted_dict2)
+#------------------------------------------
+def write_ram(ser, start, data,):
+	size = len(data)
+	print(f'Size: {size}')
+	chunks = ceil(size / BLOCKSIZE) # how many chunks are needed?
+	cstart = start # first chunk starts at start 
+	cend = cstart + BLOCKSIZE
+	crest = size - BLOCKSIZE
+	if (DEBUG == 4):
+		print(f'Making {chunks} chunks with each {BLOCKSIZE:.2f} bytes or {BLOCKSIZE} bytes.')
+	for i in range(chunks):
+		if (DEBUG == 4):
+			length = len(data[cstart:cend])
+			print(f'Sending chunk {i} from {cstart} to {cend} size: 0x{(length):04X} or {(cend-cstart)}')
+		put_data(ser, RAMW, start, data[cstart:cend], i)
+		if chunks > 1:
+			val = int(100 * (i / chunks))
+			print(f'Progress: {val:02d}%', end = '\r', file=sys.stdout, flush=True)
+		cstart = cend
+		crest -= BLOCKSIZE
+		if (DEBUG == 4):
+			print(f'Rest: {crest}')
+		if (crest >= 0 ):
+			cend += BLOCKSIZE
+		else:
+			cend = size+start
+	print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
+#------------------------------------------
+def upload_image(ser, fpath, cf, name):
+	try:
+		imgstart = int(cf[name]['start'], 0)
+		imgend  = int(cf[name]['end'] , 0)
+		imgnumber = fpath + '/' + cf[name]['file']
+		size = imgend - imgstart + 1
+		#print(f'Image {i}: {imgstart:04X} to {imgend:04X} (size: {size} bytes) file: {imgnumber}')
+		print(f'trying to upload {name} - {imgnumber} from: {imgstart:04X} to {imgend:04X}')
+		img = read_file(imgnumber)
+		if len(img) != size:
+			print(f'{bcolors.FAIL}      ###### Size is wrong! (Image: 0x{len(img):04X} Space: 0x{size:04X}) ######{bcolors.ENDC}')
+			exit()
+		write_ram(ser, imgstart, img)
+		return 0
+	except Exception as e:
+		#print(f'Error in upload_image: {e}!')
+		return 1
+#------------------------------------------
+def upload_patch(ser, cf, name):
+	try:
+		imgstart = int(cf[name]['address'], 0)
+		datalist = cf[name]['data']
+		try:
+			val = int(datalist, 16)
+			length = 1
+			img = val.to_bytes(1, 'big')
+		except:
+			datastr = ','.join(datalist)
+			datastr = datastr.split(',')
+			length = len(datastr)
+		print(f'Datalist: {datalist}, Length: {length}')
+		if (length > 1):
+			datastr = ','.join(datalist)
+			mylist = []
+			#print(f'read {name}: Address: 0x{imgstart:04X} Data: {datastr}')
+			for b in datastr.split(','):
+				if b.isalnum():
+					n = int(b, 16)
+					#print(f'Received: {b} interpreted as: {n:02X}')
+					mylist.append(n)
+				else:
+					print(f'couldnt interpret: {b}')
+			img = bytes(mylist)
+		print(f'trying to apply {name} at: {imgstart:04X}, {img}')
+		write_ram(ser, imgstart, img)
+		return 0
+	except Exception as e:
+		#print(f'Error in upload_patch: {e}!')
+		return 1
 ############################################
 def main(ser, func, data = 0, start = 0, size = 1):
 
-	#try:
-	#	ser = Serial(port, 115200, timeout = 1, writeTimeout = 1)
-	#except IOError:
-	#	print('Port not found!')
-	#ser = ''
-	#	#exit()
-
 	if func == 'version':
-		result = get_data(ser, 125, 0, 5, 0) #125 is for version read, 5 bytes response
+		result = get_data(ser, VERSION, 0, 5, 0) #125 is for version read, 5 bytes response
 		product = (result[0:3]).decode("utf-8")
 		#print(f'Product: {product}')
 		if (product == 'UC3'):
@@ -486,38 +580,34 @@ def main(ser, func, data = 0, start = 0, size = 1):
 			print(f'different product!')		
 
 	elif func == 'ramw':
-		if (size > BLOCKSIZE):
-			pass
-		else:
-			put_data(ser, 130, start, data, 0)
+		write_ram(ser, start, data)
 
 	elif func == 'ramr':
 		retdata = bytearray()
-		if (size > BLOCKSIZE):
-			chunks = math.ceil(size / BLOCKSIZE) # how many chunks are needed?
-			realchunksize = math.ceil(size / chunks) # we make evenly sized chunks
-			cstart = start # first chunk starts at start 
-			cend = cstart + realchunksize
-			crest = size - realchunksize
+		chunks = ceil(size / BLOCKSIZE) # how many chunks are needed?
+		realchunksize = ceil(size / chunks) # we make evenly sized chunks
+		cstart = start # first chunk starts at start 
+		cend = cstart + realchunksize
+		crest = size - realchunksize
+		if (DEBUG == 4):
+			print(f'Making {chunks} chunks with each {(size / chunks):.2f} bytes or {realchunksize} bytes.')
+		for i in range(chunks):
 			if (DEBUG == 4):
-				print(f'Making {chunks} chunks with each {(size / chunks):.2f} bytes or {realchunksize} bytes.')
-			for i in range(chunks):
-				if (DEBUG == 4):
-					print(f'Sending chunk {i} from {cstart} to {cend} size: 0x{(cend-cstart):04X} or {(cend-cstart)}')
-				retdata += get_data(ser, 123, cstart, (cend-cstart), i)
+				print(f'Sending chunk {i} from {cstart} to {cend} size: 0x{(cend-cstart):04X} or {(cend-cstart)}')
+			retdata += get_data(ser, RAMR, cstart, (cend-cstart), i)
+			if chunks > 1:
 				val = int(100 * (i / chunks))
 				print(f'Progress: {val:02d}%', end = '\r', file=sys.stdout, flush=True)
-				cstart = cend
-				crest -= realchunksize
-				if (DEBUG == 4):
-					print(f'Rest: {crest}')
-				if (crest >= 0 ):
-					cend += realchunksize
-				else:
-					cend = size+start
-			return retdata
-		else:
-			return(get_data(ser, 123, start, size, 0))
+			cstart = cend
+			crest -= realchunksize
+			if (DEBUG == 4):
+				print(f'Rest: {crest}')
+			if (crest >= 0 ):
+				cend += realchunksize
+			else:
+				cend = size+start
+		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
+		return retdata
 
 	elif func == 'config':
 		cf = data
@@ -526,49 +616,72 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		version = cf['app']['ver']
 		computername = cf['computer']['name']
 		clockfreqf = int(cf['computer']['freqf'])
-		clockfreqs = int(cf['computer']['freqs'])
-		clocktic = float(cf['computer']['tic'])
+		try:
+			clockfreqs = int(cf['computer']['freqs'])
+		except:
+			clockfreqs = 153600
+			print(f'Using default Value for SlowClock: {clockfreqs}Hz')
+		try:
+			clocktic = float(cf['computer']['tic'])
+		except:
+			clocktic = 2.0
+			print(f'Using default Value for TIC: {clocktic}Hz')
 		print(f'Appname: {appname}, Version: {version}')
 		print(f'Configure for:\n\t{computername} \n\t{clockfreqf/1E6:#.6f} MHz fast clock, \n\t{clockfreqs/1E6:#.6f} MHz slow clock,\n\t{clocktic:#.2f} Hz TIC.')		
 		print(f'{bcolors.OKGREEN}------------------------ Reset Unicomp -------------------------{bcolors.ENDC}')
-		put_data(ser, 192, 0, bytearray.fromhex('01'), 0)
+		put_data(ser, TRESETW, 0, bytearray.fromhex('01'), 0)  # Reset active
 		retval = config_per(cf)
+		if (DEBUG == 3):
+			dump_data(retval, 16)
 		print(f'{bcolors.OKGREEN}------------------------ Upload Config -------------------------{bcolors.ENDC}')
-		#put_data(ser, 194, 0, retval, 0)
+		put_data(ser, CONFIGW, 0, retval, 0)
 		print(f'{bcolors.OKGREEN}----------------------- Configure Clock ------------------------{bcolors.ENDC}')
 		freqdata = []
 		freqdata.append('freq')
 		freqdata.append(clockfreqf*8) # fast clock is divided by eight in CPLD
 		freqdata.append(clockfreqs)
 		clockval = make_clockdata(ser, freqdata)
-		print(freqdata, clockval)
-		put_data(ser, 193, 0, clockval, 0)
+		if (DEBUG == 1):
+			print(freqdata, clockval)
+		put_data(ser, CLOCKW, 0, clockval, 0)
+		print(f'{bcolors.OKGREEN}------------------------- Configure Tic ------------------------{bcolors.ENDC}')
 		per = int(10000 / clocktic)
-		put_data(ser, 195, 0, per.to_bytes(2, 'big'), 0)
+		put_data(ser, TICW, 0, per.to_bytes(2, 'big'), 0)
+		print(f'{bcolors.OKGREEN}----------------------- Upload ROM Image -----------------------{bcolors.ENDC}')
+		for k in cf.keys():
+			if 'img' in k:
+				upload_image(ser, fpath, cf, k)
+		print(f'{bcolors.OKGREEN}----------------------- Upload ROM Patches ---------------------{bcolors.ENDC}')
+		for k in cf.keys():
+			if 'patch' in k:
+				#print(f'{k}')
+				upload_patch(ser, cf, k)
 		print(f'{bcolors.OKGREEN}------------------------ Reset inactive ------------------------{bcolors.ENDC}')
-		put_data(ser, 192, 0, bytearray.fromhex('00'), 0) # Reset inactive - Run
+		put_data(ser, TRESETW, 0, bytearray.fromhex('00'), 0) # Reset inactive - Run
 		print(f'{bcolors.OKGREEN}------------------------ Modifications  ------------------------{bcolors.ENDC}')
-		text1 = cf['modifications']['text']
-		print(f'{bcolors.WARNING}{text1}{bcolors.ENDC}')
-
+		try:
+			text1 = cf['modifications']['text']
+			print(f'{bcolors.WARNING}{text1}{bcolors.ENDC}')
+		except:
+			print(f'{bcolors.WARNING}none{bcolors.ENDC}')
 		exit()
 
 	elif func == 'clockx':
 		#print(data)
 		clockval = make_clockdata(ser, data)
-		put_data(ser, 193, 0, clockval, 0)
+		put_data(ser, CLOCKW, 0, clockval, 0)
 
 	elif func == 'clockr':
-		clocksettings = get_data(ser, 124, 0, 9, 0)
+		clocksettings = get_data(ser, CLOCKR, 0, 9, 0)
 		dump_registers(clocksettings)
 
 	elif func == 'reset':
-		put_data(ser, 192, 0, data, 0)
+		put_data(ser, TRESETW, 0, data, 0)
 
 	elif func == 'tic':
-		put_data(ser, 195, 0, data, 0)
+		put_data(ser, TICW, 0, data, 0)
 #------------------------------------------
-def extract_files(img):
+def extract_files(img): # needed for .ucb files
 	start = int.from_bytes(img[0:3], 'big', signed=False)
 	imglen = int.from_bytes(img[3:6], 'big', signed=False)
 	if ((start == 0xFFFFFF) and (imglen == 0)): # comment
@@ -582,7 +695,7 @@ def extract_files(img):
 		rest = img[imglen+7:]
 		return start,end,ret,rest
 #------------------------------------------
-def get_value_with_kM(data):
+def get_value_with_kM(data): # converts input with kHz or Mhz to Hz
 	value = None
 	if (b[-1] == 'M'):
 		if b[:-1].isalnum():
@@ -685,7 +798,7 @@ if __name__ == '__main__':
 		exit()
 	ser = None
 	try:
-		ser = Serial(port, 921600, timeout = 3, writeTimeout = 1)
+		ser = Serial(port, 921600, timeout = 1, writeTimeout = 1)
 	except IOError:
 		print(f'{bcolors.FAIL}Port not found!{bcolors.ENDC}')
 		#exit()
