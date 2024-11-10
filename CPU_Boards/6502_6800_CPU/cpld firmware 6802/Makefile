@@ -46,9 +46,12 @@ FUSE_OPTS       ?= -incremental
 
 #PROGRAMMER      ?= xc3sprog
 #PROGRAMMER      ?= digilent
-PROGRAMMER      ?= dlc10
+#PROGRAMMER      ?= dlc10
+PROGRAMMER      ?= unicomp3
 
 IMPACT_OPTS     ?= -batch impact.cmd
+
+UC3_UPLOAD      ?= ../../../python/UC3_upload.py
 
 DJTG_EXE        ?= djtgcfg
 DJTG_DEVICE     ?= DJTG_DEVICE-NOT-SET
@@ -57,10 +60,10 @@ DJTG_INDEX      ?= 0
 XC3SPROG_EXE    ?= xc3sprog
 XC3SPROG_CABLE  ?= xpc
 XC3SPROG_OPTS   ?= -v
+
 OLIMEXIP        ?= 192.168.2.216
 OLIMEXIPTGM     ?= 10.0.108.44
 
-XSFXFER         ?= ../../chibios_xsvf_player/python/xsvf_upload.py
 ###########################################################################
 # Internal variables, platform-specific definitions, and macros
 ###########################################################################
@@ -184,6 +187,11 @@ prog: #$(BITFILE)
 	$(XC3SPROG_EXE) -c $(XC3SPROG_CABLE) $(XC3SPROG_OPTS) build/$(PROJECT).jed  #$(BITFILE)
 endif
 
+ifeq ($(PROGRAMMER), unicomp3)
+prog: #$(BITFILE)
+	$(UC3_UPLOAD) xsvf build/$(PROJECT).xsvf
+endif
+
 ifeq ($(PROGRAMMER), none)
 prog:
 	$(error PROGRAMMER must be set to use 'make prog')
@@ -192,10 +200,8 @@ endif
 ###########################################################################
 # Tansfer
 
-transfer:
-	$(XSFXFER) build/$(PROJECT).xsvf
-#transfer: # $(BITFILE)
-#	sshpass -p olimex scp build/$(PROJECT).jed olimex@$(OLIMEXIP):~/work
+transfer: # $(BITFILE)
+	sshpass -p olimex scp build/$(PROJECT).jed olimex@$(OLIMEXIP):~/work
 #transferTGM: #$(BITFILE)
 #	sshpass -p olimex scp build/$(PROJECT).jed olimex@$(OLIMEXIPTGM):~/work
 ###########################################################################

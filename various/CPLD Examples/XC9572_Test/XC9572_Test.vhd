@@ -22,5 +22,5 @@ process (CLK)
             clk_divider   <= clk_divider + 1;
         end if;
     end process;
-LED <= clk_divider(18);
+LED <= clk_divider(20);
 end Behavioral;

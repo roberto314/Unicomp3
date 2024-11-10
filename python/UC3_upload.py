@@ -30,12 +30,12 @@ VERSION = 125
 #STATUS = 126
 #PROGRESS = 127
 #NO_FUNC = 128
-XSVF = 129
 TRESETW = 192
 CLOCKW = 193
 CONFIGW = 194
 TICW = 195
 RAMW = 196
+XSVF = 197
 
 class bcolors:
 	FAIL = '\033[91m'    #red
@@ -55,25 +55,25 @@ class bcolors:
 #print(f'{bcolors.OKCYAN}{bcolors.ENDC}')
 
 class x_state(enum.Enum):
-    XCOMPLETE    = 0  # 0
-    XTDOMASK     = 1  # 1
-    XSIR         = 2  # 2
-    XSDR         = 3  # 3
-    XRUNTEST     = 4  # 4
-    XREPEAT      = 7  # 7
-    XSDRSIZE     = 8  # 8
-    XSDRTDO      = 9  # 9
-    XSETSDRMASKS = 10 # A
-    XSDRINC      = 11 # B
-    XSDRB        = 12 # C
-    XSDRC        = 13 # D
-    XSDRE        = 14 # E
-    XSDRTDOB     = 15 # F
-    XSDRTDOC     = 16 # 10
-    XSDRTDOE     = 17 # 11
-    XSTATE       = 18 # 12
-    XSIR2       = 254
-    XIDLE       = 255
+	XCOMPLETE    = 0  # 0
+	XTDOMASK     = 1  # 1
+	XSIR         = 2  # 2
+	XSDR         = 3  # 3
+	XRUNTEST     = 4  # 4
+	XREPEAT      = 7  # 7
+	XSDRSIZE     = 8  # 8
+	XSDRTDO      = 9  # 9
+	XSETSDRMASKS = 10 # A
+	XSDRINC      = 11 # B
+	XSDRB        = 12 # C
+	XSDRC        = 13 # D
+	XSDRE        = 14 # E
+	XSDRTDOB     = 15 # F
+	XSDRTDOC     = 16 # 10
+	XSDRTDOE     = 17 # 11
+	XSTATE       = 18 # 12
+	XSIR2       = 254
+	XIDLE       = 255
 
 ##########################################
 def dict_to_bytearray(dct):
@@ -635,103 +635,107 @@ def upload_patch(ser, cf, name):
 		return 1
 #----------------------------------
 def dump_val(state, buf, pos, sdr=0):
-    if sdr == None:
-        sdr = 0
-    print(f'State: {x_state(state).name}, Len: {len(buf)} Pos: 0x{pos:04X} SDR: 0x{sdr:04X} ', end = '')
-    for idx,itm in enumerate(buf):
-        print(f'0x{itm:02X} ', end = '')
-    print('')
+	if sdr == None:
+		sdr = 0
+	print(f'{x_state(state).name:>8} ({int(state.value):02X}), Len: {len(buf):>2} Pos: 0x{pos:04X} SDR: {sdr} | ', end = '')
+	for idx,itm in enumerate(buf):
+		print(f'0x{itm:02X} ', end = '')
+	print('')
 #------------------------------------------
 def xsvf_parser(ser, f):
-    state  = x_state.XIDLE
-    start = stop = 0
-    length = 0
-    sdr_bytes = 0
-    for idx,itm in enumerate(f):
-    #for idx in progressbar(range(len(f)), "Computing: ", 40):
-        #itm = f[idx]
-        #print(f'Byte: 0x{itm:02X} @ pos: {idx}')
-        if (state != x_state.XIDLE):
-            if (idx == stop):
-                if state == x_state.XSDRSIZE:
-                    sdr_bytes = 0
-                    sdr_bytes |= f[stop-1]<<8
-                    #print(f'Val1: 0x{f[stop-1]}, sdr: 0x{sdr_bytes:04X}')
-                    sdr_bytes |= f[stop]
-                    #print(f'Val2: 0x{f[stop]}, sdr: 0x{sdr_bytes:04X}')
-                    sdr_bytes = (sdr_bytes + 7)>>3
-                    #print(f'sdr: 0x{idx:02X}, 0x{start:02X}, 0x{stop:02X}')
-                    #print(f'sdr: 0x{sdr_bytes:04X}')
-
-                if state == x_state.XSIR2:
-                    start = idx + 1
-                    size = ((f[idx]+7)>>3)
-                    stop = idx + size
-                    print(f'sir2: 0x{idx:02X}, 0x{start:02X}, 0x{stop:02X} Size: {size}')
-                    state = x_state.XSIR
-                else:
-                    #print(f'Dumping: {start} - {stop}, {f[start:stop+1]}')
-                    dump_val(state, f[start:stop+1], start, sdr_bytes)
-                    state = x_state.XIDLE
-                    #print(f'State: {x_state(state).name}')
-        else:
-            if itm == 0:
-                state = x_state.XCOMPLETE
-                length = 0
-            elif itm == 1:
-                state = x_state.XTDOMASK
-                length = sdr_bytes
-            elif itm == 2:
-                state = x_state.XSIR2
-                length = 1
-            elif itm == 3:
-                state = x_state.XSDR
-                length = sdr_bytes
-            elif itm == 4:
-                state = x_state.XRUNTEST
-                length = 4
-            elif itm == 7:
-                state = x_state.XREPEAT
-                length = 1
-            elif itm == 8:
-                state = x_state.XSDRSIZE
-                length = 4
-            elif itm == 9:
-                state = x_state.XSDRTDO
-                length = sdr_bytes*2
-            elif itm == 0x0A:
-                state = x_state.XSETSDRMASKS
-                length = sdr_bytes*2
-            elif itm == 0x0C:
-                state = x_state.XSDRB
-                length = sdr_bytes
-            elif itm == 0x0D:
-                state = x_state.XSDRC
-                length = sdr_bytes
-            elif itm == 0x0E:
-                state = x_state.XSDRE
-                length = sdr_bytes
-            elif itm == 0x0F:
-                state = x_state.XSDRTDOB
-                length = sdr_bytes*2
-            elif itm == 0x10:
-                state = x_state.XSDRTDOC
-                length = sdr_bytes*2
-            elif itm == 0x11:
-                state = x_state.XSDRTDOE
-                length = sdr_bytes*2
-            elif itm == 0x12:
-                state = x_state.XSTATE
-                length = 1
-            else:
-                print(f'Unrecogized Command: 0x{itm:02X}')
-            start = idx + 1
-            stop = idx + length
-#------------------------------------------
-def write_xsvf(ser, data):
-	print(f'Writing XSVF')
-	xsvf_parser(ser, data)
-
+	state  = x_state.XIDLE
+	start = stop = dstart = dstop = dsize = 0
+	length = index = 0
+	sdr_bytes = 0
+	total = ceil(len(f)/BLOCKSIZE)
+	for idx,itm in enumerate(f):
+		if (state == x_state.XIDLE):
+			if itm == 0:
+				state = x_state.XCOMPLETE
+				dstop = idx+1
+				print(f'Sending: {dstart:04X}-{dstop:04X}, IDX: {index} of {total}')
+				put_data(ser, XSVF, start, f[dstart:dstop], index, dsize)
+				length = 0
+			elif itm == 1:
+				state = x_state.XTDOMASK
+				length = sdr_bytes
+			elif itm == 2:
+				state = x_state.XSIR2
+				length = 1
+			elif itm == 3:
+				state = x_state.XSDR
+				length = sdr_bytes
+			elif itm == 4:
+				state = x_state.XRUNTEST
+				length = 4
+			elif itm == 7:
+				state = x_state.XREPEAT
+				length = 1
+			elif itm == 8:
+				state = x_state.XSDRSIZE
+				length = 4
+			elif itm == 9:
+				state = x_state.XSDRTDO
+				length = sdr_bytes*2
+			elif itm == 0x0A:
+				state = x_state.XSETSDRMASKS
+				length = sdr_bytes*2
+			elif itm == 0x0C:
+				state = x_state.XSDRB
+				length = sdr_bytes
+			elif itm == 0x0D:
+				state = x_state.XSDRC
+				length = sdr_bytes
+			elif itm == 0x0E:
+				state = x_state.XSDRE
+				length = sdr_bytes
+			elif itm == 0x0F:
+				state = x_state.XSDRTDOB
+				length = sdr_bytes*2
+			elif itm == 0x10:
+				state = x_state.XSDRTDOC
+				length = sdr_bytes*2
+			elif itm == 0x11:
+				state = x_state.XSDRTDOE
+				length = sdr_bytes*2
+			elif itm == 0x12:
+				state = x_state.XSTATE
+				length = 1
+			else:
+				print(f'Unrecogized Command: 0x{itm:02X}')
+			start = idx + 1
+			stop = idx + length
+			dstop = idx
+		else:
+			if (idx == stop):
+				#print(f'IDX: {idx:04X}, {len(f):04X}')
+				if (stop > (BLOCKSIZE + dsize)):# or (idx+1 == len(f)):
+					print(f'Sending: {dstart:04X}-{dstop:04X}, IDX: {index} of {total}')
+					dsize += (dstop - dstart)
+					put_data(ser, XSVF, start, f[dstart:dstop], index, dsize)
+					index += 1
+					dstart = dstop
+				if state == x_state.XSDRSIZE:
+					sdr_bytes = 0
+					sdr_bytes |= f[stop-1]<<8
+					#print(f'Val1: 0x{f[stop-1]}, sdr: 0x{sdr_bytes:04X}')
+					sdr_bytes |= f[stop]
+					#print(f'Val2: 0x{f[stop]}, sdr: 0x{sdr_bytes:04X}')
+					sdr_bytes = (sdr_bytes + 7)>>3
+					#print(f'sdr: 0x{idx:02X}, 0x{start:02X}, 0x{stop:02X}')
+					#print(f'sdr: 0x{sdr_bytes:04X}')
+				if state == x_state.XSIR2:
+					start = idx + 1
+					size = ((f[idx]+7)>>3)
+					stop = idx + size
+					#print(f'sir2: 0x{idx:02X}, 0x{start:02X}, 0x{stop:02X} Size: {size}')
+					#dump_val(state, [itm], start)
+					state = x_state.XSIR
+				else:
+					#print(f'Dumping: {start} - {stop}, {f[start:stop+1]}')
+					#dump_val(state, f[start:stop+1], start, sdr_bytes)
+					state = x_state.XIDLE
+					#print(f'State: {x_state(state).name}')
 ############################################
 def main(ser, func, data = 0, start = 0, size = 1):
 
@@ -837,7 +841,7 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		put_data(ser, TRESETW, 0, data, 0)
 
 	elif func == 'xsvf':
-		write_xsvf(ser, data)
+		xsvf_parser(ser, data)
 
 	elif func == 'tic':
 		put_data(ser, TICW, 0, data, 0)
@@ -981,7 +985,7 @@ if __name__ == '__main__':
 		exit()
 	ser = None
 	try:
-		ser = Serial(port, 921600, timeout = 3, writeTimeout = 1)
+		ser = Serial(port, 921600, timeout = 9, writeTimeout = 1)
 	except IOError:
 		print(f'{bcolors.FAIL}############################################{bcolors.ENDC}')
 		print(f'{bcolors.FAIL}##              Port not found !          ##{bcolors.ENDC}')
