@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "portab.h"
 #include "ch.h"
 #include "hal.h"
 #include "portab.h"
@@ -23,7 +22,7 @@ static BUFFER_LONG_ST long_buf;
 static BUFFER_SHORT_ST short_buf;
 
 void debug_print_state(char * text, uint8_t val){
-  if (DEBUGLEVEL >= 3){
+  if (DEBUGLEVEL == 1){
     switch (val){
     case IDLE:
       chprintf(dbg, "%s", text);
@@ -86,8 +85,48 @@ void debug_print_state(char * text, uint8_t val){
 }
 
 void debug_print_val1(char * text, uint16_t val){
-  if (DEBUGLEVEL >= 2){
+  if (DEBUGLEVEL == 2){
     chprintf(dbg, "%s %04x\r\n", text, val);
+  }
+}
+
+thread_reference_t writetp = NULL;
+static THD_WORKING_AREA(waWriteThread, 512);
+static THD_FUNCTION(WriteThread, arg){
+  (void)arg;
+  //uint8_t i;
+  uint8_t index;
+  msg_t msg;
+  while (true){
+    //if ((long_buf.bsize[0] == 0) && (long_buf.bsize[1] == 0)){
+      chprintf(dbg, "Suspending Write Thread\r\n");
+      msg = chThdSuspendS(&writetp);
+    //}
+    //chprintf(dbg, "Waking Thread 0x%02X \r\n", msg);
+    switch (msg){
+    case XSVF:
+        //chprintf(dbg, "XSVF Programming Chunk Size: %d\r\n", long_buf.bsize[index&1]);
+        //chThdSleepMilliseconds(100); //do something for 1s
+        if ((long_buf.working == 0) && (long_buf.index == 1)){ //wake up only once after two chunks
+          //if (write_xsvf(&long_buf) == 0){
+          if (0){
+            chprintf(dbg, "XSVF Error. %d\r\n", (index & 1));
+            long_buf.bytes_written = 0xFFFFFFFF;
+          }
+          else{
+            chprintf(dbg, "XSVF Done. %d\r\n", (index & 1));
+          }
+        }
+    	break;
+  	case RAMW:
+      chprintf(dbg, "Writing 0x%06X Bytes to RAM from: 0x%06X\r\n", long_buf.tsize, long_buf.tstart);
+      streamPut(ost, 'Y');
+  		break;
+    default:
+    	chprintf(dbg, "Unknown state %d\r\n", msg);    
+    	break;
+    }
+   //chThdSleepMilliseconds(10);
   }
 }
 
@@ -129,15 +168,18 @@ void send_one_byte(uint8_t *cs, uint8_t val){
 
 void handle_short_buf(void){
   uint8_t cs, temp = 0;
+  uint16_t temp16;
+  uint32_t temp32;
   cs = 0;
   switch (short_buf.func){
   case RAMR:
+    temp32 = short_buf.tsize;
   	if (short_buf.tindex == 0){
   		cs = read_single_byte(short_buf.tstart, 0);
-  		short_buf.tsize--;
+  		temp32--;
   		streamPut(ost, cs);
   	}
-	while (short_buf.tsize--){ 
+	while (temp32--){ 
     	temp = read_next_byte();
 		cs += temp;
 		streamPut(ost, temp);
@@ -172,14 +214,35 @@ void handle_short_buf(void){
     streamPut(ost, cs);
     break;
   case TRESETW:
-  	temp = short_buf.tbuf[0];
-  	write_pins(temp);
+  	write_pins(short_buf.tbuf[0]);
     streamPut(ost, 'Y');
 	break;
   case CLOCKW:
   	write_clock(short_buf.tbuf);
     streamPut(ost, 'Y');
 	break;
+  case CONFIGW:
+    write_config(short_buf.tbuf, short_buf.tsize);
+    streamPut(ost, 'Y');
+  break;
+  case TICW:
+    temp16 = short_buf.tbuf[0]*256;
+    temp16 += short_buf.tbuf[1];
+    pwmChangePeriod(&PWMD3, temp16);
+    pwmEnableChannel(&PWMD3, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, 50*100));    
+    streamPut(ost, 'Y');
+  break;
+  case RAMW:
+    if (short_buf.tindex == 0){
+      chprintf(dbg, "Writing1 0x%06X Bytes to RAM from: 0x%06X\r\n", short_buf.bsize, short_buf.tstart);
+      write_block(short_buf.tstart, short_buf.bsize, short_buf.tbuf, 1);
+    }
+    else{
+      chprintf(dbg, "Writing2 0x%06X Bytes to RAM from: 0x%06X\r\n", short_buf.bsize, short_buf.tstart);      
+      write_block_no_setup(short_buf.bsize, short_buf.tbuf, 1);
+    }
+    streamPut(ost, 'Y');
+  break;  
   default:
     break;
   }
@@ -283,9 +346,6 @@ static THD_FUNCTION(CharacterInputThread, arg) {
             state = DATA_S;
           }
           idx = c;
-//          if (idx == 0){
-//
-//          }
           debug_print_val1("Index: ", c);
           debug_print_state("To State: ", state);
           break;
@@ -331,9 +391,9 @@ static THD_FUNCTION(CharacterInputThread, arg) {
           cs += c;
           short_buf.tbuf[cnt_idx++] = c;
 
-          if (cnt_idx == count){
+          if (cnt_idx == ((count>BUFFSIZE)?BUFFSIZE:count)){
             state = CHECKSUM_S;
-            debug_print_val1("Offset: ", (BUFFSIZE * (idx & 1)));
+            debug_print_val1("Offset: ", (BUFFSIZE * idx));
             debug_print_state("To State: ", state);
           }          
           break;
@@ -348,14 +408,14 @@ static THD_FUNCTION(CharacterInputThread, arg) {
             //if (DEBUGLEVEL >= 1){
             //  chprintf(dbg, "XSVF (C): cnt: %03d, data: %02X, %02X, %02X, %02X\r\n", count, tbuf1[0], tbuf1[1], tbuf1[2], tbuf1[3]);
             //}
-            if (long_buf.bsize[0] && long_buf.bsize[1]){
-              chprintf(ost, "W"); // Checksum OK, Buffer full.
+           // if ((long_buf.bsize[0] && long_buf.bsize[1]) || (long_buf.tstart == long_buf.bsize[0])){
+              chprintf(ost, "O"); // Checksum OK, Buffer full.
               chprintf(dbg, "Buffer Full, Wake Thread up.\r\n");
-              //chThdResume(&writetp, func);
-            }
-            else{
-              chprintf(ost, "O"); // Checksum OK.
-            }
+              chThdResume(&writetp, func);
+           // }
+           // else{
+           //   chprintf(ost, "O"); // Checksum OK.
+           // }
             //chprintf(dbg, "Back.\r\n");
             //if (write_xsvf(count, long_buf.bufp) == 0) chprintf(ost, "X"); // Checksum or Programming Error
           }
@@ -370,9 +430,24 @@ static THD_FUNCTION(CharacterInputThread, arg) {
           if (c == cs){
             debug_print_val1("Checksum OK: ", cs);
             short_buf.tindex = idx;
-            short_buf.tsize = count;
-            short_buf.func = func;
-            short_buf.tstart = start_address;
+            short_buf.bsize = cnt_idx;
+            if (idx == 0){
+              if (DEBUGLEVEL == 3){
+                chprintf(dbg, "\r\nTSZ: %06X, START: %04X FUNC: %03d\r\n", count, start_address, func);
+              }
+              short_buf.tsize = count;
+              short_buf.func = func;
+              short_buf.tstart = start_address;
+            }
+            if (DEBUGLEVEL == 3){
+              chprintf(dbg, "TIDX: %06X, BSZ: %04X \r\n", idx, cnt_idx);
+            }
+            //temp = short_buf.tsize - (idx * BUFFSIZE);
+            //if ( temp > BUFFSIZE){
+            //  short_buf.bsize = BUFFSIZE;
+            //}
+            //else{
+            //}
             chprintf(ost, "O"); // Checksum OK.
             handle_short_buf();
           }
@@ -399,4 +474,5 @@ void start_upload_thread(void){
   long_buf.bsize[0] = 0;
   long_buf.bsize[1] = 0;	
   chThdCreateStatic(waCharacterInputThread, sizeof(waCharacterInputThread), NORMALPRIO, CharacterInputThread, NULL);
+  //chThdCreateStatic(waWriteThread, sizeof(waWriteThread), NORMALPRIO, WriteThread, NULL);
 }

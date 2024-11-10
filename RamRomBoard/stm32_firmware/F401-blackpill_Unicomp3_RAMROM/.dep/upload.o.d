@@ -32,7 +32,7 @@ build/obj/upload.o: userlib/src/upload.c \
  /home/rob/Projects/ChibiStudio/ChibiStudio_20/tools/GNU\ Tools\ ARM\ Embedded/9.2.1\ 2019q4/arm-none-eabi/include/xlocale.h \
  /home/rob/Projects/ChibiStudio/ChibiStudio_20/tools/GNU\ Tools\ ARM\ Embedded/9.2.1\ 2019q4/arm-none-eabi/include/strings.h \
  /home/rob/Projects/ChibiStudio/ChibiStudio_20/tools/GNU\ Tools\ ARM\ Embedded/9.2.1\ 2019q4/arm-none-eabi/include/sys/string.h \
- cfg/portab.h ../../chibios_trunk/os/rt/include/ch.h cfg/chconf.h \
+ ../../chibios_trunk/os/rt/include/ch.h cfg/chconf.h \
  ../../chibios_trunk/os/rt/include/chchecks.h \
  ../../chibios_trunk/os/license/chlicense.h \
  ../../chibios_trunk/os/license/chcustomer.h \
@@ -145,7 +145,7 @@ build/obj/upload.o: userlib/src/upload.c \
  ../../chibios_trunk/os/hal/ports/STM32/LLD/TIMv1/hal_st_lld.h \
  ../../chibios_trunk/os/hal/include/hal_mmc_spi.h \
  ../../chibios_trunk/os/hal/include/hal_serial_usb.h \
- ../../chibios_trunk/os/hal/include/hal_usb_cdc.h \
+ ../../chibios_trunk/os/hal/include/hal_usb_cdc.h cfg/portab.h \
  userlib/include/upload.h \
  ../../chibios_trunk/os/hal/lib/streams/chprintf.h \
  userlib/include/usbcfg.h userlib/include/SPI.h userlib/include/i2c.h
@@ -215,8 +215,6 @@ build/obj/upload.o: userlib/src/upload.c \
 /home/rob/Projects/ChibiStudio/ChibiStudio_20/tools/GNU\ Tools\ ARM\ Embedded/9.2.1\ 2019q4/arm-none-eabi/include/strings.h:
 
 /home/rob/Projects/ChibiStudio/ChibiStudio_20/tools/GNU\ Tools\ ARM\ Embedded/9.2.1\ 2019q4/arm-none-eabi/include/sys/string.h:
-
-cfg/portab.h:
 
 ../../chibios_trunk/os/rt/include/ch.h:
 
@@ -451,6 +449,8 @@ cfg/mcuconf.h:
 ../../chibios_trunk/os/hal/include/hal_serial_usb.h:
 
 ../../chibios_trunk/os/hal/include/hal_usb_cdc.h:
+
+cfg/portab.h:
 
 userlib/include/upload.h:
 

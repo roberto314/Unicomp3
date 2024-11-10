@@ -23,15 +23,41 @@
  */
 
 #include "portab.h"
+#include "hal.h"
 
 /*===========================================================================*/
 /* Module local definitions.                                                 */
 /*===========================================================================*/
+/*
+ * Maximum speed SPI configuration (21MHz, CPHA=0, CPOL=0, MSb first).
+ */
+const SPIConfig hs_spicfg = {
+  false,
+  NULL,
+  GPIOB,
+  12,
+  0,
+  0
+};
+
+/*
+ * Low speed SPI configuration (328.125kHz, CPHA=0, CPOL=0, MSb first).
+ */
+const SPIConfig ls_spicfg = {
+  false,
+  NULL,
+  GPIOB,
+  12,
+  SPI_CR1_BR_2 | SPI_CR1_BR_1,
+  0
+};
 
 /*===========================================================================*/
 /* Module exported variables.                                                */
 /*===========================================================================*/
-
+/* MMC/SD over SPI driver configuration.*/
+MMCConfig const portab_mmccfg = {&SPID2, &ls_spicfg, &hs_spicfg};
+MMCDriver MMCD1;
 /*===========================================================================*/
 /* Module local types.                                                       */
 /*===========================================================================*/

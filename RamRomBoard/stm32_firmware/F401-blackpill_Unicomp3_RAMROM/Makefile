@@ -112,7 +112,7 @@ include $(CHIBIOS)/tools/mk/autobuild.mk
 # Other files (optional).
 include $(CHIBIOS)/os/hal/lib/streams/streams.mk
 include $(CHIBIOS)/os/various/shell/shell.mk
-#include $(CHIBIOS_CONTRIB)/os/various/fatfs_bindings/fatfs.mk
+include $(CHIBIOS)/os/various/fatfs_bindings/fatfs.mk
 include userlib/user.mk
 # Define linker script file here
 LDSCRIPT= $(STARTUPLD)/STM32F401xC.ld
@@ -121,6 +121,7 @@ LDSCRIPT= $(STARTUPLD)/STM32F401xC.ld
 # setting.
 CSRC = $(ALLCSRC) \
 	   $(USERSRC) \
+	   $(CONFDIR)/portab.c \
        main.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
@@ -134,7 +135,7 @@ ASMSRC = $(ALLASMSRC)
 ASMXSRC = $(ALLXASMSRC)
 
 # Inclusion directories.
-INCDIR =  $(ALLINC) $(CONFDIR) $(USERINC)
+INCDIR =  $(ALLINC) $(CONFDIR) $(FATFSINC) $(USERINC)
 
 # Define C warning options here.
 CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes

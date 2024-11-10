@@ -21,7 +21,7 @@
 #include "portab.h"
 
 extern BaseSequentialStream *const ost; //OSTRICHPORT
-st_configdata_t cfdat[20];
+//st_configdata_t cfdat[20];
 
 uint16_t one = 60000;
 int16_t two = -22;
@@ -145,6 +145,10 @@ void cmd_fill(BaseSequentialStream *chp, int argc, char *argv[]){
   chprintf(chp, "OK.\r\n");
 }
 
+void dump_line(uint8_t *buf){
+  (void) *buf;
+}
+
 void cmd_br(BaseSequentialStream *chp, int argc, char *argv[]){
   (void)* argv;
   (void)argc;
@@ -167,6 +171,7 @@ void cmd_br(BaseSequentialStream *chp, int argc, char *argv[]){
   }
   chprintf(chp, "Starting at: %08x\r\n", address);
   read_block(address, lcnt, data, 0);
+  dump_line(data);
 
   for (acnt = 0; acnt < lcnt; acnt ++){
     d=data[acnt];

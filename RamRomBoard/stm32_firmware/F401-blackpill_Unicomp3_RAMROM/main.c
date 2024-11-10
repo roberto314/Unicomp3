@@ -21,19 +21,24 @@
 #include "portab.h"
 #include "shell.h"
 #include "chprintf.h"
-
+#include "sdcard.h"
 #include "SPI.h"
 #include "i2c.h"
 #include "usbcfg.h"
 #include "upload.h"
 #include "comm.h"
 #include "mypwm.h"
+#include "ff.h"
+#include "fs_helper.h"
 
 //#define usb_lld_connect_bus(usbp)
 //#define usb_lld_disconnect_bus(usbp)
 
 extern THD_WORKING_AREA(waCharacterInputThread, 128);
 extern THD_FUNCTION(CharacterInputThread, arg);
+extern event_source_t inserted_event, removed_event;
+extern bool fs_ready;
+extern bool autorun;
 
 /* Function prototypes needed as the two callbacks call each other.
    there is no way to order the callback without triggering an error. */
@@ -64,7 +69,7 @@ static void vt2_cb(virtual_timer_t *vtp, void *p) {
   (void)p;
   chSysLockFromISR();
   if (btn_cnt < 2){
-    LED_OFF;
+    TRESET_INACTIVE;
   }
   btn_cnt = 0;
   chSysUnlockFromISR();
@@ -82,7 +87,7 @@ static void button_cb(void *arg) {
   }
   else{
     is_pressed = 1;
-    LED_ON;
+    TRESET_ACTIVE;
   }
   chSysLockFromISR();
   /* Disabling the event on the line and setting a timer to
@@ -102,7 +107,9 @@ BaseSequentialStream *const shell = (BaseSequentialStream *)&SHELLPORT;
 BaseSequentialStream *const ost = (BaseSequentialStream *)&OSTRICHPORT;
 BaseSequentialStream *const dbg = (BaseSequentialStream *)&DEBUGPORT;
 
-#define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(2048)
+//#define SHELL_WA_SIZE   THD_WORKING_AREA_SIZE(2048)
+static THD_WORKING_AREA(waShellThread, 2048);
+static thread_t *shelltp = NULL;
 
 char history_buffer[8*64];
 char *completion_buffer[SHELL_MAX_COMPLETIONS];
@@ -118,15 +125,44 @@ static const ShellCommand commands[] = {
   {"spi",cmd_spi},
   {"wc", cmd_wc},
   {"test",cmd_test},
+  {"tree", cmd_tree},         // shows all files with directories
+  {"create", cmd_create},     // creates binary file with n bytes
+  {"cat", cmd_cat},           // dumps textfile
+  {"cd", cmd_cd},             // changes directory
+  {"mkdir", cmd_mkdir},       // creates directory
+  {"rmdir", cmd_rmdir},       // removes directory
+  {"mount", cmd_mount},       // mounts sd-card
+  {"umount", cmd_umount},     // unmounts sd-card
+  {"getlabel", cmd_getlabel}, // shows label of sd-card
+  {"setlabel", cmd_setlabel}, // sets label of sd-card
+  {"ls", cmd_dir},            // list directory
+  {"pwd", cmd_pwd},           // prints current directory
+  {"rm", cmd_rm},             // removes file
+  {"mv", cmd_mv},             // moves or renames file
+  {"free", cmd_free},         // shows bytes free on card
+  {"exec", cmd_exec},         // executes a script
+  {"kar", cmd_kar},           // runs autorun.sh once again  
   {NULL, NULL}
 };
-static const ShellConfig shell_cfg1 = {
+const ShellConfig shell_cfg1 = {
   (BaseSequentialStream *)&SHELLPORT,
   commands,
   history_buffer,
   sizeof(history_buffer),
   completion_buffer
 };
+
+/*
+ * Shell exit event.
+ */
+static void ShellHandler(eventid_t id) {
+
+  (void)id;
+  if (chThdTerminatedX(shelltp)) {
+    chThdRelease(shelltp);
+    shelltp = NULL;
+  }
+}
 
 //static const ShellCommand commands[] = {
 //  {"test", cmd_test},
@@ -158,9 +194,15 @@ static const ShellConfig shell_cfg1 = {
  * Application entry point.
  */
 int main(void) {
-  thread_t *shelltp = NULL;
-  event_listener_t shell_el;
-
+  //thread_t *shelltp = NULL;
+  //event_listener_t shell_el;
+  static const evhandler_t evhndl[] = {
+    InsertHandler,
+    RemoveHandler,
+    ShellHandler
+    //     AutorunHandler
+  };
+  event_listener_t el0, el1, el2;
   /*
    * System initializations.
    * - HAL initialization, this also initializes the configured device drivers
@@ -200,12 +242,13 @@ int main(void) {
 
   /* Initializing the virtual timer. */
   chVTObjectInit(&vt);
+  chVTObjectInit(&vt2);
   /* Setting the button line as digital input without pull resistors. */
   palSetLineMode(EXTRST, PAL_MODE_INPUT);
   /* Enabling the event and associating the callback. */
   palEnableLineEvent(EXTRST, PAL_EVENT_MODE_FALLING_EDGE);
   palSetLineCallback(EXTRST, button_cb, NULL);
-
+  sdcard_init();
   mypwmInit();
   SPI_init();
   i2c_init();
@@ -215,39 +258,55 @@ int main(void) {
    * Event zero is shell exit.
    */
   shellInit();
-  chEvtRegister(&shell_terminated, &shell_el, 0);
+  chThdCreateStatic(waShellThread, sizeof(waShellThread), NORMALPRIO+1, shellThread, (void *)&shell_cfg1);
 
+  /* Normal main() thread activity, handling SD card events and shell
+   * start
+   * exit.
+   */
+  chEvtRegister(&inserted_event, &el0, 0);
+  chEvtRegister(&removed_event, &el1, 1);
+  chEvtRegister(&shell_terminated, &el2, 2);
+  //   chEvtRegister(&autorun_terminated, &el3, 3);
+
+  while (true) {
+    chEvtDispatch(evhndl, chEvtWaitOneTimeout(ALL_EVENTS, TIME_MS2I(500)));
+  }
+}
+
+
+//  chEvtRegister(&shell_terminated, &shell_el, 0);
   /*
    * Normal main() thread activity, in this demo it does nothing except
    * sleeping in a loop and check the button state.
    */
-  while (true) {
-#if USB_SHELL == 1
-    if (SHELLPORT.config->usbp->state == USB_ACTIVE) {
-      /* Starting shells.*/
-      if (shelltp == NULL) {
-        shelltp = chThdCreateFromHeap(NULL, SHELL_WA_SIZE,
-                                       "shell1", NORMALPRIO + 1,
-                                       shellThread, (void *)&shell_cfg1);
-      }
-#else
-    if (!shelltp)
-      shelltp = chThdCreateFromHeap(NULL, SHELL_WA_SIZE,
-                                    "shell", NORMALPRIO + 1,
-                                    shellThread, (void *)&shell_cfg1);
-    else if (chThdTerminatedX(shelltp)) {
-      chThdRelease(shelltp);    /* Recovers memory of the previous shell.   */
-      shelltp = NULL;           /* Triggers spawning of a new shell.        */
-    }
-#endif
-    /* Waiting for an exit event then freeing terminated shells.*/
-    chEvtWaitAny(EVENT_MASK(0));
-    if (chThdTerminatedX(shelltp)) {
-      chThdRelease(shelltp);
-      shelltp = NULL;
-    }
-  }
-  chThdSleepMilliseconds(1000);
-//  palTogglePad(GPIOA, 5);
-}
+//  while (true) {
+//#if USB_SHELL == 1
+//    if (SHELLPORT.config->usbp->state == USB_ACTIVE) {
+//      /* Starting shells.*/
+//      if (shelltp == NULL) {
+//        shelltp = chThdCreateFromHeap(NULL, SHELL_WA_SIZE,
+//                                       "shell1", NORMALPRIO + 1,
+//                                       shellThread, (void *)&shell_cfg1);
+//      }
+//#else
+//    if (!shelltp)
+//      shelltp = chThdCreateFromHeap(NULL, SHELL_WA_SIZE,
+//                                    "shell", NORMALPRIO + 1,
+//                                    shellThread, (void *)&shell_cfg1);
+//    else if (chThdTerminatedX(shelltp)) {
+//      chThdRelease(shelltp);    /* Recovers memory of the previous shell.   */
+//      shelltp = NULL;           /* Triggers spawning of a new shell.        */
+//    }
+//#endif
+//    /* Waiting for an exit event then freeing terminated shells.*/
+//    chEvtWaitAny(EVENT_MASK(0));
+//    if (chThdTerminatedX(shelltp)) {
+//      chThdRelease(shelltp);
+//      shelltp = NULL;
+//    }
+//  }
+//  chThdSleepMilliseconds(1000);
+////  palTogglePad(GPIOA, 5);
+//}
 

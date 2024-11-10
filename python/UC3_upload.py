@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import sys, os
+import sys, os, enum
 from math import log, ceil
 import argparse, time
 from serial import Serial
@@ -21,7 +21,7 @@ port = '/dev/ttyACM0'
 RAMSIZE = 0x100000 # 1MB RAM
 #RAMSIZE = 0x10000 # 64kB RAM
 BLOCKSIZE = 8192 # Chunksize for read
-DEBUG = 4 # 1: Clock, 2: transmission, 3: config, 4: RAM, 5: reset, 6: tic
+DEBUG = 4 # 1: Clock, 2: transmission, 3: config, 4: RAM, 5: reset, 6: tic, 7: xsvf
 
 # These Values come from upload.h
 RAMR = 123
@@ -31,11 +31,11 @@ VERSION = 125
 #PROGRESS = 127
 #NO_FUNC = 128
 XSVF = 129
-RAMW = 130
 TRESETW = 192
 CLOCKW = 193
 CONFIGW = 194
 TICW = 195
+RAMW = 196
 
 class bcolors:
 	FAIL = '\033[91m'    #red
@@ -53,10 +53,32 @@ class bcolors:
 #print(f'{bcolors.OKBLUE}{bcolors.ENDC}')
 #print(f'{bcolors.HEADER}{bcolors.ENDC}')
 #print(f'{bcolors.OKCYAN}{bcolors.ENDC}')
+
+class x_state(enum.Enum):
+    XCOMPLETE    = 0  # 0
+    XTDOMASK     = 1  # 1
+    XSIR         = 2  # 2
+    XSDR         = 3  # 3
+    XRUNTEST     = 4  # 4
+    XREPEAT      = 7  # 7
+    XSDRSIZE     = 8  # 8
+    XSDRTDO      = 9  # 9
+    XSETSDRMASKS = 10 # A
+    XSDRINC      = 11 # B
+    XSDRB        = 12 # C
+    XSDRC        = 13 # D
+    XSDRE        = 14 # E
+    XSDRTDOB     = 15 # F
+    XSDRTDOC     = 16 # 10
+    XSDRTDOE     = 17 # 11
+    XSTATE       = 18 # 12
+    XSIR2       = 254
+    XIDLE       = 255
+
 ##########################################
 def dict_to_bytearray(dct):
 	retval = bytearray()
-#    return bytearray(pickle.dumps(dct))
+	#return bytearray(pickle.dumps(dct))
 	for a in dct:
 		#print(f'A: {a}, {dct[a]}')
 		retval += a.to_bytes(3, 'big')  # Address
@@ -93,6 +115,7 @@ def read_file(fn):
 	except Exception as e:
 		print(f'File {fn} not found!')
 		exit()
+#----------------------------------
 def write_file(data, fn):
 	if fn == '':
 		dump_data(data, 16)
@@ -221,7 +244,8 @@ def expect_done(ser):
 	if response == b'X':
 		print(f'Checksum or Programming Error')
 	elif response == b'Y':
-		print(f'{bcolors.OKGREEN}Upload done.{bcolors.ENDC}')
+		#print(f'{bcolors.OKGREEN}Upload done.{bcolors.ENDC}')
+		pass
 	else:
 		raise Exception('Response error')
 #----------------------------------
@@ -262,9 +286,13 @@ def dump_registers(result):
 		temp = result[8]+256*result[7]
 		print(f'-- DIV Register: {temp}')
 #----------------------------------
-def put_data(ser, func, start, data, idx):
-	size = len(data)
-	#print(f'--------- small put -------------- Size: {size}')
+def put_data(ser, func, start, data, idx, dsize=1):
+	if idx == 0:
+		size = dsize
+	else:
+		size = len(data)
+	if (DEBUG == 2):
+		print(f'put_data Size: {size}')
 	message = bytearray([func])
 	message += start.to_bytes(3,'big')
 	message += size.to_bytes(3,'big')
@@ -292,6 +320,12 @@ def get_data(ser, func, start, resp, idx):
 	write(ser, message)
 	expect_ok(ser)
 	return read_with_checksum(ser, resp)
+#------------------------------------------
+def compare_data(data1, data2):
+	for idx, i in enumerate (data1):
+		if i != data2[idx]:
+			return 0 # different
+	return 1 # same
 #------------------------------------------
 def make_clockdata(ser, data):
 		p0 = None
@@ -392,9 +426,9 @@ def make_clockdata(ser, data):
 		#dump_registers(newval)
 		return bytes(newval)	
 #------------------------------------------
-def dump_memorymap(mmap):
+def dump_memorymap(mmap, cf):
 	print(f'Memory Map:')
-	print(f' Start  End    Chipsel. Per.')	
+	print(f' Start    End      Chipsel. Per.')	
 	for a in mmap:
 		cspos = (~(mmap[a]))&0xFFFF
 		if cspos == 0x8000:
@@ -404,7 +438,11 @@ def dump_memorymap(mmap):
 		elif cspos == 0xFFFF:
 			per = 'hole'
 		else:
-			per = 'CS' + str(int(log(cspos, 2)))
+			for name in cf['peripherals'].keys():
+				if name not in 'ram' and name not in 'rom':
+					if (DEBUG == 3):
+						print(f'Found other peripheral: {name}')
+			per = name + ' (CS' + str(int(log(cspos, 2))) + ')'
 		if a % 2 == 0: # even = start
 			start = a
 		else:
@@ -465,10 +503,10 @@ def config_per(cf):
 				print(f'{bcolors.FAIL}found wrong address (odd/even) in {name} at: {val:05X}{bcolors.ENDC}')
 				exit()
 	#print(f'Map1')
-	#dump_memorymap(csdata)
+	#dump_memorymap(csdata, cf)
 	sorted_dict = {k: csdata[k] for k in sorted(csdata)}
 	#print(f'Map2')
-	#dump_memorymap(sorted_dict)
+	#dump_memorymap(sorted_dict, cf)
 	# This adds all the holes to the memory Map
 	sorted_dict2 = {}
 	end = 0
@@ -486,14 +524,15 @@ def config_per(cf):
 			end = k
 		sorted_dict2.update({k:sorted_dict[k]})
 	#print(f'Map3')
-	dump_memorymap(sorted_dict2)
+	dump_memorymap(sorted_dict2, cf)
 	return dict_to_bytearray(sorted_dict2)
 #------------------------------------------
 def write_ram(ser, start, data,):
 	size = len(data)
-	print(f'Size: {size}')
+	if (DEBUG == 4):
+		print(f'Size: {size:06X}, Start: {start:06X}')
 	chunks = ceil(size / BLOCKSIZE) # how many chunks are needed?
-	cstart = start # first chunk starts at start 
+	cstart = 0 # first chunk starts at start 
 	cend = cstart + BLOCKSIZE
 	crest = size - BLOCKSIZE
 	if (DEBUG == 4):
@@ -502,19 +541,48 @@ def write_ram(ser, start, data,):
 		if (DEBUG == 4):
 			length = len(data[cstart:cend])
 			print(f'Sending chunk {i} from {cstart} to {cend} size: 0x{(length):04X} or {(cend-cstart)}')
-		put_data(ser, RAMW, start, data[cstart:cend], i)
-		if chunks > 1:
+		put_data(ser, RAMW, start, data[cstart:cend], i, size)
+		if (chunks > 1) and (DEBUG == 0):
 			val = int(100 * (i / chunks))
 			print(f'Progress: {val:02d}%', end = '\r', file=sys.stdout, flush=True)
 		cstart = cend
 		crest -= BLOCKSIZE
+		if (crest >= 0 ):
+			cend += BLOCKSIZE
+			if (DEBUG == 4):
+				print(f'Rest: {crest} or 0x{crest:06X}, End: 0x{cend:06X}')
+		else:
+			cend = size
+			if (DEBUG == 4):
+				print(f'End: 0x{cend:06X} or {cend}')
+	print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
+#------------------------------------------
+def read_ram(ser, start, size):
+	retdata = bytearray()
+	chunks = ceil(size / BLOCKSIZE) # how many chunks are needed?
+	realchunksize = ceil(size / chunks) # we make evenly sized chunks
+	cstart = start # first chunk starts at start 
+	cend = cstart + realchunksize
+	crest = size - realchunksize
+	if (DEBUG == 4):
+		print(f'Making {chunks} chunks with each {(size / chunks):.2f} bytes or {realchunksize} bytes.')
+	for i in range(chunks):
+		if (DEBUG == 4):
+			print(f'Requesting chunk {i} from {cstart} to {cend} size: 0x{(cend-cstart):04X} or {(cend-cstart)}')
+		retdata += get_data(ser, RAMR, cstart, (cend-cstart), i)
+		if (chunks > 1) and (DEBUG == 0):
+			val = int(100 * (i / chunks))
+			print(f'Progress: {val:02d}%', end = '\r', file=sys.stdout, flush=True)
+		cstart = cend
+		crest -= realchunksize
 		if (DEBUG == 4):
 			print(f'Rest: {crest}')
 		if (crest >= 0 ):
-			cend += BLOCKSIZE
+			cend += realchunksize
 		else:
 			cend = size+start
 	print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
+	return retdata
 #------------------------------------------
 def upload_image(ser, fpath, cf, name):
 	try:
@@ -565,6 +633,105 @@ def upload_patch(ser, cf, name):
 	except Exception as e:
 		#print(f'Error in upload_patch: {e}!')
 		return 1
+#----------------------------------
+def dump_val(state, buf, pos, sdr=0):
+    if sdr == None:
+        sdr = 0
+    print(f'State: {x_state(state).name}, Len: {len(buf)} Pos: 0x{pos:04X} SDR: 0x{sdr:04X} ', end = '')
+    for idx,itm in enumerate(buf):
+        print(f'0x{itm:02X} ', end = '')
+    print('')
+#------------------------------------------
+def xsvf_parser(ser, f):
+    state  = x_state.XIDLE
+    start = stop = 0
+    length = 0
+    sdr_bytes = 0
+    for idx,itm in enumerate(f):
+    #for idx in progressbar(range(len(f)), "Computing: ", 40):
+        #itm = f[idx]
+        #print(f'Byte: 0x{itm:02X} @ pos: {idx}')
+        if (state != x_state.XIDLE):
+            if (idx == stop):
+                if state == x_state.XSDRSIZE:
+                    sdr_bytes = 0
+                    sdr_bytes |= f[stop-1]<<8
+                    #print(f'Val1: 0x{f[stop-1]}, sdr: 0x{sdr_bytes:04X}')
+                    sdr_bytes |= f[stop]
+                    #print(f'Val2: 0x{f[stop]}, sdr: 0x{sdr_bytes:04X}')
+                    sdr_bytes = (sdr_bytes + 7)>>3
+                    #print(f'sdr: 0x{idx:02X}, 0x{start:02X}, 0x{stop:02X}')
+                    #print(f'sdr: 0x{sdr_bytes:04X}')
+
+                if state == x_state.XSIR2:
+                    start = idx + 1
+                    size = ((f[idx]+7)>>3)
+                    stop = idx + size
+                    print(f'sir2: 0x{idx:02X}, 0x{start:02X}, 0x{stop:02X} Size: {size}')
+                    state = x_state.XSIR
+                else:
+                    #print(f'Dumping: {start} - {stop}, {f[start:stop+1]}')
+                    dump_val(state, f[start:stop+1], start, sdr_bytes)
+                    state = x_state.XIDLE
+                    #print(f'State: {x_state(state).name}')
+        else:
+            if itm == 0:
+                state = x_state.XCOMPLETE
+                length = 0
+            elif itm == 1:
+                state = x_state.XTDOMASK
+                length = sdr_bytes
+            elif itm == 2:
+                state = x_state.XSIR2
+                length = 1
+            elif itm == 3:
+                state = x_state.XSDR
+                length = sdr_bytes
+            elif itm == 4:
+                state = x_state.XRUNTEST
+                length = 4
+            elif itm == 7:
+                state = x_state.XREPEAT
+                length = 1
+            elif itm == 8:
+                state = x_state.XSDRSIZE
+                length = 4
+            elif itm == 9:
+                state = x_state.XSDRTDO
+                length = sdr_bytes*2
+            elif itm == 0x0A:
+                state = x_state.XSETSDRMASKS
+                length = sdr_bytes*2
+            elif itm == 0x0C:
+                state = x_state.XSDRB
+                length = sdr_bytes
+            elif itm == 0x0D:
+                state = x_state.XSDRC
+                length = sdr_bytes
+            elif itm == 0x0E:
+                state = x_state.XSDRE
+                length = sdr_bytes
+            elif itm == 0x0F:
+                state = x_state.XSDRTDOB
+                length = sdr_bytes*2
+            elif itm == 0x10:
+                state = x_state.XSDRTDOC
+                length = sdr_bytes*2
+            elif itm == 0x11:
+                state = x_state.XSDRTDOE
+                length = sdr_bytes*2
+            elif itm == 0x12:
+                state = x_state.XSTATE
+                length = 1
+            else:
+                print(f'Unrecogized Command: 0x{itm:02X}')
+            start = idx + 1
+            stop = idx + length
+#------------------------------------------
+def write_xsvf(ser, data):
+	print(f'Writing XSVF')
+	xsvf_parser(ser, data)
+
 ############################################
 def main(ser, func, data = 0, start = 0, size = 1):
 
@@ -583,31 +750,16 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		write_ram(ser, start, data)
 
 	elif func == 'ramr':
-		retdata = bytearray()
-		chunks = ceil(size / BLOCKSIZE) # how many chunks are needed?
-		realchunksize = ceil(size / chunks) # we make evenly sized chunks
-		cstart = start # first chunk starts at start 
-		cend = cstart + realchunksize
-		crest = size - realchunksize
-		if (DEBUG == 4):
-			print(f'Making {chunks} chunks with each {(size / chunks):.2f} bytes or {realchunksize} bytes.')
-		for i in range(chunks):
-			if (DEBUG == 4):
-				print(f'Sending chunk {i} from {cstart} to {cend} size: 0x{(cend-cstart):04X} or {(cend-cstart)}')
-			retdata += get_data(ser, RAMR, cstart, (cend-cstart), i)
-			if chunks > 1:
-				val = int(100 * (i / chunks))
-				print(f'Progress: {val:02d}%', end = '\r', file=sys.stdout, flush=True)
-			cstart = cend
-			crest -= realchunksize
-			if (DEBUG == 4):
-				print(f'Rest: {crest}')
-			if (crest >= 0 ):
-				cend += realchunksize
-			else:
-				cend = size+start
-		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
-		return retdata
+		return read_ram(ser, start, size)
+
+	elif func == 'ramv':
+		print(f'Verifies RAM.')
+		size = len(data)
+		rbdata = read_ram(ser, start, size)
+		if compare_data(data,rbdata):
+			print(f'{bcolors.OKGREEN}Data matched!{bcolors.ENDC}')
+		else:
+			print(f'{bcolors.FAIL}Data different!{bcolors.ENDC}')
 
 	elif func == 'config':
 		cf = data
@@ -630,11 +782,13 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		print(f'Configure for:\n\t{computername} \n\t{clockfreqf/1E6:#.6f} MHz fast clock, \n\t{clockfreqs/1E6:#.6f} MHz slow clock,\n\t{clocktic:#.2f} Hz TIC.')		
 		print(f'{bcolors.OKGREEN}------------------------ Reset Unicomp -------------------------{bcolors.ENDC}')
 		put_data(ser, TRESETW, 0, bytearray.fromhex('01'), 0)  # Reset active
+		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
 		retval = config_per(cf)
 		if (DEBUG == 3):
 			dump_data(retval, 16)
 		print(f'{bcolors.OKGREEN}------------------------ Upload Config -------------------------{bcolors.ENDC}')
-		put_data(ser, CONFIGW, 0, retval, 0)
+		put_data(ser, CONFIGW, 0, retval, 0, len(retval))
+		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
 		print(f'{bcolors.OKGREEN}----------------------- Configure Clock ------------------------{bcolors.ENDC}')
 		freqdata = []
 		freqdata.append('freq')
@@ -643,10 +797,13 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		clockval = make_clockdata(ser, freqdata)
 		if (DEBUG == 1):
 			print(freqdata, clockval)
-		put_data(ser, CLOCKW, 0, clockval, 0)
+		put_data(ser, CLOCKW, 0, clockval, 0, len(clockval))
+		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
 		print(f'{bcolors.OKGREEN}------------------------- Configure Tic ------------------------{bcolors.ENDC}')
 		per = int(10000 / clocktic)
-		put_data(ser, TICW, 0, per.to_bytes(2, 'big'), 0)
+		print(f'Writing period of: {per}')
+		put_data(ser, TICW, 0, per.to_bytes(2, 'big'), 0, 2)
+		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
 		print(f'{bcolors.OKGREEN}----------------------- Upload ROM Image -----------------------{bcolors.ENDC}')
 		for k in cf.keys():
 			if 'img' in k:
@@ -658,6 +815,7 @@ def main(ser, func, data = 0, start = 0, size = 1):
 				upload_patch(ser, cf, k)
 		print(f'{bcolors.OKGREEN}------------------------ Reset inactive ------------------------{bcolors.ENDC}')
 		put_data(ser, TRESETW, 0, bytearray.fromhex('00'), 0) # Reset inactive - Run
+		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
 		print(f'{bcolors.OKGREEN}------------------------ Modifications  ------------------------{bcolors.ENDC}')
 		try:
 			text1 = cf['modifications']['text']
@@ -677,6 +835,9 @@ def main(ser, func, data = 0, start = 0, size = 1):
 
 	elif func == 'reset':
 		put_data(ser, TRESETW, 0, data, 0)
+
+	elif func == 'xsvf':
+		write_xsvf(ser, data)
 
 	elif func == 'tic':
 		put_data(ser, TICW, 0, data, 0)
@@ -737,6 +898,20 @@ if __name__ == '__main__':
 		help = 'input filename or data in HEX (ex.: UC3_upload.py ramw :aa,0b,cc,... 0xF000) with no spaces!')
 	#---------------------------------------------------------------------------------    
 	subparser = subparsers.add_parser(
+		'ramv',
+		help = 'compares RAM data to file')
+	subparser.add_argument(
+		'start',
+		nargs = '?',
+		default = 0,
+		help = 'memory start address')
+	subparser.add_argument(
+		'file',
+		#nargs = '?',
+		#default = sys.stdin.buffer,
+		help = 'filename to compare.')
+	#---------------------------------------------------------------------------------    
+	subparser = subparsers.add_parser(
 		'ramr',
 		help = 'read RAM from device')
 	subparser.add_argument(
@@ -780,6 +955,13 @@ if __name__ == '__main__':
 		help = 'input 8-bit data')
 	#---------------------------------------------------------------------------------    
 	subparser = subparsers.add_parser(
+		'xsvf',
+		help = 'writes .xsvf file to Target')
+	subparser.add_argument(
+		'file',
+		help = 'xsvf file')
+	#---------------------------------------------------------------------------------    
+	subparser = subparsers.add_parser(
 		'tic',
 		help = 'configures the slow tic timer')
 	subparser.add_argument(
@@ -791,6 +973,7 @@ if __name__ == '__main__':
 		'version',
 		help = 'display device version number and exit',
 		add_help = False)
+	#---------------------------------------------------------------------------------    
 
 	args = parser.parse_args()
 	if args.command == '':
@@ -798,9 +981,13 @@ if __name__ == '__main__':
 		exit()
 	ser = None
 	try:
-		ser = Serial(port, 921600, timeout = 1, writeTimeout = 1)
+		ser = Serial(port, 921600, timeout = 3, writeTimeout = 1)
 	except IOError:
-		print(f'{bcolors.FAIL}Port not found!{bcolors.ENDC}')
+		print(f'{bcolors.FAIL}############################################{bcolors.ENDC}')
+		print(f'{bcolors.FAIL}##              Port not found !          ##{bcolors.ENDC}')
+		print(f'{bcolors.FAIL}##        working in simulation mode !    ##{bcolors.ENDC}')
+		print(f'{bcolors.FAIL}##            nothing is uploaded !       ##{bcolors.ENDC}')
+		print(f'{bcolors.FAIL}############################################{bcolors.ENDC}')
 		#exit()
 	#print(ser)
 	if args.command == 'version':
@@ -890,10 +1077,10 @@ if __name__ == '__main__':
 					print(f'couldnt interpret: {b}')
 
 			img = bytes(mylist)
-			start = int(args.start, 0) & RAMSIZE
+			start = int(args.start, 0) & (RAMSIZE-1)
 			end = start + len(img) - 1
 			if end > RAMSIZE:
-				print(f'Write goes beyond 0x7FFF! (size: 0x{len(img):04X})')
+				print(f'Write goes beyond {(RAMSIZE)}! (size: 0x{len(img):04X})')
 				exit()
 			main(ser, 'ramw', img, start)
 		else:                   # real file received
@@ -901,10 +1088,10 @@ if __name__ == '__main__':
 			img = read_file(args.file)
 			ext = args.file.split(".")[-1] # check extension
 			if ext != 'ucb': 
-				start = int(args.start, 0) & RAMSIZE
+				start = int(args.start, 0)
 				end = start + len(img) - 1
 				if end > RAMSIZE:
-					print(f'Write goes beyond 0x7FFF! (size: 0x{len(img):04X})')
+					print(f'Write goes beyond {(RAMSIZE)}! Start: {start}, End: {end} Size: 0x{len(img):04X}')
 					exit()
 				main(ser, 'ramw', img, start)	
 			else:                          # .ucb file has startaddress and size within
@@ -919,7 +1106,7 @@ if __name__ == '__main__':
 					img = rest
 
 	elif args.command == 'ramr':
-		start = int(args.start, 0) & (RAMSIZE-1)
+		start = int(args.start, 0)
 
 		sizetemp = args.size
 		if sizetemp[0] == '.':
@@ -935,12 +1122,25 @@ if __name__ == '__main__':
 			exit()
 		end = start + size - 1
 		if end > RAMSIZE:
-			print(f'Read goes beyond 0x{(RAMSIZE-1):06X}!')
+			print(f'Read goes beyond 0x{(RAMSIZE):06X}!')
 			exit()
 		if (DEBUG == 4):
 			print(f'Start: 0x{start:06X}, End: 0x{end:06X}, Size: 0x{size:06X}')
 		data = main(ser, 'ramr', 0, start, size)
 		write_file(data, args.file)
+
+	elif args.command == 'ramv':
+		img = read_file(args.file)
+		main(ser, 'ramv', img, int(args.start, 0))
+
+	elif args.command == 'xsvf':
+		img = read_file(args.file)
+		ext = args.file.split(".")[-1] # check extension
+		if ext != 'xsvf':
+			print(f'{bcolors.FAIL}Extension NOT xsvf!{bcolors.ENDC}')
+			exit()
+		main(ser, 'xsvf', img)
+
 	elif args.command == 'tic':
 		n = float(args.data)
 		per = int(10000 / n)

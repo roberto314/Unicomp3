@@ -21,19 +21,19 @@
 //  };
 //}u_cv_t;
 
-typedef struct {
-    union {
-      uint32_t _32;
-      struct {
-        uint8_t _8l;
-        uint8_t _8lm;
-        uint8_t _8hm;
-        uint8_t _8h;
-      };
-    };
-  uint8_t cs;
-  uint8_t mask;
-} st_configdata_t;
+//typedef struct {
+//    union {
+//      uint32_t _32;
+//      struct {
+//        uint8_t _8l;
+//        uint8_t _8lm;
+//        uint8_t _8hm;
+//        uint8_t _8h;
+//      };
+//    };
+//  uint8_t cs;
+//  uint8_t mask;
+//} st_configdata_t;
 
 #define SPI_DRIVER   (&SPID1)
 #define SPI_PORT     GPIOA
@@ -79,8 +79,8 @@ typedef struct {
 #define MRC_ACTIVE palClearLine(MRC)
 #define CNTOE_INACTIVE palSetLine(CNTOE)
 #define CNTOE_ACTIVE palClearLine(CNTOE)
-#define TRESET_INACTIVE palClearLine(TRESET)
-#define TRESET_ACTIVE palSetLine(TRESET)
+#define TRESET_ACTIVE palClearLine(TRESET)
+#define TRESET_INACTIVE palSetLine(TRESET)
 
 void SPI_init(void);
 //void WriteSPI(int32_t val);
@@ -90,7 +90,8 @@ uint8_t read_next_byte(void);
 void write_next_byte(uint8_t data);
 void read_block(int32_t address, int32_t len, uint8_t * data, uint8_t reset);
 void write_block(int32_t address, int32_t len, uint8_t * data, uint8_t reset);
-void write_config(uint8_t *buf);
+void write_block_no_setup(int32_t len, uint8_t * data, uint8_t reset);
+void write_config(uint8_t *buf, uint32_t size);
 void write_pins(uint8_t data);
 
 #endif /* USERLIB_INCLUDE_SPI_H_ */

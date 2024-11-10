@@ -152,9 +152,10 @@ build/obj/main.o: main.c main.h \
  /home/rob/Projects/ChibiStudio/ChibiStudio_20/tools/GNU\ Tools\ ARM\ Embedded/9.2.1\ 2019q4/arm-none-eabi/include/stdlib.h \
  /home/rob/Projects/ChibiStudio/ChibiStudio_20/tools/GNU\ Tools\ ARM\ Embedded/9.2.1\ 2019q4/arm-none-eabi/include/machine/stdlib.h \
  /home/rob/Projects/ChibiStudio/ChibiStudio_20/tools/GNU\ Tools\ ARM\ Embedded/9.2.1\ 2019q4/arm-none-eabi/include/alloca.h \
- cfg/portab.h userlib/include/SPI.h userlib/include/i2c.h \
- userlib/include/usbcfg.h userlib/include/upload.h \
- userlib/include/mypwm.h
+ cfg/portab.h userlib/include/sdcard.h userlib/include/SPI.h \
+ userlib/include/i2c.h userlib/include/usbcfg.h userlib/include/upload.h \
+ userlib/include/mypwm.h ../../chibios_trunk/ext/fatfs/src/ff.h \
+ cfg/ffconf.h userlib/include/fs_helper.h
 
 main.h:
 
@@ -476,6 +477,8 @@ main.h:
 
 cfg/portab.h:
 
+userlib/include/sdcard.h:
+
 userlib/include/SPI.h:
 
 userlib/include/i2c.h:
@@ -485,3 +488,9 @@ userlib/include/usbcfg.h:
 userlib/include/upload.h:
 
 userlib/include/mypwm.h:
+
+../../chibios_trunk/ext/fatfs/src/ff.h:
+
+cfg/ffconf.h:
+
+userlib/include/fs_helper.h:

@@ -14,7 +14,7 @@
 #include "i2c.h"
 
 extern BaseSequentialStream *const chout;
-extern st_configdata_t cfdat[20];
+//extern st_configdata_t cfdat[20];
 extern BaseSequentialStream *const dbg;
 volatile uint8_t BUS_in_use;
 
@@ -58,34 +58,6 @@ static const GPTConfig gptcfg1 = {
 static void write_byte(uint8_t data);
 static uint8_t read_byte(void);
 
-static void increment_address(void){
-  CPC_HIGH; // Count up
-  __NOP();
-  CPC_LOW;  // Latch into Output Register
-  __NOP();
-}
-
-void increment_address8(void){
-  uint8_t i;
-  for (i=0; i<8; i++){
-    increment_address();
-  }
-}
-
-void setup_address(int32_t address){
-  int32_t i;
-  CPC_HIGH; // Count up
-  MRC_ACTIVE;  // Reset '590
-  __NOP();
-  MRC_INACTIVE;
-  CPC_LOW;  // Latch into Output Register
-  __NOP();
-  for (i=0; i<address; i++){
-    increment_address();
-  }
-  return;
-}
-
 static void check_BUS(void){
   /* Check if BUS is used at all. If not there is a timer callback after 10us
       which sets the variable BUS_in_use to 0 . */
@@ -113,6 +85,39 @@ static inline void wait_for_busfree(void){
   }
   while (palReadLine(BUSFREE) == PAL_LOW);
   while (palReadLine(BUSFREE) == PAL_HIGH);
+}
+
+static void increment_address(void){
+  CPC_HIGH; // Count up
+  __NOP();
+  CPC_LOW;  // Latch into Output Register
+  __NOP();
+}
+
+void setup_address(int32_t address){
+  int32_t i;
+  // HACK! Somehow address 0 won't get read correctly unless there are some 
+  // wiggles of the CPC Line during reset
+  MRC_ACTIVE;  // Reset '590
+  __NOP();
+  CPC_HIGH; // Count up
+  __NOP();
+  CPC_LOW;  // Latch into Output Register
+  __NOP();
+  CPC_HIGH; // Count up
+  __NOP();
+  CPC_LOW;  // Latch into Output Register
+  __NOP();
+  MRC_INACTIVE;
+  __NOP();
+  CPC_HIGH; // Count up
+  __NOP();
+  CPC_LOW;  // Latch into Output Register
+  __NOP();
+  for (i=0; i<address; i++){
+    increment_address();
+  }
+  return;
 }
 
 static void write_byte(uint8_t data){
@@ -149,7 +154,7 @@ static uint8_t read_byte(void){
   PLD_IDLE;
   DATOE_INACTIVE;
   __NOP();
-// CNTOE_INACTIVE; //DEBUG
+ //CNTOE_INACTIVE; //DEBUG
   chSysUnlock();
   spiReceive(SPI_DRIVER, 1, &ret);
   return ret;
@@ -226,11 +231,9 @@ void write_block(int32_t address, int32_t len, uint8_t * data, uint8_t reset){
     TRESET_ACTIVE;
     BUS_in_use = 0;
   }
-  write_byte(*data++);
-  l--;
   while(l--){
-    increment_address();
     write_byte(*data++);
+    increment_address();
   }
   if (reset){
     TRESET_INACTIVE;
@@ -238,22 +241,86 @@ void write_block(int32_t address, int32_t len, uint8_t * data, uint8_t reset){
   }
 }
 
-void fill_struct(uint8_t* in, st_configdata_t* out){
-  out->_8h  = 0;
-  out->_8hm = *in++;
-  out->_8lm = *in++;
-  out->_8l  = *in++;
-  out->cs   = *in++;
-  out->mask = *in++;
+void write_block_no_setup(int32_t len, uint8_t * data, uint8_t reset){
+  int32_t l = len;
+  check_BUS();
+  if (reset){
+    TRESET_ACTIVE;
+    BUS_in_use = 0;
+  }
+  while(l--){
+    write_byte(*data++);
+    increment_address();
+  }
+  if (reset){
+    TRESET_INACTIVE;
+    BUS_in_use = 1;
+  }
 }
 
-#define ADDRESS (cfdat._32)
-#define NEXTADDRESS (nextcf._32)
-#define CHIP (cfdat.cs)
-#define MASK (cfdat.mask)
+static void write_int(uint16_t data){
+  uint8_t buf[2];
+  buf[0] = (uint8_t)(data >> 8) & 0xFF;
+  buf[1] = (uint8_t)(data);
+  spiSend(SPI_DRIVER, 2, buf);
+  chSysLock();
+  CEWR_ACTIVE;
+  __NOP();
+  __NOP();
+  CEWR_INACTIVE;
+  chSysUnlock();
+}
 
-void write_config(uint8_t* buf){
+void write_csdata(uint32_t start, uint32_t end, uint16_t data){
+  uint32_t pos = start;
+  //chprintf(dbg, "Address: 0x%06X, CS: 0x%04X\r\n", pos, data);
+  while (pos++ <= end){
+    write_int(data);
+    increment_address();
+  }
+}
 
+//void fill_struct(uint8_t* in, st_configdata_t* out){
+//  out->_8h  = 0;
+//  out->_8hm = *in++;
+//  out->_8lm = *in++;
+//  out->_8l  = *in++;
+//  out->cs   = *in++;
+//  out->mask = *in++;
+//}
+//
+//#define ADDRESS (cfdat._32)
+//#define NEXTADDRESS (nextcf._32)
+//#define CHIP (cfdat.cs)
+//#define MASK (cfdat.mask)
+
+void write_config(uint8_t* buf, uint32_t size){
+  uint32_t i, saddress, eaddress;
+  uint16_t csdata1, csdata2;
+  setup_address(0);
+  TRESET_ACTIVE; // for security
+  CNTOE_ACTIVE;
+  for (i=0; i<size; i+=10){
+    saddress = buf[i]*65536;
+    saddress += buf[i+1]*256;
+    saddress += buf[i+2];
+    csdata1 = buf[i+3]*256;
+    csdata1 += buf[i+4];
+    eaddress = buf[i+5]*65536;
+    eaddress += buf[i+6]*256;
+    eaddress += buf[i+7];
+    csdata2 = buf[i+8]*256;
+    csdata2 += buf[i+9];
+    if (csdata1 == csdata2){
+      write_csdata(saddress, eaddress, csdata1);
+      if (DEBUGLEVEL == 4) chprintf(dbg, "D: %d, Address: 0x%06X - 0x%06X, CS: 0x%04X\r\n", i, saddress, eaddress, csdata1);
+    }
+    else{
+      chprintf(dbg, "ERROR!, CSDATA doesn't match. %04X %04X", csdata1, csdata2); 
+    }
+  }
+  CNTOE_INACTIVE;
+  TRESET_INACTIVE;
 }
 
 void write_pins(uint8_t data){
@@ -268,6 +335,9 @@ void write_pins(uint8_t data){
     break;
   case 2:
     chprintf(dbg, "in Reset onoff... \r\n");
+    TRESET_ACTIVE;
+    chThdSleepMilliseconds(100);
+    TRESET_INACTIVE;
     break;
   default:
     chprintf(dbg, "in Reset unhandled... \r\n");

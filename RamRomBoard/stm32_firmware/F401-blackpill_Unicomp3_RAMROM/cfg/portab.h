@@ -25,6 +25,9 @@
 #ifndef PORTAB_H
 #define PORTAB_H
 
+#include "ch.h"
+#include "hal.h"
+
 /*===========================================================================*/
 /* Module constants.                                                         */
 /*===========================================================================*/
@@ -37,8 +40,9 @@
 #define DEBUGPORT                   SD2
 #define OSTRICHPORT                 SDU1
 #define OSTRICHUSB                  TRUE
-#define DEBUGLEVEL                  2  // 1,2 for upload protocol state machine
-                                       // 3,4 for spi and config write
+#define DEBUGLEVEL                  3  // 1 for upload protocol state machine
+                                       // 2,3 for upload values
+                                       //
                                        // 5,6 for i2c
 //#define PORTAB_BLINK_LED1           PAL_LINE(GPIOF, 9U)// LINE_LED
 //#define PORTAB_BLINK_LED1           LINE_LED
@@ -65,6 +69,8 @@
 /*===========================================================================*/
 /* External declarations.                                                    */
 /*===========================================================================*/
+extern const MMCConfig portab_mmccfg;
+extern MMCDriver MMCD1;
 
 #ifdef __cplusplus
 extern "C" {
