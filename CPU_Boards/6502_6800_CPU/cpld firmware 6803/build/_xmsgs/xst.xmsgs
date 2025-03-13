@@ -5,6 +5,12 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/board_6803</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6803/board_6803.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6803/board_6803.vhd</arg>&quot;.
+</msg>
+
+<msg type="warning" file="HDLParsers" num="3607" delta="new" >Unit <arg fmt="%s" index="1">work/board_6803/Behavioral</arg> is now defined in a different file.  It was defined in &quot;<arg fmt="%s" index="2">/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6803/board_6803.vhd</arg>&quot;, and is now defined in &quot;<arg fmt="%s" index="3">/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6803/board_6803.vhd</arg>&quot;.
+</msg>
+
 <msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">BA</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 

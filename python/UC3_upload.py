@@ -5,6 +5,7 @@ import argparse, time
 from serial import Serial
 from serial import SerialException
 from configobj import ConfigObj
+import random, bincopy
 #import pickle
 
 # UC3_upload.py
@@ -12,16 +13,17 @@ from configobj import ConfigObj
 # It is for Unicomp3!
 #
 # Version History:
-# v1.0: Initial Version
+# v3.1: Version for Unicomp 3.1 RAMROM Board (with CPLD)
+# v3.0: Initial Version
 
-ver = '3.0'
+ver = '3.1'
 port = '/dev/ttyACM0'
 
 #RAMSIZE = 0x80000 # 512kB RAM
 RAMSIZE = 0x100000 # 1MB RAM
 #RAMSIZE = 0x10000 # 64kB RAM
 BLOCKSIZE = 8192 # Chunksize for read
-DEBUG = 4 # 1: Clock, 2: transmission, 3: config, 4: RAM, 5: reset, 6: tic, 7: xsvf
+DEBUG = 0 # 1: Clock, 2: transmission, 3: config, 4: RAM, 5: reset, 6: tic, 7: xsvf
 
 # These Values come from upload.h
 RAMR = 123
@@ -126,45 +128,66 @@ def write_file(data, fn):
 			f.write(bytes(data))
 			f.close()
 #----------------------------------
-def find_registers(freq_fast, freq_slow=1000000):
-	#rangereg = 18 # DS1085L-5
-	rangereg = 15 # DS1085Z-25
-	offset = 6
-	p0 = 1
-	minfreq = 33E6 # for DS1085L
-	minfreq = 66E6 # for DS1085Z
-	#stepsize = 5000 # Datasheet 5kHz Stepsize for DS1085L-5
-	#offsetsize = 2560000 # 2560000 is offset size from datasheet for DS1085L-5
-	stepsize = 25000 # Datasheet 25kHz Stepsize for DS1085L-25 and DS1085Z-25
+def get_freq(off, dac, freq): # dac is p0 for dac calculation
+	#rangedefault = 16 # DS1085L-5
+	rangedefault = 18 # DS1085L-5
+	stepsize = 5000 # Datasheet 5kHz Stepsize for DS1085L-5
+	offsetsize = 2560000 # 2560000 is offset size from datasheet for DS1085L-5
+	#rangereg = 12 # DS1085Z-25
+	#stepsize = 25000 # Datasheet 25kHz Stepsize for DS1085L-25 and DS1085Z-25
 	#stepsize = 12500 # Datasheet 12.5kHz Stepsize for DS1085L-12
 	#offsetsize = 3200000 # 3200000 is offset size from datasheet for DS1085L-25 and DS1085L-12
-	offsetsize = 6400000 # 6400000 is offset size from datasheet for DS1085Z-25 and DS1085Z-50
+	#offsetsize = 6400000 # 6400000 is offset size from datasheet for DS1085Z-25 and DS1085Z-50
+	fmin = (offsetsize * (rangedefault + off))
+	if (freq == 0):
+		return (int)(fmin + (dac*stepsize))
+	else:
+		#fmin = (int)((offsetsize * (rangedefault + off)))/dac
+		#print(f'FMIN: {fmin}')
+		return round((freq*dac - fmin) / stepsize)
+#----------------------------------
+def find_registers(freq_fast, freq_slow=1000000):
+	minfreq = 33E6 # for DS1085L
+	#minfreq = 66E6 # for DS1085Z
 	dacmax = 1023   # Datasheet DAC can be 0-1023
-	mclk_window_max = (int)((offsetsize * (offset + rangereg) + (dacmax*stepsize)) / p0)
-	mclk_window_min = (int)((offsetsize * (offset + rangereg)) / p0)
-	while freq_fast <= mclk_window_max:
-		#print (f'1st freq window: {mclk_window_max} - {mclk_window_min}, offset: {offset}, p0: {p0}')
-		if freq_fast >= mclk_window_min:
-			break
-		offset -= 1
-		if offset == -7:
-			offset = 6
-			p0 *= 2
-		if p0 > 8:
-			print("too small, out of Range!")
-			exit()
-		mclk_window_max = (int)((offsetsize * (offset + rangereg) + (dacmax*stepsize)) / p0)
-		mclk = (int)(offsetsize * (offset + rangereg))
-		mclk_window_min = (int)((offsetsize * (offset + rangereg)) / p0)
-		if (mclk_window_min < minfreq) and (p0 < 8):
-			mclk_window_min = int(minfreq / p0)
-		if (DEBUG == 1):
-			print (f'freq window: {mclk_window_max} - {mclk_window_min}, offset: {offset}, p0: {p0}')
-	dac_off = round((freq_fast - mclk_window_min) * p0 / stepsize)
-	real_freq = (int)((offsetsize * (offset + rangereg) + (dac_off*stepsize)) / p0)
-	error = 1E6 * ((real_freq - freq_fast) / freq_fast)
-	main_clock = real_freq * p0
-	print(f"found offset: {offset}, prescler0: {p0}, DAC: {dac_off}, Main Clockfreq.: {main_clock}")	
+	fw = {}
+	for offset in range(6, -7, -1):
+		fmax = get_freq(offset, dacmax, 0)
+		fmin = get_freq(offset, 0, 0)
+		#print(f'Offset: {offset}, fmin: {fmin/1000}, fmax: {fmax/1000}')
+		fw.update({offset:[fmax, fmin]})
+	p0 = 8
+	found = 0
+	if (DEBUG == 1):
+		print(f'try p0: {p0}')
+	while p0 >= 1 and found == 0:
+		for idx, itm in enumerate(fw):
+			if (DEBUG == 1):
+				print(f'IDX: {idx}, OFF: {itm}, Window: {fw[itm][1]/1000000}-{fw[itm][0]/1000000} FFAST: {freq_fast/1000000*p0}')
+			dac_off = get_freq(itm, p0, freq_fast)
+			main_clock = get_freq(itm, dac_off, 0)
+			div1 = (round(main_clock / freq_slow)) - 2
+			#print(f'OFF: {itm}, DAC: {dac_off}, DIV: {div1}, MCLK: {main_clock}')
+			if ((freq_fast <= fw[itm][0]/p0) and (fw[itm][1] > minfreq) and (dac_off >= 0) and (dac_off <= dacmax) and (div1 <= 1024)):
+				newoff = itm
+				print(f'Found OFF: {itm}, {fw[newoff][1]/1000000}-{fw[newoff][0]/1000000}MHz, P0: {p0}, DAC: {dac_off}, DIV: {div1}, MCLK: {main_clock}')
+				found = 1
+				break
+			else:
+				if (itm == -6):
+					p0 = (int)(p0 / 2)
+					if (DEBUG == 1):
+						print(f'try p0: {p0}')
+	#nfmin = get_freq(newoff, 0, 0)/p0
+	#dac_off = get_freq(newoff, p0, freq_fast)
+	if (found == 0):
+		print(f'{bcolors.FAIL}##########################')
+		print(f'# Couldn\'t find a value! #')
+		print(f'##########################')
+		print(f'{bcolors.ENDC}')
+		exit()
+	#print(f'FMIN: {fw[newoff][1]/1000000}, FMAX: {fw[newoff][0]/1000000}, DAC: {dac_off}')
+	#print(f"found offset: {offset}, prescaler0: {p0}, DAC: {dac_off}, Main Clockfreq.: {main_clock}")	
 	if main_clock < minfreq:
 		print(f'{bcolors.FAIL}')
 		print(f'****************************************************************')
@@ -175,15 +198,13 @@ def find_registers(freq_fast, freq_slow=1000000):
 		print(f'****************************************************************')
 		print(f'****************************************************************')
 		print(f'{bcolors.ENDC}')
-	print(f"frequency fast in: {freq_fast} out: {real_freq} CPU: {real_freq/8} Hz Error: {error:.2f} ppm")
-	div1 = (round(main_clock / freq_slow)) - 2
-	if div1 > 1024:
-		print(f'{bcolors.FAIL}ATTETION DIVIDER > 1024!{bcolors.ENDC}')
+	real_freq = main_clock/p0
+	error = 1E6 * ((real_freq - freq_fast) / freq_fast)
+	print(f"FFAST in: {freq_fast} out: {real_freq} CPU: {real_freq/8} Hz Error: {error:.2f} ppm")
 	real_freq2 = main_clock / (div1 + 2)
 	error2 = 1E6 * ((real_freq2 - freq_slow) / freq_slow)
-	error3 = 100 * ((real_freq2 - freq_slow) / freq_slow)
-	print(f'frequency slow in: {freq_slow} out: {int(real_freq2)}, divider: {div1} Error: {error3:#.3f} %, {error2:#.3f} ppm')
-	return offset,p0,dac_off,div1
+	print(f'FSLOW in: {freq_slow} out: {int(real_freq2)}, divider: {div1} Error: {(error2/1E4):#.3f} %, {error2:#.2f} ppm')
+	return newoff,p0,dac_off,div1
 #----------------------------------
 def make_checksum(data):
 	return sum(data) & 0xff
@@ -268,7 +289,7 @@ def read_with_checksum(ser, size):
 			print(f'{bcolors.OKGREEN}Readchecksum OK.{bcolors.ENDC}')
 	return data
 #----------------------------------
-def dump_registers(result):
+def dump_clockregs(result):
 	if result[0] != None:
 		print(f'-- Range Register: {result[0]}')
 	if result[1] != None:
@@ -300,13 +321,27 @@ def put_data(ser, func, start, data, idx, dsize=1):
 	message += data
 	cs = make_checksum(message)
 	message += bytearray((cs,))
-	if (DEBUG == 2):
+	if DEBUG == 2:
 		dump_data(message,16)
 	write(ser, message)
 	expect_ok(ser)
 	expect_done(ser)
 #------------------------------------------
 def get_data(ser, func, start, resp, idx):
+	if (ser == None): # return some dummy values for the simulation mode
+		if (func == VERSION):
+			#retval[0] = 'U'.encode('ascii',errors='ignore')
+			#retval[1] = 'C'.encode('ascii',errors='ignore')
+			retval = ('UC'.encode("utf-8"))
+			retval += (3).to_bytes(1,'big')
+			retval += (1).to_bytes(1,'big')
+			retval += (0).to_bytes(1,'big')
+			return retval
+		elif (func == CLOCKR):
+			return [17, 17, 8, 0, 78, 0, 0, 3, 43]
+		elif (func == RAMR):
+			return random.randbytes(resp)
+
 	#print(f'------ big get ---------')
 	message = bytearray([func])
 	message += start.to_bytes(3,'big')
@@ -337,10 +372,10 @@ def make_clockdata(ser, data):
 		div = None
 		f0 = None
 		f1 = None
-		if (ser != None):
-			clocksettings = get_data(ser, CLOCKR, 0, 9, 0)
-		else:
-			clocksettings = [17, 17, 8, 0, 78, 0, 0, 3, 43] # just dummy values for testing
+		#if (ser != None):
+		clocksettings = get_data(ser, CLOCKR, 0, 9, 0)
+		#else:
+		#	clocksettings = [17, 17, 8, 0, 78, 0, 0, 3, 43] # just dummy values for testing
 		def_offset = clocksettings[0]   # first byte is range register
 		o_offset = clocksettings[1]
 		o_address = clocksettings[2]
@@ -373,6 +408,8 @@ def make_clockdata(ser, data):
 			print(f'Calculating Values: {tf0}, {tf1}')
 			offset,p0,o_dac,o_div = find_registers(tf0, tf1)
 		if p0 != None:
+			if (DEBUG == 1):
+				print(f'p0: {p0}')
 			temp = o_mux & 0x1E7 # clr bit 3 and 4 (and 9)
 			if p0 == 1:
 				o_mux = temp 
@@ -384,6 +421,8 @@ def make_clockdata(ser, data):
 				o_mux = temp | 0x0018
 		o_mux = o_mux & 0x1F9 # Set Prescaler 1 to 1
 		if p1 != None:
+			if (DEBUG == 1):
+				print(f'p1: {p1}')
 			temp = o_mux & 0x1F9 # clr bit 1 and 2 (and 9)
 			if p1 == 1:
 				o_mux = temp 
@@ -423,7 +462,9 @@ def make_clockdata(ser, data):
 		newval[7] = temp[0]  #Hi
 		newval[8] = temp[1]  #Lo
 		#print(f'------ New settings ------')
-		#dump_registers(newval)
+		dump_clockregs(newval)
+		if DEBUG == 1:
+			dump_data(newval,16)
 		return bytes(newval)	
 #------------------------------------------
 def dump_memorymap(mmap, cf):
@@ -432,17 +473,21 @@ def dump_memorymap(mmap, cf):
 	for a in mmap:
 		cspos = (~(mmap[a]))&0xFFFF
 		if cspos == 0x8000:
-			per = 'RAM'
-		elif cspos == 0xC000:
 			per = 'ROM'
-		elif cspos == 0xFFFF:
+		elif cspos == 0xC000:
+			per = 'RAM'
+		elif cspos == 0x0000:
 			per = 'hole'
 		else:
 			for name in cf['peripherals'].keys():
 				if name not in 'ram' and name not in 'rom':
+					csval = int(log(cspos, 2))
 					if (DEBUG == 3):
-						print(f'Found other peripheral: {name}')
-			per = name + ' (CS' + str(int(log(cspos, 2))) + ')'
+						print(f'Found other peripheral: {name} with CSVAL: {csval}')
+					if (str(csval) == cf['peripherals'][name]['cs']):
+						if (DEBUG == 3):
+							print(f'Found Key with cs: {csval}')
+						per = name + ' (CS' + str(csval) + ')'
 		if a % 2 == 0: # even = start
 			start = a
 		else:
@@ -463,11 +508,11 @@ def config_per(cf):
 		if (DEBUG == 3):
 			print(f'Found peripheral: {name}')
 		if (name in 'ram'): # take care of the chipselect for RAM and ROM
-			cs = (~(1 << 15))&0xFFFF
+			cs = (~((1 << 15) | (1 << 14)))&0xFFFF # Bit 14 is low for RAM
 			if (DEBUG == 3):
 				print(f'    ram found, adding cs 15 0x{cs:04X}')
 		elif (name in 'rom'):
-			cs = (~((1 << 15) | (1 << 14)))&0xFFFF
+			cs = (~(1 << 15))&0xFFFF
 			if (DEBUG == 3):
 				print(f'    rom found, adding cs 14+15 0x{cs:04X}')
 		else:
@@ -505,27 +550,32 @@ def config_per(cf):
 	#print(f'Map1')
 	#dump_memorymap(csdata, cf)
 	sorted_dict = {k: csdata[k] for k in sorted(csdata)}
-	#print(f'Map2')
+	#print(f'Map2---------------------------------------')
 	#dump_memorymap(sorted_dict, cf)
+	#print(sorted_dict)
+	#print(f'Map2 END-----------------------------------')
 	# This adds all the holes to the memory Map
 	sorted_dict2 = {}
 	end = 0
 	for i,k in enumerate(sorted_dict):
 		#print(f'Key: {k:04X}, index: {i:04X}')
 		if ((k != 0) and (i == 0)):      # first key is 0x0000 ?
-			sorted_dict2.update({0:0})   # start at 0x0000
-			sorted_dict2.update({k-1:0}) # until the first key
+			sorted_dict2.update({0:0xFFFF})   # start at 0x0000
+			sorted_dict2.update({k-1:0xFFFF}) # until the first key
 			#print(f'First key NOT 0!')
 		if ((k-end != 1) and (i%2 == 0) and (i != 0)):   # start
-			sorted_dict2.update({end+1:0})   # start at old end+1
-			sorted_dict2.update({k-1:0})
+			sorted_dict2.update({end+1:0xFFFF})   # start at old end+1
+			sorted_dict2.update({k-1:0xFFFF})
 			#print(f'hole! {k-end}, 0x{k:04X}')
 		if i % 2 == 1: #odd = end
 			end = k
 		sorted_dict2.update({k:sorted_dict[k]})
-	#print(f'Map3')
 	dump_memorymap(sorted_dict2, cf)
-	return dict_to_bytearray(sorted_dict2)
+	#print(f'Map3-------------------------------------')
+	#print(sorted_dict2)
+	#print(f'Map3 END---------------------------------')
+	retval = dict_to_bytearray(sorted_dict2)
+	return retval
 #------------------------------------------
 def write_ram(ser, start, data,):
 	size = len(data)
@@ -736,17 +786,52 @@ def xsvf_parser(ser, f):
 					#dump_val(state, f[start:stop+1], start, sdr_bytes)
 					state = x_state.XIDLE
 					#print(f'State: {x_state(state).name}')
+#------------------------------------------
+def compare_version_exit(boardver, cfver, cfname):
+	product = (boardver[0:2]).decode("utf-8") # should be 'UC'
+	prodver = str(boardver[2])
+	vmaj =    str(boardver[3])
+	vmin =    str(boardver[4])
+	avp, avmaj, avmin = cfver.split(".")
+	print(f'Config - avp.avmaj.avmin: {avp}.{avmaj}.{avmin}')
+	scp, scmaj = ver.split(".")
+	print(f'Script - scp.scvmaj: {scp}.{scmaj}')
+	#for idx, itm in enumerate(boardver):
+	#	print(f'{idx}: {itm:02d}')
+	if (avp != scp): 
+		print(f'{bcolors.FAIL}Configfile-Script difference! {avp}<>{scp}{bcolors.ENDC}')
+		exit()
+	if (avmaj != scmaj): 
+		print(f'{bcolors.FAIL}Configfile-Script Major difference! {avmaj}<>{scmaj}{bcolors.ENDC}')
+		exit()
+	if ((product != 'UC') or (cfname.upper() != 'UNICOMP')):
+		print(f'{bcolors.FAIL}Wrong Board Connected! {product}<>{cfname}{bcolors.ENDC}')
+		exit()
+	if (avp != prodver): 
+		print(f'{bcolors.FAIL}Configfile-Script difference Connected! {avp}<>{prodver}{bcolors.ENDC}')
+		exit()
+	if (avmaj != vmaj): 
+		print(f'{bcolors.FAIL}Wrong Major Version! {vmaj}{bcolors.ENDC}')
+		exit()
+	if (avmin != vmin): 
+		print(f'{bcolors.FAIL}Wrong Minor Version! {vmin}{bcolors.ENDC}')
+		exit()
+
+	print(f'{bcolors.OKGREEN}Appname: {cfname}, Version: {prodver}.{vmaj}.{vmin}{bcolors.ENDC}')
 ############################################
 def main(ser, func, data = 0, start = 0, size = 1):
 
 	if func == 'version':
-		result = get_data(ser, VERSION, 0, 5, 0) #125 is for version read, 5 bytes response
-		product = (result[0:3]).decode("utf-8")
+		boardver = get_data(ser, VERSION, 0, 5, 0) # 5 bytes response
+		product = (boardver[0:2]).decode("utf-8") # should be 'UC'
+		prodver = boardver[2] # 3 vor Version 3.0
+		vmaj = boardver[3]
+		vmin = boardver[4]
 		#print(f'Product: {product}')
-		if (product == 'UC3'):
-			print(f'Unicomp3')
-			print(f'Version Major: {result[3]:02d}')
-			print(f'Version Minor: {result[4]:02d}')
+		if (product == 'UC'): # Unicomp 
+			print(f'Unicomp{prodver:1d}')
+			print(f'Version Major: {vmaj:02d}')
+			print(f'Version Minor: {vmin:02d}')
 		else:
 			print(f'different product!')		
 
@@ -770,6 +855,7 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		fpath = start
 		appname = cf['app']['name']
 		version = cf['app']['ver']
+		compare_version_exit(get_data(ser, VERSION, 0, 5, 0), version, appname)
 		computername = cf['computer']['name']
 		clockfreqf = int(cf['computer']['freqf'])
 		try:
@@ -782,29 +868,35 @@ def main(ser, func, data = 0, start = 0, size = 1):
 		except:
 			clocktic = 2.0
 			print(f'Using default Value for TIC: {clocktic}Hz')
-		print(f'Appname: {appname}, Version: {version}')
+		
 		print(f'Configure for:\n\t{computername} \n\t{clockfreqf/1E6:#.6f} MHz fast clock, \n\t{clockfreqs/1E6:#.6f} MHz slow clock,\n\t{clocktic:#.2f} Hz TIC.')		
-		print(f'{bcolors.OKGREEN}------------------------ Reset Unicomp -------------------------{bcolors.ENDC}')
-		put_data(ser, TRESETW, 0, bytearray.fromhex('01'), 0)  # Reset active
-		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
-		retval = config_per(cf)
-		if (DEBUG == 3):
-			dump_data(retval, 16)
-		print(f'{bcolors.OKGREEN}------------------------ Upload Config -------------------------{bcolors.ENDC}')
-		put_data(ser, CONFIGW, 0, retval, 0, len(retval))
-		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
-		print(f'{bcolors.OKGREEN}----------------------- Configure Clock ------------------------{bcolors.ENDC}')
+
 		freqdata = []
 		freqdata.append('freq')
 		freqdata.append(clockfreqf*8) # fast clock is divided by eight in CPLD
 		freqdata.append(clockfreqs)
 		clockval = make_clockdata(ser, freqdata)
+		write_file(clockval, fpath +  '/clock.bin')
 		if (DEBUG == 1):
 			print(freqdata, clockval)
+		
+		configdata = config_per(cf)
+		write_file(configdata, fpath +  '/config.bin')
+		if (DEBUG == 3):
+			dump_data(configdata, 16)
+
+		per = int(10000 / clocktic)
+
+		print(f'{bcolors.OKGREEN}------------------------ Reset Unicomp -------------------------{bcolors.ENDC}')
+		put_data(ser, TRESETW, 0, bytearray.fromhex('01'), 0)  # Reset active
+		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
+		print(f'{bcolors.OKGREEN}------------------------ Upload Config -------------------------{bcolors.ENDC}')
+		put_data(ser, CONFIGW, 0, configdata, 0, len(configdata))
+		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
+		print(f'{bcolors.OKGREEN}----------------------- Configure Clock ------------------------{bcolors.ENDC}')
 		put_data(ser, CLOCKW, 0, clockval, 0, len(clockval))
 		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
 		print(f'{bcolors.OKGREEN}------------------------- Configure Tic ------------------------{bcolors.ENDC}')
-		per = int(10000 / clocktic)
 		print(f'Writing period of: {per}')
 		put_data(ser, TICW, 0, per.to_bytes(2, 'big'), 0, 2)
 		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
@@ -813,10 +905,15 @@ def main(ser, func, data = 0, start = 0, size = 1):
 			if 'img' in k:
 				upload_image(ser, fpath, cf, k)
 		print(f'{bcolors.OKGREEN}----------------------- Upload ROM Patches ---------------------{bcolors.ENDC}')
+		patches = 0
 		for k in cf.keys():
 			if 'patch' in k:
 				#print(f'{k}')
 				upload_patch(ser, cf, k)
+				patches += 1
+		
+		if patches == 0:
+				print(f'No Patches found.')
 		print(f'{bcolors.OKGREEN}------------------------ Reset inactive ------------------------{bcolors.ENDC}')
 		put_data(ser, TRESETW, 0, bytearray.fromhex('00'), 0) # Reset inactive - Run
 		print(f'{bcolors.OKGREEN}Done.        {bcolors.ENDC}')
@@ -831,11 +928,11 @@ def main(ser, func, data = 0, start = 0, size = 1):
 	elif func == 'clockx':
 		#print(data)
 		clockval = make_clockdata(ser, data)
-		put_data(ser, CLOCKW, 0, clockval, 0)
+		put_data(ser, CLOCKW, 0, clockval, 0, 9)
 
 	elif func == 'clockr':
 		clocksettings = get_data(ser, CLOCKR, 0, 9, 0)
-		dump_registers(clocksettings)
+		dump_clockregs(clocksettings)
 
 	elif func == 'reset':
 		put_data(ser, TRESETW, 0, data, 0)
@@ -985,7 +1082,7 @@ if __name__ == '__main__':
 		exit()
 	ser = None
 	try:
-		ser = Serial(port, 921600, timeout = 9, writeTimeout = 1)
+		ser = Serial(port, 921600, timeout = 11, writeTimeout = 1)
 	except IOError:
 		print(f'{bcolors.FAIL}############################################{bcolors.ENDC}')
 		print(f'{bcolors.FAIL}##              Port not found !          ##{bcolors.ENDC}')
@@ -1089,18 +1186,11 @@ if __name__ == '__main__':
 			main(ser, 'ramw', img, start)
 		else:                   # real file received
 			print(f'real file received {args.file}')
-			img = read_file(args.file)
+			img = read_file(args.file) # read binary
 			ext = args.file.split(".")[-1] # check extension
-			if ext != 'ucb': 
-				start = int(args.start, 0)
-				end = start + len(img) - 1
-				if end > RAMSIZE:
-					print(f'Write goes beyond {(RAMSIZE)}! Start: {start}, End: {end} Size: 0x{len(img):04X}')
-					exit()
-				main(ser, 'ramw', img, start)	
-			else:                          # .ucb file has startaddress and size within
-				print(f'Extension: {ext}')
 
+			if ext.lower() == 'ucb': # .ucb file has startaddress and size within
+				print(f'Extension: {ext}')
 				while True:
 					start,end,oimg,rest = extract_files(img) # ucb file can contain more than one image
 					if len(rest) == 0:
@@ -1108,6 +1198,33 @@ if __name__ == '__main__':
 					print(f'start: 0x{start:04X} end: 0x{end:04X}')
 					main(ser, 'ramw', oimg, start)
 					img = rest
+			elif ext.lower() == 'bin':   # .bin or .BIN
+				start = int(args.start, 0)
+				end = start + len(img) - 1
+				if end > RAMSIZE:
+					print(f'Write goes beyond {(RAMSIZE)}! Start: {start}, End: {end} Size: 0x{len(img):04X}')
+					exit()
+				main(ser, 'ramw', img, start)
+			elif ext.lower() == 's19':   # Motorola S19 format
+				binfile = bincopy.BinFile()
+				with open(args.file, 'r') as fin: # read textfile
+					lines = fin.read().splitlines()
+					for line in lines:
+						if (line.startswith('S') == True): # remove garbage and comments
+							#print(line)
+							binfile.add_srec(line)
+				#print(binfile.as_ihex())
+				#print(binfile.as_binary())
+				saddr = binfile.minimum_address
+				eaddr = binfile.maximum_address
+				print(f' File from: 0x{saddr:04X} to 0x{eaddr:04X} with {eaddr - saddr} bytes')
+				main(ser, 'ramw', binfile.as_binary(), saddr)
+			elif ext.lower() == 'hex':   # Intel HEX
+				print(f'Currently not supported')
+				exit()
+			else:
+				print(f'Unknown Format!')
+				exit()
 
 	elif args.command == 'ramr':
 		start = int(args.start, 0)
@@ -1143,6 +1260,7 @@ if __name__ == '__main__':
 		if ext != 'xsvf':
 			print(f'{bcolors.FAIL}Extension NOT xsvf!{bcolors.ENDC}')
 			exit()
+		print(f'{bcolors.OKCYAN}Received file: {args.file}{bcolors.ENDC}')
 		main(ser, 'xsvf', img)
 
 	elif args.command == 'tic':

@@ -5,35 +5,79 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Xst" timeStamp="Mon Feb 12 20:35:06 2024">
+  <application stringID="Xst" timeStamp="Sat Dec 14 22:09:05 2024">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
         <column stringID="value"/>
         <row stringID="row" value="0">
-          <item stringID="variable" value="XILINX"/>
-          <item stringID="value" value="/home/rob/Data/14.7/ISE_DS/ISE/"/>
+          <item stringID="variable" value="XIL_IMPACT_ENV_LPT1_ECP_ADDRESS"/>
+          <item stringID="value" value="400"/>
         </row>
         <row stringID="row" value="1">
-          <item stringID="variable" value="PATH"/>
-          <item stringID="value" value="/home/rob/Data/14.7/ISE_DS/ISE//bin/lin64:/home/rob/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/rob/Data/rob/altera/13.0sp1/quartus/bin:/home/rob/010editor"/>
+          <item stringID="variable" value="XIL_IMPACT_ENV_LPT2_ECP_ADDRESS"/>
+          <item stringID="value" value="410"/>
         </row>
         <row stringID="row" value="2">
+          <item stringID="variable" value="XIL_IMPACT_ENV_LPT3_ECP_ADDRESS"/>
+          <item stringID="value" value="420"/>
+        </row>
+        <row stringID="row" value="3">
+          <item stringID="variable" value="XIL_IMPACT_ENV_LPT4_ECP_ADDRESS"/>
+          <item stringID="value" value="430"/>
+        </row>
+        <row stringID="row" value="4">
+          <item stringID="variable" value="XIL_IMPACT_USE_LIBUSB"/>
+          <item stringID="value" value="0"/>
+        </row>
+        <row stringID="row" value="5">
+          <item stringID="variable" value="PATH"/>
+          <item stringID="value" value="/home/rob/Xilinx/14.7/ISE_DS/ISE//bin/lin64:/home/rob/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"/>
+        </row>
+        <row stringID="row" value="6">
+          <item stringID="variable" value="XIL_IMPACT_ENV_LPT1_BASE_ADDRESS"/>
+          <item stringID="value" value="0"/>
+        </row>
+        <row stringID="row" value="7">
+          <item stringID="variable" value="XIL_IMPACT_ENV_LPT2_BASE_ADDRESS"/>
+          <item stringID="value" value="10"/>
+        </row>
+        <row stringID="row" value="8">
+          <item stringID="variable" value="XIL_IMPACT_ENV_LPT3_BASE_ADDRESS"/>
+          <item stringID="value" value="20"/>
+        </row>
+        <row stringID="row" value="9">
+          <item stringID="variable" value="XIL_IMPACT_ENV_LPT4_BASE_ADDRESS"/>
+          <item stringID="value" value="30"/>
+        </row>
+        <row stringID="row" value="10">
+          <item stringID="variable" value="XILINXBIN"/>
+          <item stringID="value" value="/home/rob/Xilinx/14.7/ISE_DS/ISE/"/>
+        </row>
+        <row stringID="row" value="11">
+          <item stringID="variable" value="XIL_IMPACT_USE_WINDRIVER"/>
+          <item stringID="value" value="1"/>
+        </row>
+        <row stringID="row" value="12">
+          <item stringID="variable" value="XILINX"/>
+          <item stringID="value" value="/home/rob/Xilinx/14.7/ISE_DS/ISE/"/>
+        </row>
+        <row stringID="row" value="13">
           <item stringID="variable" value="LD_LIBRARY_PATH"/>
-          <item stringID="value" value="/home/rob/Data/14.7/ISE_DS/ISE//lib/lin64"/>
+          <item stringID="value" value="/home/rob/Xilinx/14.7/ISE_DS/ISE//lib/lin64"/>
         </row>
       </table>
       <item stringID="User_EnvOs" value="OS Information">
         <item stringID="User_EnvOsname" value="Linuxmint"/>
-        <item stringID="User_EnvOsrelease" value="Linux Mint 20.3"/>
+        <item stringID="User_EnvOsrelease" value="Linux Mint 21.3"/>
       </item>
-      <item stringID="User_EnvHost" value="p52s"/>
+      <item stringID="User_EnvHost" value="rob-ThinkPad-P17-Gen-2i"/>
       <table stringID="User_EnvCpu">
         <column stringID="arch"/>
         <column stringID="speed"/>
         <row stringID="row" value="0">
-          <item stringID="arch" value="Intel(R) Core(TM) i7-8550U CPU @ 1.80GHz"/>
-          <item stringID="speed" value="3374.562 MHz"/>
+          <item stringID="arch" value="11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz"/>
+          <item stringID="speed" value="1230.680 MHz"/>
         </row>
       </table>
     </section>
@@ -92,7 +136,7 @@
     </section>
     <section stringID="XST_ERRORS_STATISTICS">
       <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_ERRORS" value="0"/>
-      <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_WARNINGS" value="13"/>
+      <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_WARNINGS" value="15"/>
       <item dataType="int" filtered="0" stringID="XST_NUMBER_OF_INFOS" value="0"/>
     </section>
   </application>

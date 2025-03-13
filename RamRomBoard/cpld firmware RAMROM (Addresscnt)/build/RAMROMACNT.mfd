@@ -1,0 +1,1514 @@
+MDF Database:  version 1.0
+MDF_INFO | RAMROMACNT | XC9572XL-10-VQ44
+MACROCELL | 1 | 14 | Mtridata_A<12>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 4 | dat_reg<0>  | s_ATEMP<12>  | nCNTOE  | Mtrien_A
+INPUTMC | 3 | 3 | 5 | 1 | 7 | 0 | 8
+INPUTP | 1 | 15
+EQ | 4 | 
+   A<12>.D = dat_reg<0>
+	$ s_ATEMP<12>;
+   A<12>.CLK = !nCNTOE;
+   A<12>.OE = !Mtrien_A;
+
+MACROCELL | 1 | 8 | Mtridata_A<13>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 6 | dat_reg<0>  | s_ATEMP<12>  | dat_reg<1>  | s_ATEMP<13>  | nCNTOE  | Mtrien_A
+INPUTMC | 5 | 3 | 5 | 1 | 7 | 2 | 6 | 1 | 6 | 0 | 8
+INPUTP | 1 | 15
+EQ | 5 | 
+   A<13>.D = dat_reg<0> & s_ATEMP<12>
+	$ dat_reg<1> & !s_ATEMP<13>
+	# !dat_reg<1> & s_ATEMP<13>;
+   A<13>.CLK = !nCNTOE;
+   A<13>.OE = !Mtrien_A;
+
+MACROCELL | 3 | 14 | Mtridata_A<14>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 9 | dat_reg<1>  | dat_reg<2>  | s_ATEMP<13>  | s_ATEMP<14>  | dat_reg<0>  | s_ATEMP<12>  | nCNTOE  | Mtrien_A  | EXP15_.EXP
+INPUTMC | 8 | 2 | 6 | 2 | 5 | 1 | 6 | 1 | 3 | 3 | 5 | 1 | 7 | 0 | 8 | 3 | 13
+INPUTP | 1 | 15
+IMPORTS | 1 | 3 | 13
+EQ | 37 | 
+   A<14>.D = !dat_reg<0> & !dat_reg<2> & !s_ATEMP<13> & 
+	s_ATEMP<14>
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<14>
+	# !dat_reg<2> & !s_ATEMP<13> & s_ATEMP<14> & 
+	!s_ATEMP<12>
+;Imported pterms FB4_14
+	# !dat_reg<0> & !dat_reg<1> & !dat_reg<2> & 
+	s_ATEMP<14>
+	# !dat_reg<0> & dat_reg<2> & !s_ATEMP<13> & 
+	!s_ATEMP<14>
+	# !dat_reg<1> & !dat_reg<2> & !s_ATEMP<13> & 
+	s_ATEMP<14>
+	# !dat_reg<1> & !dat_reg<2> & s_ATEMP<14> & 
+	!s_ATEMP<12>
+	# dat_reg<2> & !s_ATEMP<13> & !s_ATEMP<14> & 
+	!s_ATEMP<12>
+;Imported pterms FB4_13
+	# !dat_reg<0> & !dat_reg<1> & dat_reg<2> & 
+	!s_ATEMP<14>
+	# dat_reg<1> & !dat_reg<2> & s_ATEMP<13> & 
+	!s_ATEMP<14>
+	# !dat_reg<1> & dat_reg<2> & !s_ATEMP<13> & 
+	!s_ATEMP<14>
+	# !dat_reg<1> & dat_reg<2> & !s_ATEMP<14> & 
+	!s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12>
+;Imported pterms FB4_12
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & !dat_reg<2> & 
+	!s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & !dat_reg<2> & s_ATEMP<13> & 
+	!s_ATEMP<14> & s_ATEMP<12>;
+   A<14>.CLK = !nCNTOE;
+   A<14>.OE = !Mtrien_A;
+
+MACROCELL | 1 | 5 | Mtridata_A<15>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 9 | Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D  | dat_reg<2>  | s_ATEMP<14>  | dat_reg<1>  | s_ATEMP<13>  | Mtridata_A<11>.EXP  | s_ATEMP<13>.EXP  | nCNTOE  | Mtrien_A
+INPUTMC | 8 | 3 | 2 | 2 | 5 | 1 | 3 | 2 | 6 | 1 | 6 | 1 | 4 | 1 | 6 | 0 | 8
+INPUTP | 1 | 15
+IMPORTS | 2 | 1 | 4 | 1 | 6
+EQ | 17 | 
+   A<15>.D = 
+	Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D
+	$ dat_reg<2> & s_ATEMP<14>
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14>
+;Imported pterms FB2_5
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13>
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<12>
+;Imported pterms FB2_7
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<12>;
+   A<15>.CLK = !nCNTOE;
+   A<15>.OE = !Mtrien_A;
+
+MACROCELL | 2 | 14 | Mtridata_A<16>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 10 | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | dat_reg<2>  | s_ATEMP<14>  | s_ATEMP<15>  | dat_reg<1>  | s_ATEMP<13>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000.EXP  | EXP8_.EXP  | nCNTOE  | Mtrien_A
+INPUTMC | 9 | 0 | 12 | 2 | 5 | 1 | 3 | 1 | 2 | 2 | 6 | 1 | 6 | 2 | 13 | 2 | 15 | 0 | 8
+INPUTP | 1 | 15
+IMPORTS | 2 | 2 | 13 | 2 | 15
+EQ | 35 | 
+   A<16>.D = 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	$ dat_reg<2> & s_ATEMP<14> & s_ATEMP<15>
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15>
+;Imported pterms FB3_14
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15>
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12>
+;Imported pterms FB3_16
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14>
+	# dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14>
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12>
+;Imported pterms FB3_17
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13>
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & dat_reg<3> & 
+	s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12>
+;Imported pterms FB3_18
+	# dat_reg<3> & s_ATEMP<15>;
+   A<16>.CLK = !nCNTOE;
+   A<16>.OE = !Mtrien_A;
+
+MACROCELL | 1 | 10 | Mtridata_A<17>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 12 | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | dat_reg<0>  | dat_reg<3>  | s_ATEMP<13>  | s_ATEMP<14>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | dat_reg<1>  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000.EXP  | EXP6_.EXP  | nCNTOE  | Mtrien_A
+INPUTMC | 11 | 0 | 11 | 3 | 5 | 3 | 4 | 1 | 6 | 1 | 3 | 1 | 7 | 0 | 12 | 2 | 6 | 1 | 9 | 1 | 11 | 0 | 8
+INPUTP | 1 | 15
+IMPORTS | 2 | 1 | 9 | 1 | 11
+EQ | 52 | 
+   A<17>.D = 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	$ dat_reg<0> & dat_reg<1> & dat_reg<3> & 
+	s_ATEMP<14> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+;Imported pterms FB2_10
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+;Imported pterms FB2_12
+	# dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+;Imported pterms FB2_13
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+;Imported pterms FB2_14
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D;
+   A<17>.CLK = !nCNTOE;
+   A<17>.OE = !Mtrien_A;
+
+MACROCELL | 3 | 10 | Mtridata_A<18>
+ATTRIBUTES | 8652578 | 0
+OUTPUTMC | 1 | 3 | 11
+INPUTS | 13 | Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D  | dat_reg<0>  | dat_reg<3>  | s_ATEMP<13>  | s_ATEMP<14>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | nCNTCE  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | EXP13_.EXP  | nCNTOE  | Mtrien_A
+INPUTMC | 11 | 0 | 10 | 3 | 5 | 3 | 4 | 1 | 6 | 1 | 3 | 1 | 7 | 0 | 12 | 0 | 11 | 3 | 11 | 3 | 9 | 0 | 8
+INPUTP | 2 | 62 | 15
+EXPORTS | 1 | 3 | 11
+IMPORTS | 1 | 3 | 9
+EQ | 72 | 
+   A<18>.D = 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	$ dat_reg<0> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_10
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<3> & 
+	s_ATEMP<14> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_9
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_8
+	# dat_reg<5> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_7
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D;
+   A<18>.CLK = !nCNTOE;
+   A<18>.OE = !Mtrien_A;
+    Mtridata_A<18>.EXP  =  !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000
+
+MACROCELL | 3 | 16 | Mtridata_A<19>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 14 | Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D  | dat_reg<0>  | dat_reg<3>  | s_ATEMP<13>  | s_ATEMP<14>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D  | dat_reg<2>  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000.EXP  | EXP16_.EXP  | nCNTOE  | Mtrien_A
+INPUTMC | 13 | 0 | 9 | 3 | 5 | 3 | 4 | 1 | 6 | 1 | 3 | 1 | 7 | 0 | 12 | 0 | 11 | 0 | 10 | 2 | 5 | 3 | 15 | 3 | 17 | 0 | 8
+INPUTP | 1 | 15
+IMPORTS | 2 | 3 | 15 | 3 | 17
+EQ | 89 | 
+   A<19>.D = 
+	Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D
+	$ dat_reg<0> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+;Imported pterms FB4_16
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<3> & 
+	s_ATEMP<14> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+;Imported pterms FB4_18
+	# dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+;Imported pterms FB4_1
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+;Imported pterms FB4_2
+	# dat_reg<6> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<5> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D;
+   A<19>.CLK = !nCNTOE;
+   A<19>.OE = !Mtrien_A;
+
+MACROCELL | 0 | 5 | Mtridata_A<0>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Mtridata_A_add0000<0>  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 2 | 17 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<0>.D = Mtridata_A_add0000<0>;
+   A<0>.CLK = !nCNTOE;
+   A<0>.OE = !Mtrien_A;
+
+MACROCELL | 0 | 4 | Mtridata_A<10>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 1 | 17 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<10>.D = Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000;
+   A<10>.CLK = !nCNTOE;
+   A<10>.OE = !Mtrien_A;
+
+MACROCELL | 1 | 4 | Mtridata_A<11>
+ATTRIBUTES | 8652578 | 0
+OUTPUTMC | 1 | 1 | 5
+INPUTS | 9 | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | nCNTOE  | Mtrien_A  | dat_reg<1>  | dat_reg<2>  | s_ATEMP<13>  | dat_reg<0>  | s_ATEMP<14>  | s_ATEMP<12>
+INPUTMC | 8 | 1 | 15 | 0 | 8 | 2 | 6 | 2 | 5 | 1 | 6 | 3 | 5 | 1 | 3 | 1 | 7
+INPUTP | 1 | 15
+EXPORTS | 1 | 1 | 5
+EQ | 6 | 
+   A<11>.D = Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000;
+   A<11>.CLK = !nCNTOE;
+   A<11>.OE = !Mtrien_A;
+    Mtridata_A<11>.EXP  =  dat_reg<1> & dat_reg<2> & s_ATEMP<13>
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<12>
+
+MACROCELL | 0 | 14 | Mtridata_A<1>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 2 | 13 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<1>.D = Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000;
+   A<1>.CLK = !nCNTOE;
+   A<1>.OE = !Mtrien_A;
+
+MACROCELL | 0 | 16 | Mtridata_A<2>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 2 | 12 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<2>.D = Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000;
+   A<2>.CLK = !nCNTOE;
+   A<2>.OE = !Mtrien_A;
+
+MACROCELL | 2 | 1 | Mtridata_A<3>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 2 | 11 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<3>.D = Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000;
+   A<3>.CLK = !nCNTOE;
+   A<3>.OE = !Mtrien_A;
+
+MACROCELL | 2 | 4 | Mtridata_A<4>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 2 | 9 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<4>.D = Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000;
+   A<4>.CLK = !nCNTOE;
+   A<4>.OE = !Mtrien_A;
+
+MACROCELL | 2 | 7 | Mtridata_A<5>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 3 | 15 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<5>.D = Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000;
+   A<5>.CLK = !nCNTOE;
+   A<5>.OE = !Mtrien_A;
+
+MACROCELL | 2 | 8 | Mtridata_A<6>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 3 | 11 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<6>.D = Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000;
+   A<6>.CLK = !nCNTOE;
+   A<6>.OE = !Mtrien_A;
+
+MACROCELL | 2 | 10 | Mtridata_A<7>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 3 | 1 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<7>.D = Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000;
+   A<7>.CLK = !nCNTOE;
+   A<7>.OE = !Mtrien_A;
+
+MACROCELL | 1 | 13 | Mtridata_A<8>
+ATTRIBUTES | 8652578 | 0
+OUTPUTMC | 1 | 1 | 12
+INPUTS | 7 | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | nCNTOE  | Mtrien_A  | dat_reg<4>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | dat_reg<3>  | s_ATEMP<15>
+INPUTMC | 6 | 3 | 6 | 0 | 8 | 3 | 3 | 0 | 12 | 3 | 4 | 1 | 2
+INPUTP | 1 | 15
+EXPORTS | 1 | 1 | 12
+EQ | 7 | 
+   A<8>.D = Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000;
+   A<8>.CLK = !nCNTOE;
+   A<8>.OE = !Mtrien_A;
+    Mtridata_A<8>.EXP  =  dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+
+MACROCELL | 1 | 16 | Mtridata_A<9>
+ATTRIBUTES | 8652578 | 0
+INPUTS | 3 | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | nCNTOE  | Mtrien_A
+INPUTMC | 2 | 1 | 9 | 0 | 8
+INPUTP | 1 | 15
+EQ | 3 | 
+   A<9>.D = Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   A<9>.CLK = !nCNTOE;
+   A<9>.OE = !Mtrien_A;
+
+MACROCELL | 3 | 5 | dat_reg<0>
+ATTRIBUTES | 8520544 | 0
+OUTPUTMC | 21 | 1 | 14 | 1 | 8 | 3 | 14 | 1 | 4 | 2 | 13 | 1 | 10 | 3 | 10 | 3 | 16 | 2 | 6 | 1 | 6 | 1 | 9 | 1 | 11 | 2 | 15 | 2 | 16 | 3 | 8 | 3 | 9 | 3 | 11 | 3 | 12 | 3 | 13 | 3 | 15 | 3 | 17
+INPUTS | 3 | MOSI  | SCK  | nCNTCE
+INPUTP | 3 | 72 | 65 | 62
+EQ | 3 | 
+   dat_reg<0>.D = MOSI;
+   dat_reg<0>.CLK = SCK;
+   dat_reg<0>.CE = !nCNTCE;
+
+MACROCELL | 2 | 6 | dat_reg<1>
+ATTRIBUTES | 8520544 | 0
+OUTPUTMC | 23 | 1 | 8 | 3 | 14 | 1 | 5 | 2 | 14 | 1 | 10 | 3 | 9 | 3 | 15 | 2 | 5 | 1 | 4 | 1 | 6 | 1 | 9 | 1 | 11 | 1 | 12 | 2 | 13 | 2 | 15 | 2 | 16 | 3 | 0 | 3 | 7 | 3 | 8 | 3 | 11 | 3 | 12 | 3 | 13 | 3 | 17
+INPUTS | 3 | dat_reg<0>  | SCK  | nCNTCE
+INPUTMC | 1 | 3 | 5
+INPUTP | 2 | 65 | 62
+EQ | 3 | 
+   dat_reg<1>.D = dat_reg<0>;
+   dat_reg<1>.CLK = SCK;
+   dat_reg<1>.CE = !nCNTCE;
+
+MACROCELL | 2 | 5 | dat_reg<2>
+ATTRIBUTES | 8520544 | 0
+OUTPUTMC | 22 | 3 | 14 | 1 | 5 | 2 | 14 | 1 | 9 | 3 | 9 | 3 | 16 | 3 | 4 | 1 | 4 | 1 | 6 | 1 | 11 | 1 | 12 | 2 | 13 | 2 | 15 | 2 | 16 | 3 | 0 | 3 | 7 | 3 | 8 | 3 | 11 | 3 | 12 | 3 | 13 | 3 | 15 | 3 | 17
+INPUTS | 3 | dat_reg<1>  | SCK  | nCNTCE
+INPUTMC | 1 | 2 | 6
+INPUTP | 2 | 65 | 62
+EQ | 3 | 
+   dat_reg<2>.D = dat_reg<1>;
+   dat_reg<2>.CLK = SCK;
+   dat_reg<2>.CE = !nCNTCE;
+
+MACROCELL | 3 | 4 | dat_reg<3>
+ATTRIBUTES | 8520544 | 0
+OUTPUTMC | 20 | 1 | 13 | 1 | 10 | 3 | 10 | 3 | 16 | 3 | 3 | 3 | 2 | 1 | 9 | 1 | 11 | 1 | 12 | 2 | 15 | 2 | 16 | 2 | 17 | 3 | 0 | 3 | 1 | 3 | 6 | 3 | 7 | 3 | 8 | 3 | 9 | 3 | 15 | 3 | 17
+INPUTS | 3 | dat_reg<2>  | SCK  | nCNTCE
+INPUTMC | 1 | 2 | 5
+INPUTP | 2 | 65 | 62
+EQ | 3 | 
+   dat_reg<3>.D = dat_reg<2>;
+   dat_reg<3>.CLK = SCK;
+   dat_reg<3>.CE = !nCNTCE;
+
+MACROCELL | 3 | 3 | dat_reg<4>
+ATTRIBUTES | 8520544 | 0
+OUTPUTMC | 5 | 0 | 12 | 3 | 7 | 3 | 1 | 0 | 17 | 1 | 13
+INPUTS | 3 | dat_reg<3>  | SCK  | nCNTCE
+INPUTMC | 1 | 3 | 4
+INPUTP | 2 | 65 | 62
+EQ | 3 | 
+   dat_reg<4>.D = dat_reg<3>;
+   dat_reg<4>.CLK = SCK;
+   dat_reg<4>.CE = !nCNTCE;
+
+MACROCELL | 0 | 17 | dat_reg<5>
+ATTRIBUTES | 8520544 | 0
+OUTPUTMC | 4 | 3 | 7 | 3 | 1 | 0 | 15 | 0 | 11
+INPUTS | 3 | dat_reg<4>  | SCK  | nCNTCE
+INPUTMC | 1 | 3 | 3
+INPUTP | 2 | 65 | 62
+EQ | 3 | 
+   dat_reg<5>.D = dat_reg<4>;
+   dat_reg<5>.CLK = SCK;
+   dat_reg<5>.CE = !nCNTCE;
+
+MACROCELL | 0 | 15 | dat_reg<6>
+ATTRIBUTES | 8520544 | 0
+OUTPUTMC | 3 | 3 | 1 | 0 | 13 | 0 | 10
+INPUTS | 3 | dat_reg<5>  | SCK  | nCNTCE
+INPUTMC | 1 | 0 | 17
+INPUTP | 2 | 65 | 62
+EQ | 3 | 
+   dat_reg<6>.D = dat_reg<5>;
+   dat_reg<6>.CLK = SCK;
+   dat_reg<6>.CE = !nCNTCE;
+
+MACROCELL | 0 | 13 | dat_reg<7>
+ATTRIBUTES | 8520544 | 0
+OUTPUTMC | 1 | 0 | 9
+INPUTS | 3 | dat_reg<6>  | SCK  | nCNTCE
+INPUTMC | 1 | 0 | 15
+INPUTP | 2 | 65 | 62
+EQ | 3 | 
+   dat_reg<7>.D = dat_reg<6>;
+   dat_reg<7>.CLK = SCK;
+   dat_reg<7>.CE = !nCNTCE;
+
+MACROCELL | 0 | 8 | Mtrien_A
+ATTRIBUTES | 8520480 | 0
+OUTPUTMC | 20 | 1 | 14 | 1 | 8 | 3 | 14 | 1 | 5 | 2 | 14 | 1 | 10 | 3 | 10 | 3 | 16 | 0 | 5 | 0 | 4 | 1 | 4 | 0 | 14 | 0 | 16 | 2 | 1 | 2 | 4 | 2 | 7 | 2 | 8 | 2 | 10 | 1 | 13 | 1 | 16
+INPUTS | 2 | nCNTOE  | nCPUFREE
+INPUTP | 2 | 15 | 11
+EQ | 2 | 
+   !Mtrien_A.D = !nCNTOE & !nCPUFREE;
+   Mtrien_A.CLK = !nCNTOE;
+
+MACROCELL | 1 | 6 | s_ATEMP<13>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 30 | 1 | 8 | 3 | 14 | 1 | 5 | 2 | 14 | 1 | 10 | 3 | 10 | 3 | 16 | 1 | 4 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 2 | 2 | 1 | 6 | 1 | 7 | 1 | 9 | 1 | 11 | 1 | 12 | 2 | 13 | 2 | 15 | 2 | 16 | 3 | 0 | 3 | 7 | 3 | 8 | 3 | 9 | 3 | 11 | 3 | 12 | 3 | 13 | 3 | 17
+INPUTS | 21 | nCNTCE  | Mtridata_A_add0000<0>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | dat_reg<0>  | nACLK  | dat_reg<1>  | dat_reg<2>  | s_ATEMP<14>  | s_ATEMP<13>  | s_ATEMP<12>.EXP
+INPUTMC | 19 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 3 | 5 | 2 | 6 | 2 | 5 | 1 | 3 | 1 | 6 | 1 | 7
+INPUTP | 2 | 62 | 87
+EXPORTS | 1 | 1 | 5
+IMPORTS | 1 | 1 | 7
+EQ | 16 | 
+   s_ATEMP<13>.T = nCNTCE & Mtridata_A_add0000<0> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000
+;Imported pterms FB2_8
+	# !nCNTCE & s_ATEMP<13>;
+   s_ATEMP<13>.CLK = !nACLK;
+    s_ATEMP<13>.EXP  =  dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<12>
+
+MACROCELL | 1 | 3 | s_ATEMP<14>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 28 | 3 | 14 | 1 | 5 | 2 | 14 | 1 | 10 | 3 | 10 | 3 | 16 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 2 | 2 | 1 | 4 | 1 | 6 | 1 | 11 | 1 | 12 | 2 | 13 | 2 | 15 | 2 | 16 | 3 | 0 | 3 | 7 | 3 | 8 | 3 | 9 | 3 | 11 | 3 | 12 | 3 | 13 | 3 | 15 | 3 | 17
+INPUTS | 17 | nCNTCE  | s_ATEMP<13>  | Mtridata_A_add0000<0>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | s_ATEMP<14>  | nACLK
+INPUTMC | 15 | 1 | 6 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 1 | 3
+INPUTP | 2 | 62 | 87
+EQ | 9 | 
+   s_ATEMP<14>.T = !nCNTCE & s_ATEMP<14>
+	# nCNTCE & s_ATEMP<13> & Mtridata_A_add0000<0> & 
+	s_ATEMP<12> & Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   s_ATEMP<14>.CLK = !nACLK;
+
+MACROCELL | 1 | 2 | s_ATEMP<15>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 20 | 2 | 14 | 3 | 2 | 3 | 9 | 3 | 8 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 2 | 2 | 1 | 11 | 1 | 12 | 1 | 13 | 2 | 13 | 2 | 15 | 2 | 17 | 3 | 0 | 3 | 1 | 3 | 6 | 3 | 7 | 3 | 17
+INPUTS | 18 | nCNTCE  | s_ATEMP<13>  | s_ATEMP<14>  | Mtridata_A_add0000<0>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | s_ATEMP<15>  | nACLK
+INPUTMC | 16 | 1 | 6 | 1 | 3 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 1 | 2
+INPUTP | 2 | 62 | 87
+EQ | 10 | 
+   s_ATEMP<15>.T = !nCNTCE & s_ATEMP<15>
+	# nCNTCE & s_ATEMP<13> & s_ATEMP<14> & 
+	Mtridata_A_add0000<0> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   s_ATEMP<15>.CLK = !nACLK;
+
+MACROCELL | 1 | 1 | s_ATEMP<16>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 5 | 1 | 1 | 1 | 0 | 2 | 3 | 2 | 2 | 0 | 12
+INPUTS | 19 | nCNTCE  | s_ATEMP<13>  | s_ATEMP<14>  | s_ATEMP<15>  | Mtridata_A_add0000<0>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | s_ATEMP<16>  | nACLK
+INPUTMC | 17 | 1 | 6 | 1 | 3 | 1 | 2 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 1 | 1
+INPUTP | 2 | 62 | 87
+EQ | 10 | 
+   s_ATEMP<16>.T = !nCNTCE & s_ATEMP<16>
+	# nCNTCE & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & Mtridata_A_add0000<0> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   s_ATEMP<16>.CLK = !nACLK;
+
+MACROCELL | 1 | 0 | s_ATEMP<17>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 4 | 1 | 0 | 2 | 3 | 2 | 2 | 0 | 11
+INPUTS | 20 | nCNTCE  | s_ATEMP<13>  | s_ATEMP<14>  | s_ATEMP<15>  | s_ATEMP<16>  | Mtridata_A_add0000<0>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | s_ATEMP<17>  | nACLK
+INPUTMC | 18 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 1 | 0
+INPUTP | 2 | 62 | 87
+EQ | 10 | 
+   s_ATEMP<17>.T = !nCNTCE & s_ATEMP<17>
+	# nCNTCE & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<16> & Mtridata_A_add0000<0> & 
+	s_ATEMP<12> & Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   s_ATEMP<17>.CLK = !nACLK;
+
+MACROCELL | 2 | 3 | s_ATEMP<18>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 3 | 2 | 3 | 2 | 2 | 0 | 10
+INPUTS | 21 | nCNTCE  | s_ATEMP<13>  | s_ATEMP<14>  | s_ATEMP<15>  | s_ATEMP<16>  | s_ATEMP<17>  | Mtridata_A_add0000<0>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | s_ATEMP<18>  | nACLK
+INPUTMC | 19 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 2 | 3
+INPUTP | 2 | 62 | 87
+EQ | 11 | 
+   s_ATEMP<18>.T = !nCNTCE & s_ATEMP<18>
+	# nCNTCE & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<16> & s_ATEMP<17> & 
+	Mtridata_A_add0000<0> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   s_ATEMP<18>.CLK = !nACLK;
+
+MACROCELL | 2 | 17 | Mtridata_A_add0000<0>
+ATTRIBUTES | 8520480 | 0
+OUTPUTMC | 22 | 0 | 5 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2 | 2 | 16
+INPUTS | 5 | nCNTCE  | Mtridata_A_add0000<0>  | nACLK  | dat_reg<3>  | s_ATEMP<15>
+INPUTMC | 3 | 2 | 17 | 3 | 4 | 1 | 2
+INPUTP | 2 | 62 | 87
+EXPORTS | 1 | 2 | 16
+EQ | 3 | 
+   Mtridata_A_add0000<0>.D = nCNTCE & !Mtridata_A_add0000<0>;
+   Mtridata_A_add0000<0>.CLK = !nACLK;
+    Mtridata_A_add0000<0>.EXP  =  dat_reg<3> & s_ATEMP<15>
+
+MACROCELL | 1 | 7 | s_ATEMP<12>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 27 | 1 | 14 | 1 | 8 | 3 | 14 | 1 | 4 | 2 | 13 | 1 | 10 | 3 | 10 | 3 | 16 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 2 | 2 | 1 | 9 | 1 | 11 | 2 | 15 | 2 | 16 | 3 | 8 | 3 | 9 | 3 | 11 | 3 | 12 | 3 | 13 | 3 | 15 | 3 | 17
+INPUTS | 16 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | s_ATEMP<12>  | nACLK  | s_ATEMP<13>
+INPUTMC | 14 | 2 | 17 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 1 | 7 | 1 | 6
+INPUTP | 2 | 62 | 87
+EXPORTS | 1 | 1 | 6
+EQ | 10 | 
+   s_ATEMP<12>.T = !nCNTCE & s_ATEMP<12>
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   s_ATEMP<12>.CLK = !nACLK;
+    s_ATEMP<12>.EXP  =  !nCNTCE & s_ATEMP<13>
+
+MACROCELL | 1 | 17 | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 11 | 0 | 4 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 2
+INPUTS | 13 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | nACLK
+INPUTMC | 11 | 2 | 17 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 1 | 17
+INPUTP | 2 | 62 | 87
+EQ | 9 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000.T = !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000.CLK = !nACLK;
+
+MACROCELL | 1 | 15 | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 10 | 1 | 4 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 15 | 2 | 2
+INPUTS | 14 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | nACLK
+INPUTMC | 12 | 2 | 17 | 1 | 17 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 1 | 15
+INPUTP | 2 | 62 | 87
+EQ | 9 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000.T = !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000.CLK = !nACLK;
+
+MACROCELL | 2 | 13 | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000
+ATTRIBUTES | 8520480 | 0
+OUTPUTMC | 21 | 0 | 14 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2 | 2 | 14
+INPUTS | 11 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | nACLK  | dat_reg<1>  | dat_reg<2>  | s_ATEMP<13>  | s_ATEMP<15>  | dat_reg<0>  | s_ATEMP<14>  | s_ATEMP<12>
+INPUTMC | 9 | 2 | 17 | 2 | 13 | 2 | 6 | 2 | 5 | 1 | 6 | 1 | 2 | 3 | 5 | 1 | 3 | 1 | 7
+INPUTP | 2 | 62 | 87
+EXPORTS | 1 | 2 | 14
+EQ | 9 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000.D = nCNTCE & Mtridata_A_add0000<0> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000
+	# nCNTCE & !Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000.CLK = !nACLK;
+    Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000.EXP  =  dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15>
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12>
+
+MACROCELL | 2 | 12 | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 19 | 0 | 16 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2
+INPUTS | 5 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | nACLK
+INPUTMC | 3 | 2 | 17 | 2 | 13 | 2 | 12
+INPUTP | 2 | 62 | 87
+EQ | 5 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000.T = !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000.CLK = !nACLK;
+
+MACROCELL | 2 | 11 | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 18 | 2 | 1 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2
+INPUTS | 6 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | nACLK
+INPUTMC | 4 | 2 | 17 | 2 | 13 | 2 | 12 | 2 | 11
+INPUTP | 2 | 62 | 87
+EQ | 5 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000.T = !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000.CLK = !nACLK;
+
+MACROCELL | 2 | 9 | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 17 | 2 | 4 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 9 | 3 | 15 | 3 | 11 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2
+INPUTS | 7 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | nACLK
+INPUTMC | 5 | 2 | 17 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9
+INPUTP | 2 | 62 | 87
+EQ | 6 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000.T = !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000.CLK = !nACLK;
+
+MACROCELL | 3 | 15 | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 17 | 2 | 7 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 3 | 15 | 3 | 11 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2 | 3 | 16
+INPUTS | 17 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | nACLK  | dat_reg<0>  | dat_reg<1>  | dat_reg<2>  | dat_reg<3>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D  | s_ATEMP<14>
+INPUTMC | 15 | 2 | 17 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 5 | 2 | 6 | 2 | 5 | 3 | 4 | 1 | 7 | 0 | 12 | 0 | 11 | 0 | 10 | 1 | 3
+INPUTP | 2 | 62 | 87
+EXPORTS | 1 | 3 | 16
+EQ | 16 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000.T = !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000.CLK = !nACLK;
+    Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000.EXP  =  dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<3> & 
+	s_ATEMP<14> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+
+MACROCELL | 3 | 11 | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 16 | 2 | 8 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 3 | 10 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2 | 3 | 12
+INPUTS | 15 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | dat_reg<0>  | nACLK  | dat_reg<1>  | dat_reg<2>  | s_ATEMP<14>  | s_ATEMP<12>  | s_ATEMP<13>  | Mtridata_A<18>.EXP
+INPUTMC | 13 | 2 | 17 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 5 | 2 | 6 | 2 | 5 | 1 | 3 | 1 | 7 | 1 | 6 | 3 | 10
+INPUTP | 2 | 62 | 87
+EXPORTS | 1 | 3 | 12
+IMPORTS | 1 | 3 | 10
+EQ | 14 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000.T = nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000
+;Imported pterms FB4_11
+	# !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000.CLK = !nACLK;
+    Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000.EXP  =  dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & !dat_reg<2> & 
+	!s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & !dat_reg<2> & s_ATEMP<13> & 
+	!s_ATEMP<14> & s_ATEMP<12>
+
+MACROCELL | 3 | 1 | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 15 | 2 | 10 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2 | 3 | 0
+INPUTS | 10 | dat_reg<6>  | Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D  | dat_reg<5>  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | dat_reg<4>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | dat_reg<3>  | s_ATEMP<15>  | Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D.EXP  | nACLK
+INPUTMC | 9 | 0 | 15 | 0 | 10 | 0 | 17 | 0 | 11 | 3 | 3 | 0 | 12 | 3 | 4 | 1 | 2 | 3 | 2
+INPUTP | 1 | 87
+EXPORTS | 1 | 3 | 0
+IMPORTS | 1 | 3 | 2
+EQ | 21 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000.T = ;Imported pterms FB4_3
+	  !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000.CLK = !nACLK;
+    Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000.EXP  =  dat_reg<6> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<5> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+
+MACROCELL | 3 | 6 | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 14 | 1 | 13 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 3 | 6 | 1 | 9 | 2 | 2 | 3 | 7
+INPUTS | 15 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | nACLK  | dat_reg<3>  | s_ATEMP<15>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+INPUTMC | 13 | 2 | 17 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 3 | 4 | 1 | 2 | 0 | 12 | 0 | 11
+INPUTP | 2 | 62 | 87
+EXPORTS | 1 | 3 | 7
+EQ | 11 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000.T = !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000.CLK = !nACLK;
+    Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000.EXP  =  dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+
+MACROCELL | 1 | 9 | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 13 | 1 | 16 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 1 | 7 | 1 | 17 | 1 | 15 | 1 | 9 | 2 | 2 | 1 | 10
+INPUTS | 19 | nCNTCE  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | nACLK  | dat_reg<0>  | dat_reg<1>  | dat_reg<2>  | dat_reg<3>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | s_ATEMP<13>
+INPUTMC | 17 | 2 | 17 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 3 | 5 | 2 | 6 | 2 | 5 | 3 | 4 | 1 | 7 | 0 | 12 | 1 | 6
+INPUTP | 2 | 62 | 87
+EXPORTS | 1 | 1 | 10
+EQ | 14 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000.T = !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000;
+   Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000.CLK = !nACLK;
+    Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000.EXP  =  dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+
+MACROCELL | 2 | 2 | s_ATEMP<19>
+ATTRIBUTES | 4326176 | 0
+OUTPUTMC | 2 | 2 | 2 | 0 | 9
+INPUTS | 22 | nCNTCE  | s_ATEMP<13>  | s_ATEMP<14>  | s_ATEMP<15>  | s_ATEMP<16>  | s_ATEMP<17>  | s_ATEMP<18>  | Mtridata_A_add0000<0>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  | s_ATEMP<19>  | nACLK
+INPUTMC | 20 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 2 | 2
+INPUTP | 2 | 62 | 87
+EQ | 11 | 
+   s_ATEMP<19>.T = !nCNTCE & s_ATEMP<19>
+	# nCNTCE & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<16> & s_ATEMP<17> & s_ATEMP<18> & 
+	Mtridata_A_add0000<0> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000;
+   s_ATEMP<19>.CLK = !nACLK;
+
+MACROCELL | 3 | 2 | Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D
+ATTRIBUTES | 133888 | 0
+OUTPUTMC | 2 | 1 | 5 | 3 | 1
+INPUTS | 11 | dat_reg<3>  | s_ATEMP<15>  | nCNTCE  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  | Mtridata_A_add0000<0>  | Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000
+INPUTMC | 10 | 3 | 4 | 1 | 2 | 3 | 1 | 2 | 17 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11
+INPUTP | 1 | 62
+EXPORTS | 1 | 3 | 1
+EQ | 8 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D = dat_reg<3>
+	$ s_ATEMP<15>;
+    Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D.EXP  =  !nCNTCE & 
+	Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000
+	# nCNTCE & Mtridata_A_add0000<0> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 & 
+	Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 & Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000
+
+MACROCELL | 0 | 12 | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+ATTRIBUTES | 133888 | 0
+OUTPUTMC | 16 | 2 | 14 | 1 | 10 | 3 | 10 | 3 | 16 | 1 | 9 | 1 | 11 | 1 | 12 | 1 | 13 | 3 | 0 | 3 | 1 | 3 | 6 | 3 | 7 | 3 | 8 | 3 | 9 | 3 | 15 | 3 | 17
+INPUTS | 2 | dat_reg<4>  | s_ATEMP<16>
+INPUTMC | 2 | 3 | 3 | 1 | 1
+EQ | 2 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D = dat_reg<4>
+	$ s_ATEMP<16>;
+
+MACROCELL | 0 | 11 | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+ATTRIBUTES | 133888 | 0
+OUTPUTMC | 11 | 1 | 10 | 3 | 10 | 3 | 16 | 3 | 0 | 3 | 1 | 3 | 6 | 3 | 7 | 3 | 8 | 3 | 9 | 3 | 15 | 3 | 17
+INPUTS | 2 | dat_reg<5>  | s_ATEMP<17>
+INPUTMC | 2 | 0 | 17 | 1 | 0
+EQ | 2 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D = dat_reg<5>
+	$ s_ATEMP<17>;
+
+MACROCELL | 0 | 10 | Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+ATTRIBUTES | 133888 | 0
+OUTPUTMC | 6 | 3 | 10 | 3 | 16 | 3 | 0 | 3 | 1 | 3 | 15 | 3 | 17
+INPUTS | 2 | dat_reg<6>  | s_ATEMP<18>
+INPUTMC | 2 | 0 | 15 | 2 | 3
+EQ | 2 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D = dat_reg<6>
+	$ s_ATEMP<18>;
+
+MACROCELL | 0 | 9 | Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D
+ATTRIBUTES | 133888 | 0
+OUTPUTMC | 1 | 3 | 16
+INPUTS | 2 | dat_reg<7>  | s_ATEMP<19>
+INPUTMC | 2 | 0 | 13 | 2 | 2
+EQ | 2 | 
+   Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D = dat_reg<7>
+	$ s_ATEMP<19>;
+
+MACROCELL | 1 | 11 | EXP6_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 1 | 10
+INPUTS | 10 | dat_reg<1>  | dat_reg<3>  | s_ATEMP<13>  | s_ATEMP<14>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | dat_reg<0>  | dat_reg<2>  | s_ATEMP<15>  | s_ATEMP<12>  | EXP7_.EXP
+INPUTMC | 10 | 2 | 6 | 3 | 4 | 1 | 6 | 1 | 3 | 0 | 12 | 3 | 5 | 2 | 5 | 1 | 2 | 1 | 7 | 1 | 12
+EXPORTS | 1 | 1 | 10
+IMPORTS | 1 | 1 | 12
+EQ | 34 | 
+       EXP6_.EXP  =  dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+;Imported pterms FB2_13
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+;Imported pterms FB2_14
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+
+MACROCELL | 1 | 12 | EXP7_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 1 | 11
+INPUTS | 8 | dat_reg<2>  | dat_reg<3>  | s_ATEMP<14>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | s_ATEMP<15>  | dat_reg<1>  | s_ATEMP<13>  | Mtridata_A<8>.EXP
+INPUTMC | 8 | 2 | 5 | 3 | 4 | 1 | 3 | 0 | 12 | 1 | 2 | 2 | 6 | 1 | 6 | 1 | 13
+EXPORTS | 1 | 1 | 11
+IMPORTS | 1 | 1 | 13
+EQ | 18 | 
+       EXP7_.EXP  =  dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+;Imported pterms FB2_14
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+
+MACROCELL | 2 | 15 | EXP8_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 2 | 14
+INPUTS | 9 | dat_reg<2>  | dat_reg<3>  | s_ATEMP<14>  | dat_reg<1>  | s_ATEMP<13>  | dat_reg<0>  | s_ATEMP<15>  | s_ATEMP<12>  | EXP9_.EXP
+INPUTMC | 9 | 2 | 5 | 3 | 4 | 1 | 3 | 2 | 6 | 1 | 6 | 3 | 5 | 1 | 2 | 1 | 7 | 2 | 16
+EXPORTS | 1 | 2 | 14
+IMPORTS | 1 | 2 | 16
+EQ | 22 | 
+       EXP8_.EXP  =  dat_reg<2> & dat_reg<3> & s_ATEMP<14>
+	# dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14>
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12>
+;Imported pterms FB3_17
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13>
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & dat_reg<3> & 
+	s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12>
+;Imported pterms FB3_18
+	# dat_reg<3> & s_ATEMP<15>
+
+MACROCELL | 2 | 16 | EXP9_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 2 | 15
+INPUTS | 8 | dat_reg<1>  | dat_reg<2>  | dat_reg<3>  | s_ATEMP<13>  | dat_reg<0>  | s_ATEMP<12>  | s_ATEMP<14>  | Mtridata_A_add0000<0>.EXP
+INPUTMC | 8 | 2 | 6 | 2 | 5 | 3 | 4 | 1 | 6 | 3 | 5 | 1 | 7 | 1 | 3 | 2 | 17
+EXPORTS | 1 | 2 | 15
+IMPORTS | 1 | 2 | 17
+EQ | 12 | 
+       EXP9_.EXP  =  dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13>
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & dat_reg<3> & 
+	s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12>
+;Imported pterms FB3_18
+	# dat_reg<3> & s_ATEMP<15>
+
+MACROCELL | 3 | 0 | EXP10_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 17
+INPUTS | 10 | dat_reg<2>  | dat_reg<3>  | s_ATEMP<14>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D  | s_ATEMP<15>  | dat_reg<1>  | s_ATEMP<13>  | Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000.EXP
+INPUTMC | 10 | 2 | 5 | 3 | 4 | 1 | 3 | 0 | 12 | 0 | 11 | 0 | 10 | 1 | 2 | 2 | 6 | 1 | 6 | 3 | 1
+EXPORTS | 1 | 3 | 17
+IMPORTS | 1 | 3 | 1
+EQ | 37 | 
+       EXP10_.EXP  =  dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+;Imported pterms FB4_2
+	# dat_reg<6> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<5> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+
+MACROCELL | 3 | 7 | EXP11_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 8
+INPUTS | 11 | dat_reg<5>  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | dat_reg<4>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | dat_reg<2>  | dat_reg<3>  | s_ATEMP<14>  | s_ATEMP<15>  | dat_reg<1>  | s_ATEMP<13>  | Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000.EXP
+INPUTMC | 11 | 0 | 17 | 0 | 11 | 3 | 3 | 0 | 12 | 2 | 5 | 3 | 4 | 1 | 3 | 1 | 2 | 2 | 6 | 1 | 6 | 3 | 6
+EXPORTS | 1 | 3 | 8
+IMPORTS | 1 | 3 | 6
+EQ | 19 | 
+       EXP11_.EXP  =  dat_reg<5> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_7
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+
+MACROCELL | 3 | 8 | EXP12_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 9
+INPUTS | 11 | dat_reg<1>  | dat_reg<2>  | dat_reg<3>  | s_ATEMP<13>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | s_ATEMP<14>  | s_ATEMP<15>  | dat_reg<0>  | s_ATEMP<12>  | EXP11_.EXP
+INPUTMC | 11 | 2 | 6 | 2 | 5 | 3 | 4 | 1 | 6 | 0 | 12 | 0 | 11 | 1 | 3 | 1 | 2 | 3 | 5 | 1 | 7 | 3 | 7
+EXPORTS | 1 | 3 | 9
+IMPORTS | 1 | 3 | 7
+EQ | 40 | 
+       EXP12_.EXP  =  dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_8
+	# dat_reg<5> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_7
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+
+MACROCELL | 3 | 9 | EXP13_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 10
+INPUTS | 11 | dat_reg<0>  | dat_reg<1>  | dat_reg<2>  | dat_reg<3>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | s_ATEMP<14>  | s_ATEMP<15>  | s_ATEMP<13>  | EXP12_.EXP
+INPUTMC | 11 | 3 | 5 | 2 | 6 | 2 | 5 | 3 | 4 | 1 | 7 | 0 | 12 | 0 | 11 | 1 | 3 | 1 | 2 | 1 | 6 | 3 | 8
+EXPORTS | 1 | 3 | 10
+IMPORTS | 1 | 3 | 8
+EQ | 61 | 
+       EXP13_.EXP  =  dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	dat_reg<3> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<3> & 
+	s_ATEMP<14> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_9
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_8
+	# dat_reg<5> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+;Imported pterms FB4_7
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+
+MACROCELL | 3 | 12 | EXP14_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 13
+INPUTS | 7 | dat_reg<0>  | dat_reg<1>  | dat_reg<2>  | s_ATEMP<14>  | s_ATEMP<13>  | s_ATEMP<12>  | Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000.EXP
+INPUTMC | 7 | 3 | 5 | 2 | 6 | 2 | 5 | 1 | 3 | 1 | 6 | 1 | 7 | 3 | 11
+EXPORTS | 1 | 3 | 13
+IMPORTS | 1 | 3 | 11
+EQ | 17 | 
+       EXP14_.EXP  =  !dat_reg<0> & !dat_reg<1> & dat_reg<2> & 
+	!s_ATEMP<14>
+	# dat_reg<1> & !dat_reg<2> & s_ATEMP<13> & 
+	!s_ATEMP<14>
+	# !dat_reg<1> & dat_reg<2> & !s_ATEMP<13> & 
+	!s_ATEMP<14>
+	# !dat_reg<1> & dat_reg<2> & !s_ATEMP<14> & 
+	!s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12>
+;Imported pterms FB4_12
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & !dat_reg<2> & 
+	!s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & !dat_reg<2> & s_ATEMP<13> & 
+	!s_ATEMP<14> & s_ATEMP<12>
+
+MACROCELL | 3 | 13 | EXP15_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 14
+INPUTS | 7 | dat_reg<0>  | dat_reg<1>  | dat_reg<2>  | s_ATEMP<14>  | s_ATEMP<13>  | s_ATEMP<12>  | EXP14_.EXP
+INPUTMC | 7 | 3 | 5 | 2 | 6 | 2 | 5 | 1 | 3 | 1 | 6 | 1 | 7 | 3 | 12
+EXPORTS | 1 | 3 | 14
+IMPORTS | 1 | 3 | 12
+EQ | 28 | 
+       EXP15_.EXP  =  !dat_reg<0> & !dat_reg<1> & !dat_reg<2> & 
+	s_ATEMP<14>
+	# !dat_reg<0> & dat_reg<2> & !s_ATEMP<13> & 
+	!s_ATEMP<14>
+	# !dat_reg<1> & !dat_reg<2> & !s_ATEMP<13> & 
+	s_ATEMP<14>
+	# !dat_reg<1> & !dat_reg<2> & s_ATEMP<14> & 
+	!s_ATEMP<12>
+	# dat_reg<2> & !s_ATEMP<13> & !s_ATEMP<14> & 
+	!s_ATEMP<12>
+;Imported pterms FB4_13
+	# !dat_reg<0> & !dat_reg<1> & dat_reg<2> & 
+	!s_ATEMP<14>
+	# dat_reg<1> & !dat_reg<2> & s_ATEMP<13> & 
+	!s_ATEMP<14>
+	# !dat_reg<1> & dat_reg<2> & !s_ATEMP<13> & 
+	!s_ATEMP<14>
+	# !dat_reg<1> & dat_reg<2> & !s_ATEMP<14> & 
+	!s_ATEMP<12>
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<14> & s_ATEMP<12>
+;Imported pterms FB4_12
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & dat_reg<1> & !dat_reg<2> & 
+	!s_ATEMP<14> & s_ATEMP<12>
+	# dat_reg<0> & !dat_reg<2> & s_ATEMP<13> & 
+	!s_ATEMP<14> & s_ATEMP<12>
+
+MACROCELL | 3 | 17 | EXP16_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 16
+INPUTS | 12 | dat_reg<1>  | dat_reg<3>  | s_ATEMP<13>  | s_ATEMP<14>  | Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  | Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D  | dat_reg<0>  | dat_reg<2>  | s_ATEMP<15>  | s_ATEMP<12>  | EXP10_.EXP
+INPUTMC | 12 | 2 | 6 | 3 | 4 | 1 | 6 | 1 | 3 | 0 | 12 | 0 | 11 | 0 | 10 | 3 | 5 | 2 | 5 | 1 | 2 | 1 | 7 | 3 | 0
+EXPORTS | 1 | 3 | 16
+IMPORTS | 1 | 3 | 0
+EQ | 63 | 
+       EXP16_.EXP  =  dat_reg<1> & dat_reg<3> & s_ATEMP<13> & 
+	s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & dat_reg<2> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<1> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<0> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & s_ATEMP<12> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+;Imported pterms FB4_1
+	# dat_reg<2> & dat_reg<3> & s_ATEMP<14> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<2> & s_ATEMP<14> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & dat_reg<3> & 
+	s_ATEMP<13> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & dat_reg<2> & s_ATEMP<13> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<1> & s_ATEMP<13> & s_ATEMP<14> & 
+	s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+;Imported pterms FB4_2
+	# dat_reg<6> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<5> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<4> & 
+	!Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+	# dat_reg<3> & s_ATEMP<15> & 
+	Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D & 
+	Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+
+PIN | nCNTOE | 64 | 0 | N/A | 15 | 21 | 1 | 14 | 1 | 8 | 3 | 14 | 1 | 5 | 2 | 14 | 1 | 10 | 3 | 10 | 3 | 16 | 0 | 5 | 0 | 4 | 1 | 4 | 0 | 14 | 0 | 16 | 2 | 1 | 2 | 4 | 2 | 7 | 2 | 8 | 2 | 10 | 1 | 13 | 1 | 16 | 0 | 8
+PIN | MOSI | 64 | 0 | N/A | 72 | 1 | 3 | 5
+PIN | SCK | 64 | 0 | N/A | 65 | 8 | 3 | 5 | 2 | 6 | 2 | 5 | 3 | 4 | 3 | 3 | 0 | 17 | 0 | 15 | 0 | 13
+PIN | nCNTCE | 64 | 0 | N/A | 62 | 29 | 3 | 5 | 2 | 6 | 2 | 5 | 3 | 4 | 3 | 3 | 0 | 17 | 0 | 15 | 0 | 13 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 2 | 2 | 3 | 6 | 1 | 9 | 3 | 2 | 3 | 10
+PIN | nCPUFREE | 64 | 0 | N/A | 11 | 1 | 0 | 8
+PIN | nACLK | 64 | 0 | N/A | 87 | 20 | 1 | 6 | 1 | 3 | 1 | 2 | 1 | 1 | 1 | 0 | 2 | 3 | 2 | 17 | 1 | 7 | 1 | 17 | 1 | 15 | 2 | 13 | 2 | 12 | 2 | 11 | 2 | 9 | 3 | 15 | 3 | 11 | 3 | 1 | 3 | 6 | 1 | 9 | 2 | 2
+PIN | A<12> | 536871040 | 0 | N/A | 9
+PIN | A<13> | 536871040 | 0 | N/A | 92
+PIN | A<14> | 536871040 | 0 | N/A | 82
+PIN | A<15> | 536871040 | 0 | N/A | 89
+PIN | A<16> | 536871040 | 0 | N/A | 50
+PIN | A<17> | 536871040 | 0 | N/A | 3
+PIN | A<18> | 536871040 | 0 | N/A | 68
+PIN | A<19> | 536871040 | 0 | N/A | 83
+PIN | A<0> | 536871040 | 0 | N/A | 13
+PIN | A<10> | 536871040 | 0 | N/A | 12
+PIN | A<11> | 536871040 | 0 | N/A | 88
+PIN | A<1> | 536871040 | 0 | N/A | 26
+PIN | A<2> | 536871040 | 0 | N/A | 27
+PIN | A<3> | 536871040 | 0 | N/A | 29
+PIN | A<4> | 536871040 | 0 | N/A | 31
+PIN | A<5> | 536871040 | 0 | N/A | 33
+PIN | A<6> | 536871040 | 0 | N/A | 38
+PIN | A<7> | 536871040 | 0 | N/A | 46
+PIN | A<8> | 536871040 | 0 | N/A | 7
+PIN | A<9> | 536871040 | 0 | N/A | 10

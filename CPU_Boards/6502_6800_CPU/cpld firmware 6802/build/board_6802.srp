@@ -43,7 +43,7 @@ Optimization Effort                : 1
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6802/board_6802.vhd" in Library work.
+Compiling vhdl file "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6802/board_6802.vhd" in Library work.
 Entity <board_6802> compiled.
 Entity <board_6802> (Architecture <behavioral>) compiled.
 
@@ -57,6 +57,7 @@ Analyzing hierarchy for entity <board_6802> in library <work> (architecture <beh
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing Entity <board_6802> in library <work> (Architecture <behavioral>).
+INFO:Xst:2679 - Register <nHALT> in unit <board_6802> has a constant value of 1 during circuit operation. The register is replaced by logic.
 Entity <board_6802> analyzed. Unit <board_6802> generated.
 
 
@@ -67,14 +68,16 @@ Entity <board_6802> analyzed. Unit <board_6802> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <board_6802>.
-    Related source file is "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6802/board_6802.vhd".
+    Related source file is "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6802/board_6802.vhd".
+WARNING:Xst:647 - Input <BA> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <A> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <nHALT_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <nMR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <MOSI> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <SCK> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:1780 - Signal <s_PH0> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <s_EVMA> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <s_BCLKWS> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found 1-bit register for signal <nHALT>.
     Found 4-bit up counter for signal <clk_divider>.
     Found 1-bit register for signal <s_ELEVEL>.
     Summary:
@@ -88,8 +91,8 @@ HDL Synthesis Report
 Macro Statistics
 # Counters                                             : 1
  4-bit up counter                                      : 1
-# Registers                                            : 2
- 1-bit register                                        : 2
+# Registers                                            : 1
+ 1-bit register                                        : 1
 
 =========================================================================
 
@@ -142,30 +145,30 @@ Design Statistics
 # IOs                              : 34
 
 Cell Usage :
-# BELS                             : 18
+# BELS                             : 25
 #      AND2                        : 5
 #      GND                         : 1
-#      INV                         : 9
-#      OR2                         : 2
-#      XOR2                        : 1
-# FlipFlops/Latches                : 3
-#      FD                          : 2
+#      INV                         : 12
+#      OR2                         : 6
+#      VCC                         : 1
+# FlipFlops/Latches                : 2
+#      FD                          : 1
 #      FDCE                        : 1
-# IO Buffers                       : 16
-#      IBUF                        : 7
+# IO Buffers                       : 13
+#      IBUF                        : 4
 #      OBUF                        : 9
 =========================================================================
 
 
-Total REAL time to Xst completion: 2.00 secs
-Total CPU time to Xst completion: 2.16 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 1.41 secs
  
 --> 
 
 
-Total memory usage is 495504 kilobytes
+Total memory usage is 495064 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   10 (   0 filtered)
-Number of infos    :    0 (   0 filtered)
+Number of warnings :   13 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
 

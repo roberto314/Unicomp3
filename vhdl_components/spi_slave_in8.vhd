@@ -9,8 +9,8 @@ entity spi_slave_in8 is
         sclk : in std_logic;
         mosi : in std_logic;
         ss_n : in std_logic; 
-        data : out std_logic_vector(7 downto 0); 
-        miso : out std_logic
+        data : out std_logic_vector(7 downto 0)
+        --miso : out std_logic
         ); 
 end spi_slave_in8; 
 architecture archi of spi_slave_in8 is 

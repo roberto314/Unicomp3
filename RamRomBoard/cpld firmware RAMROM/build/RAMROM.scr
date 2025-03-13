@@ -1,0 +1,1 @@
+run -ifn RAMROM.prj -ofn RAMROM.ngc -ifmt mixed  -top RAMROM -ofmt NGC -p XC9572XL-10-VQ44

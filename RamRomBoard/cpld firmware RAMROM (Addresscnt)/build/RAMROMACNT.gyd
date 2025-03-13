@@ -1,0 +1,54 @@
+Pin Freeze File:  version P.20131013
+
+9572XL44VQ XC9572XL-10-VQ44
+MOSI S:PIN23
+SCK S:PIN21
+nACLK S:PIN29
+nCNTCE S:PIN19
+nCNTOE S:PIN42
+nCPUFREE S:PIN39
+A<0> S:PIN41
+A<1> S:PIN2
+A<2> S:PIN3
+A<3> S:PIN5
+A<4> S:PIN6
+A<5> S:PIN7
+A<6> S:PIN8
+A<7> S:PIN12
+A<8> S:PIN36
+A<9> S:PIN38
+A<10> S:PIN40
+A<11> S:PIN30
+A<12> S:PIN37
+A<13> S:PIN33
+A<14> S:PIN27
+A<15> S:PIN31
+A<16> S:PIN14
+A<17> S:PIN34
+A<18> S:PIN22
+A<19> S:PIN28
+
+
+;The remaining section of the .gyd file is for documentation purposes only.
+;It shows where your internal equations were placed in the last successful fit.
+
+PARTITION FB1_5 Mtridata_A<10> Mtridata_A<0>
+PARTITION FB1_9 Mtrien_A Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+		 Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D dat_reg<7> Mtridata_A<1> dat_reg<6>
+		 Mtridata_A<2> dat_reg<5>
+PARTITION FB2_1 s_ATEMP<17> s_ATEMP<16> s_ATEMP<15> s_ATEMP<14>
+		 Mtridata_A<11> Mtridata_A<15> s_ATEMP<13> s_ATEMP<12>
+		 Mtridata_A<13> Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000 Mtridata_A<17> EXP6_
+		 EXP7_ Mtridata_A<8> Mtridata_A<12> Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000
+		 Mtridata_A<9> Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000
+PARTITION FB3_2 Mtridata_A<3> s_ATEMP<19> s_ATEMP<18> Mtridata_A<4>
+		 dat_reg<2> dat_reg<1> Mtridata_A<5> Mtridata_A<6>
+		 Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 Mtridata_A<7> Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000
+		 Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 Mtridata_A<16> EXP8_ EXP9_
+		 Mtridata_A_add0000<0>
+PARTITION FB4_1 EXP10_ Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D dat_reg<4>
+		 dat_reg<3> dat_reg<0> Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 EXP11_
+		 EXP12_ EXP13_ Mtridata_A<18> Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000
+		 EXP14_ EXP15_ Mtridata_A<14> Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000
+		 Mtridata_A<19> EXP16_
+

@@ -1,0 +1,45 @@
+Pin Freeze File:  version P.20131013
+
+9572XL44VQ XC9572XL-10-VQ44
+CLK S:PIN1
+D<0> S:PIN41
+D<10> S:PIN40
+D<11> S:PIN30
+D<12> S:PIN37
+D<13> S:PIN33
+D<14> S:PIN32
+D<15> S:PIN31
+D<1> S:PIN2
+D<2> S:PIN3
+D<3> S:PIN5
+D<4> S:PIN6
+D<5> S:PIN7
+D<6> S:PIN8
+D<7> S:PIN12
+D<8> S:PIN36
+D<9> S:PIN38
+SCK S:PIN21
+nMRD S:PIN28
+nMWR S:PIN27
+nRWREQ S:PIN18
+nDATEN S:PIN34
+nDATRDY S:PIN20
+nLB S:PIN29
+MISO S:PIN22
+
+
+;The remaining section of the .gyd file is for documentation purposes only.
+;It shows where your internal equations were placed in the last successful fit.
+
+PARTITION FB1_12 spi_out/dat_reg<8> spi_out/dat_reg<7> spi_out/dat_reg<6> spi_out/dat_reg<5>
+		 spi_out/dat_reg<4> spi_out/dat_reg<3> spi_out/dat_reg<2>
+PARTITION FB2_2 nLB_OBUF
+PARTITION FB2_11 nDATEN_OBUF
+PARTITION FB2_13 spi_out/dat_reg<0> spi_out/dat_reg<1> spi_out/dat_reg<14> spi_out/dat_reg<13>
+		 spi_out/dat_reg<12> spi_out/dat_reg<11>
+PARTITION FB3_18 spi_out/dat_reg<9>
+PARTITION FB4_5 nDATRDY_OBUF
+PARTITION FB4_9 clk_divider<7> clk_divider<6> spi_out/dat_reg<15> clk_divider<5>
+		 clk_divider<4> clk_divider<3> clk_divider<2> clk_divider<1>
+		 clk_divider<0> spi_out/dat_reg<10>
+

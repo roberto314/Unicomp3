@@ -22533,6 +22533,16 @@
 		)
 		(uuid "6501953f-bbed-4bde-9c04-b67dd4eb458c")
 	)
+	(text "ch. CPC to ~{CNTOE}\non PCB!"
+		(exclude_from_sim no)
+		(at 136.652 84.074 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "6bad29f0-ff76-4690-be10-a71ad45a0877")
+	)
 	(text "B10 (B11 on F103)\nB2 (B10 on F103)"
 		(exclude_from_sim no)
 		(at 60.96 180.34 0)
@@ -22672,6 +22682,17 @@
 			(justify left bottom)
 		)
 		(uuid "e1943bd5-b958-4b27-b77b-172f8327dd24")
+	)
+	(text "ISSI IS61WV10248EDBLL-10TL (1MB)\nor Alliance AS7C34096A-10TCN (512k)\nor -10TIN."
+		(exclude_from_sim no)
+		(at 274.574 235.966 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ff171d1f-e3a0-4524-9772-a9189b7b2747")
 	)
 	(label "~{CERAMWR}"
 		(at 242.57 44.45 0)
@@ -29353,7 +29374,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "IS61WV10248EDBLL-10TL"
+		(property "Value" "see Text"
 			(at 262.5441 207.01 0)
 			(effects
 				(font
@@ -40458,7 +40479,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "f918def9-16e3-4ac9-9910-cf8ede6f69ab")
 		(property "Reference" "#PWR0112"
 			(at 226.06 179.07 0)
@@ -40470,7 +40490,7 @@
 			)
 		)
 		(property "Value" "VCCQ"
-			(at 226.06 170.18 0)
+			(at 225.806 171.196 0)
 			(effects
 				(font
 					(size 1.27 1.27)

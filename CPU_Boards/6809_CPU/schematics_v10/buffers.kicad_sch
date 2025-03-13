@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(date "2023-06-29")
-		(rev "v1")
+		(rev "v1.0")
 		(company "100% Offner")
 		(comment 1 "v1: Initial")
 	)

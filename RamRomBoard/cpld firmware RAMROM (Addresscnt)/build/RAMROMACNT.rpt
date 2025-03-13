@@ -1,0 +1,963 @@
+ 
+cpldfit:  version P.20131013                        Xilinx Inc.
+                                  Fitter Report
+Design Name: RAMROMACNT                          Date: 12-13-2024,  3:18PM
+Device Used: XC9572XL-10-VQ44
+Fitting Status: Successful
+
+*************************  Mapped Resource Summary  **************************
+
+Macrocells     Product Terms    Function Block   Registers      Pins           
+Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
+54 /72  ( 75%) 246 /360  ( 68%) 107/216 ( 50%)   49 /72  ( 68%) 26 /34  ( 76%)
+
+** Function Block Resources **
+
+Function    Mcells      FB Inps     Pterms      IO          
+Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
+FB1          12/18       17/54       31/90       6/ 9
+FB2          16/18       30/54       74/90       8/ 9
+FB3          15/18       30/54       59/90       6/ 9
+FB4          11/18       30/54       82/90       6/ 7
+             -----       -----       -----      -----    
+             54/72      107/216     246/360     26/34 
+
+* - Resource is exhausted
+
+** Global Control Resources **
+
+Global clock net(s) unused.
+Global output enable net(s) unused.
+Global set/reset net(s) unused.
+
+** Pin Resources **
+
+Signal Type    Required     Mapped  |  Pin Type            Used    Total 
+------------------------------------|------------------------------------
+Input         :    6           6    |  I/O              :    23      28
+Output        :   20          20    |  GCK/IO           :     0       3
+Bidirectional :    0           0    |  GTS/IO           :     2       2
+GCK           :    0           0    |  GSR/IO           :     1       1
+GTS           :    0           0    |
+GSR           :    0           0    |
+                 ----        ----
+        Total     26          26
+
+** Power Data **
+
+There are 54 macrocells in high performance mode (MCHP).
+There are 0 macrocells in low power mode (MCLP).
+End of Mapped Resource Summary
+**************************  Errors and Warnings  ***************************
+
+WARNING:Cpld - Unable to retrieve the path to the iSE Project Repository. Will
+   use the default filename of 'RAMROMACNT.ise'.
+*************************  Summary of Mapped Logic  ************************
+
+** 20 Outputs **
+
+Signal                                                                                               Total Total Loc     Pin  Pin     Pin     Pwr  Slew Reg Init
+Name                                                                                                 Pts   Inps          No.  Type    Use     Mode Rate State
+A<10>                                                                                                3     3     FB1_5   40   I/O     O       STD  FAST RESET
+A<0>                                                                                                 3     3     FB1_6   41   I/O     O       STD  FAST RESET
+A<1>                                                                                                 3     3     FB1_15  2    I/O     O       STD  FAST RESET
+A<2>                                                                                                 3     3     FB1_17  3    I/O     O       STD  FAST RESET
+A<11>                                                                                                3     3     FB2_5   30   I/O     O       STD  FAST RESET
+A<15>                                                                                                10    9     FB2_6   31   I/O     O       STD  FAST RESET
+A<13>                                                                                                5     6     FB2_9   33   GSR/I/O O       STD  FAST RESET
+A<17>                                                                                                19    13    FB2_11  34   GTS/I/O O       STD  FAST RESET
+A<8>                                                                                                 3     3     FB2_14  36   GTS/I/O O       STD  FAST RESET
+A<12>                                                                                                4     4     FB2_15  37   I/O     O       STD  FAST RESET
+A<9>                                                                                                 3     3     FB2_17  38   I/O     O       STD  FAST RESET
+A<3>                                                                                                 3     3     FB3_2   5    I/O     O       STD  FAST RESET
+A<4>                                                                                                 3     3     FB3_5   6    I/O     O       STD  FAST RESET
+A<5>                                                                                                 3     3     FB3_8   7    I/O     O       STD  FAST RESET
+A<6>                                                                                                 3     3     FB3_9   8    I/O     O       STD  FAST RESET
+A<7>                                                                                                 3     3     FB3_11  12   I/O     O       STD  FAST RESET
+A<16>                                                                                                18    11    FB3_15  14   I/O     O       STD  FAST RESET
+A<18>                                                                                                20    15    FB4_11  22   I/O     O       STD  FAST RESET
+A<14>                                                                                                18    8     FB4_15  27   I/O     O       STD  FAST RESET
+A<19>                                                                                                21    17    FB4_17  28   I/O     O       STD  FAST RESET
+
+** 34 Buried Nodes **
+
+Signal                                                                                               Total Total Loc     Pwr  Reg Init
+Name                                                                                                 Pts   Inps          Mode State
+Mtrien_A                                                                                             2     2     FB1_9   STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D  2     2     FB1_10  STD  
+Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D  2     2     FB1_11  STD  
+Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  2     2     FB1_12  STD  
+Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  2     2     FB1_13  STD  
+dat_reg<7>                                                                                           3     3     FB1_14  STD  RESET
+dat_reg<6>                                                                                           3     3     FB1_16  STD  RESET
+dat_reg<5>                                                                                           3     3     FB1_18  STD  RESET
+s_ATEMP<17>                                                                                          3     20    FB2_1   STD  RESET
+s_ATEMP<16>                                                                                          3     19    FB2_2   STD  RESET
+s_ATEMP<15>                                                                                          3     18    FB2_3   STD  RESET
+s_ATEMP<14>                                                                                          3     17    FB2_4   STD  RESET
+s_ATEMP<13>                                                                                          3     16    FB2_7   STD  RESET
+s_ATEMP<12>                                                                                          3     15    FB2_8   STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000                                                      3     12    FB2_10  STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000                                                     3     14    FB2_16  STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000                                                     3     13    FB2_18  STD  RESET
+s_ATEMP<19>                                                                                          3     22    FB3_3   STD  RESET
+s_ATEMP<18>                                                                                          3     21    FB3_4   STD  RESET
+dat_reg<2>                                                                                           3     3     FB3_6   STD  RESET
+dat_reg<1>                                                                                           3     3     FB3_7   STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000                                                      3     7     FB3_10  STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000                                                      3     6     FB3_12  STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000                                                      3     5     FB3_13  STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000                                                      3     4     FB3_14  STD  RESET
+Mtridata_A_add0000<0>                                                                                2     3     FB3_18  STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000                                                      3     10    FB4_2   STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D  2     2     FB4_3   STD  
+dat_reg<4>                                                                                           3     3     FB4_4   STD  RESET
+dat_reg<3>                                                                                           3     3     FB4_5   STD  RESET
+dat_reg<0>                                                                                           3     3     FB4_6   STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000                                                      3     11    FB4_7   STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000                                                      3     9     FB4_12  STD  RESET
+Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000                                                      3     8     FB4_16  STD  RESET
+
+** 6 Inputs **
+
+Signal                                                                                               Loc     Pin  Pin     Pin     
+Name                                                                                                         No.  Type    Use     
+nCPUFREE                                                                                             FB1_2   39   I/O     I
+nCNTOE                                                                                               FB1_8   42   I/O     I
+nACLK                                                                                                FB2_2   29   I/O     I
+nCNTCE                                                                                               FB4_2   19   I/O     I
+SCK                                                                                                  FB4_8   21   I/O     I
+MOSI                                                                                                 FB4_14  23   I/O     I
+
+Legend:
+Pin No. - ~ - User Assigned
+**************************  Function Block Details  ************************
+Legend:
+Total Pt     - Total product terms used by the macrocell signal
+Imp Pt       - Product terms imported from other macrocells
+Exp Pt       - Product terms exported to other macrocells
+               in direction shown
+Unused Pt    - Unused local product terms remaining in macrocell
+Loc          - Location where logic was mapped in device
+Pin Type/Use - I  - Input             GCK - Global Clock
+               O  - Output            GTS - Global Output Enable
+              (b) - Buried macrocell  GSR - Global Set/Reset
+X            - Signal used as input to the macrocell logic.
+Pin No.      - ~  - User Assigned
+*********************************** FB1  ***********************************
+Number of function block inputs used/remaining:               17/37
+Number of signals used by logic mapping into function block:  17
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB1_1         (b)     
+(unused)              0       0     0   5     FB1_2   39    I/O     I
+(unused)              0       0     0   5     FB1_3         (b)     
+(unused)              0       0     0   5     FB1_4         (b)     
+A<10>                 3       0     0   2     FB1_5   40    I/O     O
+A<0>                  3       0     0   2     FB1_6   41    I/O     O
+(unused)              0       0     0   5     FB1_7         (b)     
+(unused)              0       0     0   5     FB1_8   42    I/O     I
+Mtrien_A              2       0     0   3     FB1_9   43    GCK/I/O (b)
+Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D
+                      2       0     0   3     FB1_10        (b)     (b)
+Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D
+                      2       0     0   3     FB1_11  44    GCK/I/O (b)
+Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D
+                      2       0     0   3     FB1_12        (b)     (b)
+Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D
+                      2       0     0   3     FB1_13        (b)     (b)
+dat_reg<7>            3       0     0   2     FB1_14  1     GCK/I/O (b)
+A<1>                  3       0     0   2     FB1_15  2     I/O     O
+dat_reg<6>            3       0     0   2     FB1_16        (b)     (b)
+A<2>                  3       0     0   2     FB1_17  3     I/O     O
+dat_reg<5>            3       0     0   2     FB1_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000   7: dat_reg<4>        13: nCPUFREE 
+  2: Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000    8: dat_reg<5>        14: s_ATEMP<16> 
+  3: Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000    9: dat_reg<6>        15: s_ATEMP<17> 
+  4: Mtridata_A_add0000<0>                             10: dat_reg<7>        16: s_ATEMP<18> 
+  5: Mtrien_A                                          11: nCNTCE            17: s_ATEMP<19> 
+  6: SCK                                               12: nCNTOE           
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+A<10>                X...X......X............................ 3
+A<0>                 ...XX......X............................ 3
+Mtrien_A             ...........XX........................... 2
+Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D 
+                     .........X......X....................... 2
+Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D 
+                     ........X......X........................ 2
+Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D 
+                     .......X......X......................... 2
+Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D 
+                     ......X......X.......................... 2
+dat_reg<7>           .....X..X.X............................. 3
+A<1>                 .X..X......X............................ 3
+dat_reg<6>           .....X.X..X............................. 3
+A<2>                 ..X.X......X............................ 3
+dat_reg<5>           .....XX...X............................. 3
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB2  ***********************************
+Number of function block inputs used/remaining:               30/24
+Number of signals used by logic mapping into function block:  30
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+s_ATEMP<17>           3       0     0   2     FB2_1         (b)     (b)
+s_ATEMP<16>           3       0     0   2     FB2_2   29    I/O     I
+s_ATEMP<15>           3       0     0   2     FB2_3         (b)     (b)
+s_ATEMP<14>           3       0     0   2     FB2_4         (b)     (b)
+A<11>                 3       0   \/2   0     FB2_5   30    I/O     O
+A<15>                10       5<-   0   0     FB2_6   31    I/O     O
+s_ATEMP<13>           3       1<- /\3   0     FB2_7         (b)     (b)
+s_ATEMP<12>           3       0   /\1   1     FB2_8   32    I/O     (b)
+A<13>                 5       0     0   0     FB2_9   33    GSR/I/O O
+Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000
+                      3       0   \/2   0     FB2_10        (b)     (b)
+A<17>                19      14<-   0   0     FB2_11  34    GTS/I/O O
+(unused)              0       0   /\5   0     FB2_12        (b)     (b)
+(unused)              0       0   /\5   0     FB2_13        (b)     (b)
+A<8>                  3       0   /\2   0     FB2_14  36    GTS/I/O O
+A<12>                 4       0     0   1     FB2_15  37    I/O     O
+Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000
+                      3       0     0   2     FB2_16        (b)     (b)
+A<9>                  3       0     0   2     FB2_17  38    I/O     O
+Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000
+                      3       0     0   2     FB2_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000                                                     11: Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  21: dat_reg<4> 
+  2: Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000                                                     12: Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  22: nACLK 
+  3: Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D  13: Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  23: nCNTCE 
+  4: Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  14: Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  24: nCNTOE 
+  5: Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  15: Mtridata_A_add0000<0>                            25: s_ATEMP<12> 
+  6: Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000                                                      16: Mtrien_A                                         26: s_ATEMP<13> 
+  7: Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000                                                      17: dat_reg<0>                                       27: s_ATEMP<14> 
+  8: Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000                                                      18: dat_reg<1>                                       28: s_ATEMP<15> 
+  9: Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000                                                      19: dat_reg<2>                                       29: s_ATEMP<16> 
+ 10: Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000                                                      20: dat_reg<3>                                       30: s_ATEMP<17> 
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+s_ATEMP<17>          XX...XXXXXXXXXX......XX.XXXXXX.......... 20
+s_ATEMP<16>          XX...XXXXXXXXXX......XX.XXXXX........... 19
+s_ATEMP<15>          XX...XXXXXXXXXX......XX.XXXX............ 18
+s_ATEMP<14>          XX...XXXXXXXXXX......XX.XXX............. 17
+A<11>                .X.............X.......X................ 3
+A<15>                ..X............XXXX....XXXX............. 9
+s_ATEMP<13>          XX...XXXXXXXXXX......XX.XX.............. 16
+s_ATEMP<12>          XX...XXXXXXXXXX......XX.X............... 15
+A<13>                ...............XXX.....XXX.............. 6
+Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000 
+                     .....XXXXXXXXXX......XX................. 12
+A<17>                ...XX..........XXXXXX..XXXXX............ 13
+A<8>                 ............X..X.......X................ 3
+A<12>                ...............XX......XX............... 4
+Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000 
+                     XX...XXXXXXXXXX......XX................. 14
+A<9>                 .............X.X.......X................ 3
+Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000 
+                     X....XXXXXXXXXX......XX................. 13
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB3  ***********************************
+Number of function block inputs used/remaining:               30/24
+Number of signals used by logic mapping into function block:  30
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB3_1         (b)     
+A<3>                  3       0     0   2     FB3_2   5     I/O     O
+s_ATEMP<19>           3       0     0   2     FB3_3         (b)     (b)
+s_ATEMP<18>           3       0     0   2     FB3_4         (b)     (b)
+A<4>                  3       0     0   2     FB3_5   6     I/O     O
+dat_reg<2>            3       0     0   2     FB3_6         (b)     (b)
+dat_reg<1>            3       0     0   2     FB3_7         (b)     (b)
+A<5>                  3       0     0   2     FB3_8   7     I/O     O
+A<6>                  3       0     0   2     FB3_9   8     I/O     O
+Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000
+                      3       0     0   2     FB3_10        (b)     (b)
+A<7>                  3       0     0   2     FB3_11  12    I/O     O
+Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000
+                      3       0     0   2     FB3_12        (b)     (b)
+Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000
+                      3       0     0   2     FB3_13        (b)     (b)
+Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000
+                      3       0   \/2   0     FB3_14  13    I/O     (b)
+A<16>                18      13<-   0   0     FB3_15  14    I/O     O
+(unused)              0       0   /\5   0     FB3_16  18    I/O     (b)
+(unused)              0       0   /\5   0     FB3_17  16    I/O     (b)
+Mtridata_A_add0000<0>
+                      2       0   /\1   2     FB3_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: Madd_Mtridata_A_add0000_Mxor_Result<10>__xor0000                                                     11: Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  21: nCNTCE 
+  2: Madd_Mtridata_A_add0000_Mxor_Result<11>__xor0000                                                     12: Madd_Mtridata_A_add0000_Mxor_Result<9>__xor0000  22: nCNTOE 
+  3: Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  13: Mtridata_A_add0000<0>                            23: s_ATEMP<12> 
+  4: Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000                                                      14: Mtrien_A                                         24: s_ATEMP<13> 
+  5: Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000                                                      15: SCK                                              25: s_ATEMP<14> 
+  6: Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000                                                      16: dat_reg<0>                                       26: s_ATEMP<15> 
+  7: Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000                                                      17: dat_reg<1>                                       27: s_ATEMP<16> 
+  8: Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000                                                      18: dat_reg<2>                                       28: s_ATEMP<17> 
+  9: Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000                                                      19: dat_reg<3>                                       29: s_ATEMP<18> 
+ 10: Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000                                                      20: nACLK                                            30: s_ATEMP<19> 
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+A<3>                 .....X.......X.......X.................. 3
+s_ATEMP<19>          XX.XXXXXXXXXX......XX.XXXXXXXX.......... 22
+s_ATEMP<18>          XX.XXXXXXXXXX......XX.XXXXXXX........... 21
+A<4>                 ......X......X.......X.................. 3
+dat_reg<2>           ..............X.X...X................... 3
+dat_reg<1>           ..............XX....X................... 3
+A<5>                 .......X.....X.......X.................. 3
+A<6>                 ........X....X.......X.................. 3
+Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000 
+                     ...XXXX.....X......XX................... 7
+A<7>                 .........X...X.......X.................. 3
+Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000 
+                     ...XXX......X......XX................... 6
+Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000 
+                     ...XX.......X......XX................... 5
+Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000 
+                     ...X........X......XX................... 4
+A<16>                ..X..........X.XXXX..XXXXX.............. 11
+Mtridata_A_add0000<0> 
+                     ............X......XX................... 3
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB4  ***********************************
+Number of function block inputs used/remaining:               30/24
+Number of signals used by logic mapping into function block:  30
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0   /\5   0     FB4_1         (b)     (b)
+Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000
+                      3       2<- /\4   0     FB4_2   19    I/O     I
+Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D
+                      2       0   /\2   1     FB4_3         (b)     (b)
+dat_reg<4>            3       0     0   2     FB4_4         (b)     (b)
+dat_reg<3>            3       0     0   2     FB4_5   20    I/O     (b)
+dat_reg<0>            3       0     0   2     FB4_6         (b)     (b)
+Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000
+                      3       0   \/1   1     FB4_7         (b)     (b)
+(unused)              0       0   \/5   0     FB4_8   21    I/O     I
+(unused)              0       0   \/5   0     FB4_9         (b)     (b)
+(unused)              0       0   \/5   0     FB4_10        (b)     (b)
+A<18>                20      16<- \/1   0     FB4_11  22    I/O     O
+Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000
+                      3       1<- \/3   0     FB4_12        (b)     (b)
+(unused)              0       0   \/5   0     FB4_13        (b)     (b)
+(unused)              0       0   \/5   0     FB4_14  23    I/O     I
+A<14>                18      13<-   0   0     FB4_15  27    I/O     O
+Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000
+                      3       0   \/2   0     FB4_16        (b)     (b)
+A<19>                21      16<-   0   0     FB4_17  28    I/O     O
+(unused)              0       0   /\5   0     FB4_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: MOSI                                                                                                 11: Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000  21: dat_reg<4> 
+  2: Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<16>__xor0000_D  12: Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000  22: dat_reg<5> 
+  3: Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<17>__xor0000_D  13: Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000  23: dat_reg<6> 
+  4: Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<18>__xor0000_D  14: Mtridata_A_add0000<0>                            24: nACLK 
+  5: Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<19>__xor0000_D  15: Mtrien_A                                         25: nCNTCE 
+  6: Madd_Mtridata_A_add0000_Mxor_Result<1>__xor0000                                                      16: SCK                                              26: nCNTOE 
+  7: Madd_Mtridata_A_add0000_Mxor_Result<2>__xor0000                                                      17: dat_reg<0>                                       27: s_ATEMP<12> 
+  8: Madd_Mtridata_A_add0000_Mxor_Result<3>__xor0000                                                      18: dat_reg<1>                                       28: s_ATEMP<13> 
+  9: Madd_Mtridata_A_add0000_Mxor_Result<4>__xor0000                                                      19: dat_reg<2>                                       29: s_ATEMP<14> 
+ 10: Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000                                                      20: dat_reg<3>                                       30: s_ATEMP<15> 
+
+Signal                        1         2         3         4 FB
+Name                0----+----0----+----0----+----0----+----0 Inputs
+Madd_Mtridata_A_add0000_Mxor_Result<7>__xor0000 
+                     .....XXXXXXX.X.........XX............... 10
+Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000/Madd_Mtridata_A_add0000_Mxor_Result<15>__xor0000_D 
+                     ...................X.........X.......... 2
+dat_reg<4>           ...............X...X....X............... 3
+dat_reg<3>           ...............X..X.....X............... 3
+dat_reg<0>           X..............X........X............... 3
+Madd_Mtridata_A_add0000_Mxor_Result<8>__xor0000 
+                     .....XXXXXXXXX.........XX............... 11
+A<18>                .XXX..........X.XXXXXX...XXXXX.......... 15
+Madd_Mtridata_A_add0000_Mxor_Result<6>__xor0000 
+                     .....XXXXXX..X.........XX............... 9
+A<14>                ..............X.XXX......XXXX........... 8
+Madd_Mtridata_A_add0000_Mxor_Result<5>__xor0000 
+                     .....XXXXX...X.........XX............... 8
+A<19>                .XXXX.........X.XXXXXXX..XXXXX.......... 17
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*******************************  Equations  ********************************
+
+********** Mapped Logic **********
+
+FDCPE_A0: FDCPE port map (A_I(0),Mtridata_A_add0000(0),NOT nCNTOE,'0','0');
+A(0) <= A_I(0) when A_OE(0) = '1' else 'Z';
+A_OE(0) <= NOT Mtrien_A;
+
+FDCPE_A1: FDCPE port map (A_I(1),Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000,NOT nCNTOE,'0','0');
+A(1) <= A_I(1) when A_OE(1) = '1' else 'Z';
+A_OE(1) <= NOT Mtrien_A;
+
+FDCPE_A2: FDCPE port map (A_I(2),Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000,NOT nCNTOE,'0','0');
+A(2) <= A_I(2) when A_OE(2) = '1' else 'Z';
+A_OE(2) <= NOT Mtrien_A;
+
+FDCPE_A3: FDCPE port map (A_I(3),Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000,NOT nCNTOE,'0','0');
+A(3) <= A_I(3) when A_OE(3) = '1' else 'Z';
+A_OE(3) <= NOT Mtrien_A;
+
+FDCPE_A4: FDCPE port map (A_I(4),Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000,NOT nCNTOE,'0','0');
+A(4) <= A_I(4) when A_OE(4) = '1' else 'Z';
+A_OE(4) <= NOT Mtrien_A;
+
+FDCPE_A5: FDCPE port map (A_I(5),Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000,NOT nCNTOE,'0','0');
+A(5) <= A_I(5) when A_OE(5) = '1' else 'Z';
+A_OE(5) <= NOT Mtrien_A;
+
+FDCPE_A6: FDCPE port map (A_I(6),Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000,NOT nCNTOE,'0','0');
+A(6) <= A_I(6) when A_OE(6) = '1' else 'Z';
+A_OE(6) <= NOT Mtrien_A;
+
+FDCPE_A7: FDCPE port map (A_I(7),Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000,NOT nCNTOE,'0','0');
+A(7) <= A_I(7) when A_OE(7) = '1' else 'Z';
+A_OE(7) <= NOT Mtrien_A;
+
+FDCPE_A8: FDCPE port map (A_I(8),Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000,NOT nCNTOE,'0','0');
+A(8) <= A_I(8) when A_OE(8) = '1' else 'Z';
+A_OE(8) <= NOT Mtrien_A;
+
+FDCPE_A9: FDCPE port map (A_I(9),Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000,NOT nCNTOE,'0','0');
+A(9) <= A_I(9) when A_OE(9) = '1' else 'Z';
+A_OE(9) <= NOT Mtrien_A;
+
+FDCPE_A10: FDCPE port map (A_I(10),Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000,NOT nCNTOE,'0','0');
+A(10) <= A_I(10) when A_OE(10) = '1' else 'Z';
+A_OE(10) <= NOT Mtrien_A;
+
+FDCPE_A11: FDCPE port map (A_I(11),Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000,NOT nCNTOE,'0','0');
+A(11) <= A_I(11) when A_OE(11) = '1' else 'Z';
+A_OE(11) <= NOT Mtrien_A;
+
+FDCPE_A12: FDCPE port map (A_I(12),A(12),NOT nCNTOE,'0','0');
+A(12) <= dat_reg(0)
+	 XOR 
+A(12) <= s_ATEMP(12);
+A(12) <= A_I(12) when A_OE(12) = '1' else 'Z';
+A_OE(12) <= NOT Mtrien_A;
+
+FDCPE_A13: FDCPE port map (A_I(13),A(13),NOT nCNTOE,'0','0');
+A(13) <= (dat_reg(0) AND s_ATEMP(12))
+	 XOR 
+A(13) <= ((dat_reg(1) AND NOT s_ATEMP(13))
+	OR (NOT dat_reg(1) AND s_ATEMP(13)));
+A(13) <= A_I(13) when A_OE(13) = '1' else 'Z';
+A_OE(13) <= NOT Mtrien_A;
+
+FDCPE_A14: FDCPE port map (A_I(14),A(14),NOT nCNTOE,'0','0');
+A(14) <= ((EXP14_.EXP)
+	OR (NOT dat_reg(0) AND NOT dat_reg(1) AND NOT dat_reg(2) AND 
+	s_ATEMP(14))
+	OR (NOT dat_reg(0) AND dat_reg(2) AND NOT s_ATEMP(13) AND 
+	NOT s_ATEMP(14))
+	OR (NOT dat_reg(1) AND NOT dat_reg(2) AND NOT s_ATEMP(13) AND 
+	s_ATEMP(14))
+	OR (NOT dat_reg(1) AND NOT dat_reg(2) AND s_ATEMP(14) AND 
+	NOT s_ATEMP(12))
+	OR (dat_reg(2) AND NOT s_ATEMP(13) AND NOT s_ATEMP(14) AND 
+	NOT s_ATEMP(12))
+	OR (NOT dat_reg(0) AND NOT dat_reg(2) AND NOT s_ATEMP(13) AND 
+	s_ATEMP(14))
+	OR (dat_reg(1) AND dat_reg(2) AND s_ATEMP(13) AND 
+	s_ATEMP(14))
+	OR (NOT dat_reg(2) AND NOT s_ATEMP(13) AND s_ATEMP(14) AND 
+	NOT s_ATEMP(12)));
+A(14) <= A_I(14) when A_OE(14) = '1' else 'Z';
+A_OE(14) <= NOT Mtrien_A;
+
+FDCPE_A15: FDCPE port map (A_I(15),A(15),NOT nCNTOE,'0','0');
+A(15) <= Madd_Mtridata_A_add0000_Mxor_Result(15)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(15)__xor0000_D
+	 XOR 
+A(15) <= ((dat_reg(1) AND dat_reg(2) AND s_ATEMP(13))
+	OR (dat_reg(0) AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(12))
+	OR (dat_reg(0) AND dat_reg(1) AND dat_reg(2) AND 
+	s_ATEMP(12))
+	OR (dat_reg(0) AND dat_reg(1) AND s_ATEMP(14) AND 
+	s_ATEMP(12))
+	OR (dat_reg(0) AND dat_reg(2) AND s_ATEMP(13) AND 
+	s_ATEMP(12))
+	OR (dat_reg(2) AND s_ATEMP(14))
+	OR (dat_reg(1) AND s_ATEMP(13) AND s_ATEMP(14)));
+A(15) <= A_I(15) when A_OE(15) = '1' else 'Z';
+A_OE(15) <= NOT Mtrien_A;
+
+FDCPE_A16: FDCPE port map (A_I(16),A(16),NOT nCNTOE,'0','0');
+A(16) <= Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D
+	 XOR 
+A(16) <= ((dat_reg(1) AND dat_reg(2) AND s_ATEMP(13) AND 
+	s_ATEMP(15))
+	OR (dat_reg(0) AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(12))
+	OR (EXP9_.EXP)
+	OR (dat_reg(2) AND dat_reg(3) AND s_ATEMP(14))
+	OR (dat_reg(1) AND dat_reg(3) AND s_ATEMP(13) AND 
+	s_ATEMP(14))
+	OR (dat_reg(0) AND dat_reg(1) AND dat_reg(2) AND 
+	s_ATEMP(15) AND s_ATEMP(12))
+	OR (dat_reg(0) AND dat_reg(1) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(12))
+	OR (dat_reg(0) AND dat_reg(2) AND s_ATEMP(13) AND 
+	s_ATEMP(15) AND s_ATEMP(12))
+	OR (dat_reg(2) AND s_ATEMP(14) AND s_ATEMP(15))
+	OR (dat_reg(1) AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15)));
+A(16) <= A_I(16) when A_OE(16) = '1' else 'Z';
+A_OE(16) <= NOT Mtrien_A;
+
+FDCPE_A17: FDCPE port map (A_I(17),A(17),NOT nCNTOE,'0','0');
+A(17) <= Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D
+	 XOR 
+A(17) <= ((dat_reg(0) AND dat_reg(1) AND dat_reg(2) AND 
+	dat_reg(3) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(2) AND dat_reg(3) AND 
+	s_ATEMP(13) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D)
+	OR (EXP7_.EXP)
+	OR (dat_reg(1) AND dat_reg(3) AND s_ATEMP(13) AND 
+	s_ATEMP(14) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(1) AND dat_reg(2) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(1) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(2) AND s_ATEMP(13) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D)
+	OR (dat_reg(0) AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(1) AND dat_reg(3) AND 
+	s_ATEMP(14) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(3) AND s_ATEMP(13) AND 
+	s_ATEMP(14) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D));
+A(17) <= A_I(17) when A_OE(17) = '1' else 'Z';
+A_OE(17) <= NOT Mtrien_A;
+
+FDCPE_A18: FDCPE port map (A_I(18),A(18),NOT nCNTOE,'0','0');
+A(18) <= Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D
+	 XOR 
+A(18) <= ((EXP12_.EXP)
+	OR (dat_reg(0) AND dat_reg(1) AND dat_reg(2) AND 
+	dat_reg(3) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(1) AND dat_reg(3) AND 
+	s_ATEMP(14) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(1) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(2) AND dat_reg(3) AND 
+	s_ATEMP(13) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D)
+	OR (dat_reg(0) AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(3) AND s_ATEMP(13) AND 
+	s_ATEMP(14) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D));
+A(18) <= A_I(18) when A_OE(18) = '1' else 'Z';
+A_OE(18) <= NOT Mtrien_A;
+
+FDCPE_A19: FDCPE port map (A_I(19),A(19),NOT nCNTOE,'0','0');
+A(19) <= Madd_Mtridata_A_add0000_Mxor_Result(19)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(19)__xor0000_D
+	 XOR 
+A(19) <= ((dat_reg(0) AND dat_reg(1) AND dat_reg(2) AND 
+	dat_reg(3) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(1) AND dat_reg(3) AND 
+	s_ATEMP(14) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D)
+	OR (EXP10_.EXP)
+	OR (dat_reg(1) AND dat_reg(3) AND s_ATEMP(13) AND 
+	s_ATEMP(14) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(1) AND dat_reg(2) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(1) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(2) AND s_ATEMP(13) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D)
+	OR (dat_reg(0) AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(2) AND dat_reg(3) AND 
+	s_ATEMP(13) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D)
+	OR (dat_reg(0) AND dat_reg(3) AND s_ATEMP(13) AND 
+	s_ATEMP(14) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D));
+A(19) <= A_I(19) when A_OE(19) = '1' else 'Z';
+A_OE(19) <= NOT Mtrien_A;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FDCPE_Madd_Mtridata_A_add0000_Mxor_Result1__xor0000: FDCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_D(1)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_D(1)__xor0000 <= ((nCNTCE AND Mtridata_A_add0000(0) AND 
+	NOT Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000)
+	OR (nCNTCE AND NOT Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result2__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(2)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(2)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result3__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(3)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(3)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result4__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(4)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(4)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result5__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(5)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(5)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result6__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(6)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(6)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result7__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(7)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(7)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result8__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(8)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(8)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result9__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(9)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(9)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result10__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(10)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(10)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+FTCPE_Madd_Mtridata_A_add0000_Mxor_Result11__xor0000: FTCPE port map (Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000,Madd_Mtridata_A_add0000_Mxor_Result_T(11)__xor0000,NOT nACLK,'0','0');
+Madd_Mtridata_A_add0000_Mxor_Result_T(11)__xor0000 <= ((NOT nCNTCE AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000)
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+
+Madd_Mtridata_A_add0000_Mxor_Result(15)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(15)__xor0000_D <= dat_reg(3)
+	 XOR 
+Madd_Mtridata_A_add0000_Mxor_Result(15)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(15)__xor0000_D <= s_ATEMP(15);
+
+
+Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D <= dat_reg(4)
+	 XOR 
+Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(16)__xor0000_D <= s_ATEMP(16);
+
+
+Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D <= dat_reg(5)
+	 XOR 
+Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(17)__xor0000_D <= s_ATEMP(17);
+
+
+Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D <= dat_reg(6)
+	 XOR 
+Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(18)__xor0000_D <= s_ATEMP(18);
+
+
+Madd_Mtridata_A_add0000_Mxor_Result(19)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(19)__xor0000_D <= dat_reg(7)
+	 XOR 
+Madd_Mtridata_A_add0000_Mxor_Result(19)__xor0000/Madd_Mtridata_A_add0000_Mxor_Result(19)__xor0000_D <= s_ATEMP(19);
+
+FDCPE_Mtridata_A_add00000: FDCPE port map (Mtridata_A_add0000(0),Mtridata_A_add0000_D(0),NOT nACLK,'0','0');
+Mtridata_A_add0000_D(0) <= (nCNTCE AND NOT Mtridata_A_add0000(0));
+
+FDCPE_Mtrien_A: FDCPE port map (Mtrien_A,Mtrien_A_D,NOT nCNTOE,'0','0');
+Mtrien_A_D <= (NOT nCNTOE AND NOT nCPUFREE);
+
+FDCPE_dat_reg0: FDCPE port map (dat_reg(0),MOSI,SCK,'0','0',NOT nCNTCE);
+
+FDCPE_dat_reg1: FDCPE port map (dat_reg(1),dat_reg(0),SCK,'0','0',NOT nCNTCE);
+
+FDCPE_dat_reg2: FDCPE port map (dat_reg(2),dat_reg(1),SCK,'0','0',NOT nCNTCE);
+
+FDCPE_dat_reg3: FDCPE port map (dat_reg(3),dat_reg(2),SCK,'0','0',NOT nCNTCE);
+
+FDCPE_dat_reg4: FDCPE port map (dat_reg(4),dat_reg(3),SCK,'0','0',NOT nCNTCE);
+
+FDCPE_dat_reg5: FDCPE port map (dat_reg(5),dat_reg(4),SCK,'0','0',NOT nCNTCE);
+
+FDCPE_dat_reg6: FDCPE port map (dat_reg(6),dat_reg(5),SCK,'0','0',NOT nCNTCE);
+
+FDCPE_dat_reg7: FDCPE port map (dat_reg(7),dat_reg(6),SCK,'0','0',NOT nCNTCE);
+
+FTCPE_s_ATEMP12: FTCPE port map (s_ATEMP(12),s_ATEMP_T(12),NOT nACLK,'0','0');
+s_ATEMP_T(12) <= ((NOT nCNTCE AND s_ATEMP(12))
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+FTCPE_s_ATEMP13: FTCPE port map (s_ATEMP(13),s_ATEMP_T(13),NOT nACLK,'0','0');
+s_ATEMP_T(13) <= ((NOT nCNTCE AND s_ATEMP(13))
+	OR (nCNTCE AND Mtridata_A_add0000(0) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+FTCPE_s_ATEMP14: FTCPE port map (s_ATEMP(14),s_ATEMP_T(14),NOT nACLK,'0','0');
+s_ATEMP_T(14) <= ((NOT nCNTCE AND s_ATEMP(14))
+	OR (nCNTCE AND s_ATEMP(13) AND Mtridata_A_add0000(0) AND 
+	s_ATEMP(12) AND Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+FTCPE_s_ATEMP15: FTCPE port map (s_ATEMP(15),s_ATEMP_T(15),NOT nACLK,'0','0');
+s_ATEMP_T(15) <= ((NOT nCNTCE AND s_ATEMP(15))
+	OR (nCNTCE AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	Mtridata_A_add0000(0) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+FTCPE_s_ATEMP16: FTCPE port map (s_ATEMP(16),s_ATEMP_T(16),NOT nACLK,'0','0');
+s_ATEMP_T(16) <= ((NOT nCNTCE AND s_ATEMP(16))
+	OR (nCNTCE AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND Mtridata_A_add0000(0) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+FTCPE_s_ATEMP17: FTCPE port map (s_ATEMP(17),s_ATEMP_T(17),NOT nACLK,'0','0');
+s_ATEMP_T(17) <= ((NOT nCNTCE AND s_ATEMP(17))
+	OR (nCNTCE AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(16) AND Mtridata_A_add0000(0) AND 
+	s_ATEMP(12) AND Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+FTCPE_s_ATEMP18: FTCPE port map (s_ATEMP(18),s_ATEMP_T(18),NOT nACLK,'0','0');
+s_ATEMP_T(18) <= ((NOT nCNTCE AND s_ATEMP(18))
+	OR (nCNTCE AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(16) AND s_ATEMP(17) AND 
+	Mtridata_A_add0000(0) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+FTCPE_s_ATEMP19: FTCPE port map (s_ATEMP(19),s_ATEMP_T(19),NOT nACLK,'0','0');
+s_ATEMP_T(19) <= ((NOT nCNTCE AND s_ATEMP(19))
+	OR (nCNTCE AND s_ATEMP(13) AND s_ATEMP(14) AND 
+	s_ATEMP(15) AND s_ATEMP(16) AND s_ATEMP(17) AND s_ATEMP(18) AND 
+	Mtridata_A_add0000(0) AND s_ATEMP(12) AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(10)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(11)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(1)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(2)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(3)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(4)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(5)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(6)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(7)__xor0000 AND Madd_Mtridata_A_add0000_Mxor_Result(8)__xor0000 AND 
+	Madd_Mtridata_A_add0000_Mxor_Result(9)__xor0000));
+
+Register Legend:
+ FDCPE (Q,D,C,CLR,PRE,CE); 
+ FTCPE (Q,D,C,CLR,PRE,CE); 
+ LDCP  (Q,D,G,CLR,PRE); 
+
+******************************  Device Pin Out *****************************
+
+Device : XC9572XL-10-VQ44
+
+
+   --------------------------------  
+  /44 43 42 41 40 39 38 37 36 35 34 \
+ | 1                             33 | 
+ | 2                             32 | 
+ | 3                             31 | 
+ | 4                             30 | 
+ | 5        XC9572XL-10-VQ44     29 | 
+ | 6                             28 | 
+ | 7                             27 | 
+ | 8                             26 | 
+ | 9                             25 | 
+ | 10                            24 | 
+ | 11                            23 | 
+ \ 12 13 14 15 16 17 18 19 20 21 22 /
+   --------------------------------  
+
+
+Pin Signal                         Pin Signal                        
+No. Name                           No. Name                          
+  1 KPR                              23 MOSI                          
+  2 A<1>                             24 TDO                           
+  3 A<2>                             25 GND                           
+  4 GND                              26 VCC                           
+  5 A<3>                             27 A<14>                         
+  6 A<4>                             28 A<19>                         
+  7 A<5>                             29 nACLK                         
+  8 A<6>                             30 A<11>                         
+  9 TDI                              31 A<15>                         
+ 10 TMS                              32 KPR                           
+ 11 TCK                              33 A<13>                         
+ 12 A<7>                             34 A<17>                         
+ 13 KPR                              35 VCC                           
+ 14 A<16>                            36 A<8>                          
+ 15 VCC                              37 A<12>                         
+ 16 KPR                              38 A<9>                          
+ 17 GND                              39 nCPUFREE                      
+ 18 KPR                              40 A<10>                         
+ 19 nCNTCE                           41 A<0>                          
+ 20 KPR                              42 nCNTOE                        
+ 21 SCK                              43 KPR                           
+ 22 A<18>                            44 KPR                           
+
+
+Legend :  NC  = Not Connected, unbonded pin
+         PGND = Unused I/O configured as additional Ground pin
+         TIE  = Unused I/O floating -- must tie to VCC, GND or other signal
+         KPR  = Unused I/O with weak keeper (leave unconnected)
+         VCC  = Dedicated Power Pin
+         GND  = Dedicated Ground Pin
+         TDI  = Test Data In, JTAG pin
+         TDO  = Test Data Out, JTAG pin
+         TCK  = Test Clock, JTAG pin
+         TMS  = Test Mode Select, JTAG pin
+  PROHIBITED  = User reserved pin
+****************************  Compiler Options  ****************************
+
+Following is a list of all global compiler options used by the fitter run.
+
+Device(s) Specified                         : XC9572XL-10-VQ44
+Optimization Method                         : SPEED
+Multi-Level Logic Optimization              : ON
+Ignore Timing Specifications                : OFF
+Default Register Power Up Value             : LOW
+Keep User Location Constraints              : ON
+What-You-See-Is-What-You-Get                : OFF
+Exhaustive Fitting                          : OFF
+Keep Unused Inputs                          : OFF
+Slew Rate                                   : FAST
+Power Mode                                  : STD
+Ground on Unused IOs                        : OFF
+Set I/O Pin Termination                     : KEEPER
+Global Clock Optimization                   : ON
+Global Set/Reset Optimization               : ON
+Global Ouput Enable Optimization            : ON
+Input Limit                                 : 54
+Pterm Limit                                 : 25

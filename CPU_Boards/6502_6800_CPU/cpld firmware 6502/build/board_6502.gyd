@@ -1,6 +1,6 @@
 Pin Freeze File:  version P.20131013
 
-9572XL44VQ XC9572XL-10-VQ44
+9536XL44VQ XC9536XL-10-VQ44
 CLKF S:PIN3
 PHI2CPU S:PIN37
 RnW S:PIN36
@@ -17,13 +17,10 @@ nPH0 S:PIN2
 ;The remaining section of the .gyd file is for documentation purposes only.
 ;It shows where your internal equations were placed in the last successful fit.
 
-PARTITION FB1_9 nBUSFREE_OBUF
-PARTITION FB1_14 clk_divider<2> nPH0_OBUF
-
-PARTITION FB2_6 nDOE_OBUF
-PARTITION FB2_8 nDOE_OBUF$BUF0 nMWR_OBUF
-PARTITION FB2_11 nMRD_OBUF
-
-PARTITION FB3_17 clk_divider<0> clk_divider<1>
+PARTITION FB1_3 nBUSFREE_OBUF
+PARTITION FB1_6 nPH0_OBUF clk_divider<2>
+PARTITION FB1_17 clk_divider<0> clk_divider<1>
+PARTITION FB2_5 nMRD_OBUF nMWR_OBUF nDOE_OBUF$BUF0 nDOE_OBUF
+		
 
 

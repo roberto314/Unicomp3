@@ -1,0 +1,1 @@
+run -ifn dc5.prj -ofn dc5.ngc -ifmt mixed  -top dc5 -ofmt NGC -p XC9572XL-10-VQ44

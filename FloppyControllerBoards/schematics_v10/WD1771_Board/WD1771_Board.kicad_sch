@@ -14818,6 +14818,17 @@
 		)
 		(uuid "ff5c06fc-53d8-4a24-bfe9-9d0508c11b6e")
 	)
+	(text "Adjustment Procedure:\n\nData Separator:\n.) Switch on or Reset\n.) Ground Test Pin (TP5 - TP1)\n.) Observe the pulse width on pin 29 of the WD2797 (TP3)\n.) Adjust R4 (RPW) for 500ns Pulsewidth\n.) Observe the frequency on pin 16 of the WD2797 (TP4)\n.) Adjust C7 for 250 kHz\n\nWrite Precompensation:\n.) Observe the pulse width on pin 31 of the WD2797 (TP2)\n.) Adjust R5 (WPW) for 250ns\n"
+		(exclude_from_sim no)
+		(at 217.932 198.374 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "30f48746-30d3-46ca-86dd-3cb72d308f60")
+	)
 	(text "also Head Load"
 		(exclude_from_sim no)
 		(at 168.021 207.645 0)
@@ -14828,6 +14839,17 @@
 		)
 		(uuid "49c45ad4-6f7e-4d8c-b536-30c8cc814a34")
 	)
+	(text "TODO:\n~{DOE} to CPLD (use DRV Pin),\n~{CE1} to CPLD (with Solder Bridge),\ncheck HeadLoad end DENSEL Signal (Output or Input) and route it ot CPLD,\n~{INTRQ} and DRQ to EXT Connector (J32),\nch. CPLD #WG to #IDX,\nMake Testpoints for Adjustment (Pin16, 22, 29, 31, GND)\n\n"
+		(exclude_from_sim no)
+		(at 300.736 242.062 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "57f70039-a4e2-4606-a4b0-52ee7d694f27")
+	)
 	(text "Change the 7540 and 7541 to 7.5mm Package \nas they are not available in 5.3mm Package!"
 		(exclude_from_sim no)
 		(at 211.074 83.312 0)
@@ -14837,6 +14859,17 @@
 			)
 		)
 		(uuid "8eb164a7-e765-4ed8-a055-819b42922eb4")
+	)
+	(text "For FM, DDEN# should be placed to logical \"1.\" \nFor MFM formats, DDEN# should be placed to a logical \" 0.\" "
+		(exclude_from_sim no)
+		(at 117.094 191.516 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "95b9105a-a78e-4274-8742-834ee0021a36")
 	)
 	(text "PC | FLOPPY"
 		(exclude_from_sim no)

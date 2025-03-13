@@ -10,7 +10,7 @@
 		(rev "v1.1")
 		(company "100% Offner")
 		(comment 1 "v1.0: Initial")
-		(comment 2 "v1.1: CTRL0 and CTRL1 ch. to Pulldown, second LED shows ~{RST}, U21 new")
+		(comment 2 "v1.1: CTRL0 and CTRL1 ch. to Pulldown, second LED shows ~{RST}, U21 new, R/W Pullup")
 	)
 	(lib_symbols
 		(symbol "74xGxx:74AHC1G14"
@@ -15625,6 +15625,16 @@
 	)
 	(wire
 		(pts
+			(xy 137.16 220.98) (xy 137.16 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1575a183-5085-4a35-bb79-12cb7a4507e4")
+	)
+	(wire
+		(pts
 			(xy 275.59 222.25) (xy 280.67 222.25)
 		)
 		(stroke
@@ -24210,6 +24220,17 @@
 		)
 		(uuid "5bfbba51-55b3-49f4-8094-4da2afdcd2d4")
 	)
+	(label "R{slash}~{W}_e"
+		(at 137.16 229.87 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5cb9ca46-2e7a-4172-9fec-45e29ceba94e")
+	)
 	(label "A12"
 		(at 212.09 204.47 270)
 		(fields_autoplaced yes)
@@ -27560,6 +27581,72 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
+		(at 137.16 215.9 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "176d8135-0ee1-4a15-af56-3296aac8a854")
+		(property "Reference" "#PWR0133"
+			(at 137.16 219.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 137.16 212.3242 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 137.16 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 137.16 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 137.16 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "393dc4a2-5ebb-458c-8891-ef44e562ab98")
+		)
+		(instances
+			(project "schematics_v11"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0"
+					(reference "#PWR0133")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
 		(at 109.22 152.4 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -29902,6 +29989,75 @@
 			(project "schematics_v11"
 				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0"
 					(reference "H5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 137.16 218.44 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3d11e32b-ca86-4413-b401-758d5e3d5f92")
+		(property "Reference" "R11"
+			(at 138.43 217.805 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1k"
+			(at 138.6586 220.1422 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+			(at 137.16 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 137.16 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 137.16 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a73f7ac0-5257-4690-b6c1-59c3cc9b007d")
+		)
+		(pin "2"
+			(uuid "2907ddf5-905b-487b-9ed8-4d6c04fbb485")
+		)
+		(instances
+			(project "schematics_v11"
+				(path "/2eaa3998-c9cb-43b1-9b23-df656c8158b0"
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -38133,7 +38289,7 @@
 	)
 	(symbol
 		(lib_id "Graphic:Logo_Open_Hardware_Small")
-		(at 398.78 261.62 0)
+		(at 401.32 247.65 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -38142,7 +38298,7 @@
 		(fields_autoplaced yes)
 		(uuid "c870290b-3ed0-444f-acb8-ce4600a4d031")
 		(property "Reference" "#SYM1"
-			(at 398.78 254.635 0)
+			(at 401.32 240.665 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -38151,7 +38307,7 @@
 			)
 		)
 		(property "Value" "Logo_Open_Hardware_Small"
-			(at 398.78 267.335 0)
+			(at 401.32 253.365 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -38160,7 +38316,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 398.78 261.62 0)
+			(at 401.32 247.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -38169,7 +38325,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 398.78 261.62 0)
+			(at 401.32 247.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -38178,7 +38334,7 @@
 			)
 		)
 		(property "Description" "Open Hardware logo, small"
-			(at 398.78 261.62 0)
+			(at 401.32 247.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)

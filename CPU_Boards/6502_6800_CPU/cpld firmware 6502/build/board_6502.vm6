@@ -1,8 +1,8 @@
 NDS Database:  version P.20131013
 
-NDS_INFO | xc9500xl | 9572XL44VQ | XC9572XL-10-VQ44
+NDS_INFO | xc9500xl | 9536XL44VQ | XC9536XL-10-VQ44
 
-DEVICE | 9572XL | 9572XL44VQ | 
+DEVICE | 9536XL | 9536XL44VQ | 
 
 NETWORK | board_6502 | 0 | 0 | 16391
 
@@ -356,42 +356,33 @@ OUTPUT_NODE_TYPE | 0 | 6 | OI_OUT
 NODE | nPH0 | 354 | PO | 0 | 0 | board_6502_COPY_0_COPY_0 | NULL | NULL | nPH0 | 0 | 6 | OI_OUT
 
 FB_INSTANCE | FOOBAR1_ | board_6502_COPY_0_COPY_0 | 0 | 0 | 0
-FBPIN | 9 | nBUSFREE_OBUF | 1 | NULL | 0 | nBUSFREE | 1 | 43 | 57344
-FBPIN | 11 | NULL | 0 | nRST_IBUF | 1 | NULL | 0 | 44 | 57344
-FBPIN | 14 | clk_divider<2> | 1 | NULL | 0 | PH0 | 1 | 1 | 57344
-FBPIN | 15 | nPH0_OBUF | 1 | NULL | 0 | nPH0 | 1 | 2 | 49152
-FBPIN | 17 | NULL | 0 | CLKF_IBUF | 1 | NULL | 0 | 3 | 49152
-
-FB_INSTANCE | FOOBAR2_ | board_6502_COPY_0_COPY_0 | 0 | 0 | 0
-FBPIN | 6 | nDOE_OBUF | 1 | NULL | 0 | nDOE | 1 | 31 | 49152
-FBPIN | 8 | nDOE_OBUF$BUF0 | 1 | NULL | 0 | nAOE | 1 | 32 | 49152
-FBPIN | 9 | nMWR_OBUF | 1 | NULL | 0 | nMWR | 1 | 33 | 51200
-FBPIN | 11 | nMRD_OBUF | 1 | NULL | 0 | nMRD | 1 | 34 | 53248
-FBPIN | 14 | NULL | 0 | RnW_IBUF | 1 | NULL | 0 | 36 | 53248
-FBPIN | 15 | NULL | 0 | PHI2CPU_IBUF | 1 | NULL | 0 | 37 | 49152
-
-FB_INSTANCE | FOOBAR3_ | board_6502_COPY_0_COPY_0 | 0 | 0 | 0
-FBPIN | 17 | clk_divider<0> | 1 | NULL | 0 | NULL | 0 | 16 | 49152
+FBPIN | 3 | nBUSFREE_OBUF | 1 | NULL | 0 | nBUSFREE | 1 | 43 | 57344
+FBPIN | 5 | NULL | 0 | nRST_IBUF | 1 | NULL | 0 | 44 | 57344
+FBPIN | 6 | nPH0_OBUF | 1 | NULL | 0 | nPH0 | 1 | 2 | 49152
+FBPIN | 7 | clk_divider<2> | 1 | NULL | 0 | PH0 | 1 | 1 | 57344
+FBPIN | 8 | NULL | 0 | CLKF_IBUF | 1 | NULL | 0 | 3 | 49152
+FBPIN | 17 | clk_divider<0> | 1 | NULL | 0 | NULL | 0 | 18 | 49152
 FBPIN | 18 | clk_divider<1> | 1 | NULL | 0 | NULL | 0
 
-FB_INSTANCE | FOOBAR4_ | board_6502_COPY_0_COPY_0 | 0 | 0 | 0
+FB_INSTANCE | FOOBAR2_ | board_6502_COPY_0_COPY_0 | 0 | 0 | 0
+FBPIN | 3 | NULL | 0 | RnW_IBUF | 1 | NULL | 0 | 36 | 53248
+FBPIN | 4 | NULL | 0 | PHI2CPU_IBUF | 1 | NULL | 0 | 37 | 49152
+FBPIN | 5 | nMRD_OBUF | 1 | NULL | 0 | nMRD | 1 | 34 | 53248
+FBPIN | 6 | nMWR_OBUF | 1 | NULL | 0 | nMWR | 1 | 33 | 51200
+FBPIN | 7 | nDOE_OBUF$BUF0 | 1 | NULL | 0 | nAOE | 1 | 32 | 49152
+FBPIN | 8 | nDOE_OBUF | 1 | NULL | 0 | nDOE | 1 | 31 | 49152
 
-FB_INSTANCE | INPUTPINS_FOOBAR5_ | board_6502_COPY_0_COPY_0 | 0 | 0 | 0
+FB_INSTANCE | INPUTPINS_FOOBAR3_ | board_6502_COPY_0_COPY_0 | 0 | 0 | 0
 
 BUSINFO | A<15:0> | 16 | 0 | 0 | A<0> | 15 | A<10> | 5 | A<11> | 4 | A<12> | 3 | A<13> | 2 | A<14> | 1 | A<15> | 0 | A<1> | 14 | A<2> | 13 | A<3> | 12 | A<4> | 11 | A<5> | 10 | A<6> | 9 | A<7> | 8 | A<8> | 7 | A<9> | 6
 
-FB_ORDER_OF_INPUTS | FOOBAR1_ | 12 | PHI2CPU | 37 | 31 | clk_divider<2> | NULL | 32 | CLKF | 3 | 44 | clk_divider<0> | NULL | 48 | nRST | 44
-FB_ORDER_OF_INPUTS | FOOBAR1_ | 52 | clk_divider<1> | NULL
+FB_ORDER_OF_INPUTS | FOOBAR1_ | 6 | clk_divider<2> | NULL | 8 | nRST | 44 | 12 | PHI2CPU | 37 | 19 | CLKF | 3 | 28 | clk_divider<1> | NULL
+FB_ORDER_OF_INPUTS | FOOBAR1_ | 31 | clk_divider<0> | NULL
 
-FB_IMUX_INDEX | FOOBAR1_ | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 102 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 13 | 132 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 52 | -1 | -1 | -1 | 122 | -1 | -1 | -1 | 53 | -1
-
-
-FB_ORDER_OF_INPUTS | FOOBAR2_ | 8 | RnW | 36 | 12 | PHI2CPU | 37 | 31 | clk_divider<2> | NULL | 48 | nRST | 44
-
-FB_IMUX_INDEX | FOOBAR2_ | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 98 | -1 | -1 | -1 | 102 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 13 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 122 | -1 | -1 | -1 | -1 | -1
+FB_IMUX_INDEX | FOOBAR1_ | -1 | -1 | -1 | -1 | -1 | -1 | 6 | -1 | 62 | -1 | -1 | -1 | 48 | -1 | -1 | -1 | -1 | -1 | -1 | 68 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 17 | -1 | -1 | 16 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1
 
 
-FB_ORDER_OF_INPUTS | FOOBAR3_ | 32 | CLKF | 3 | 44 | clk_divider<0> | NULL
+FB_ORDER_OF_INPUTS | FOOBAR2_ | 6 | clk_divider<2> | NULL | 8 | nRST | 44 | 10 | RnW | 36 | 12 | PHI2CPU | 37
 
-FB_IMUX_INDEX | FOOBAR3_ | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 132 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | 52 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1
+FB_IMUX_INDEX | FOOBAR2_ | -1 | -1 | -1 | -1 | -1 | -1 | 6 | -1 | 62 | -1 | 46 | -1 | 48 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1 | -1
 

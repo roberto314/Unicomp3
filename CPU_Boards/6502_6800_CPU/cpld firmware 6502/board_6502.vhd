@@ -2,6 +2,20 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.all;
 
+-- This is part of the UNICOMP Project
+-- Robert Offner 2024
+-- This file is for the 6502 CPU Board.
+-- Function:
+-- Generate PHI0 and NOT PHI0 for second CPU (divide by eight from CLK),
+-- Gen. RD and WR Signals,
+-- Gen. BUSFREE Signal (CPUFREE now)
+-- 
+-- v0.1
+--
+-- Version History:
+-- v0.1: Initial
+--
+
 entity board_6502 is
     Port ( 
         A        : in std_logic_vector(15 downto 0);

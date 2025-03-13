@@ -1,0 +1,57 @@
+Pin Freeze File:  version P.20131013
+
+9572XL44VQ XC9572XL-10-VQ44
+A3 S:PIN39
+CLK1 S:PIN21
+CLK8M S:PIN43
+DRQ S:PIN16
+E S:PIN38
+HLD S:PIN41
+RW S:PIN28
+SSO S:PIN44
+nCE0 S:PIN27
+nINTRQ S:PIN14
+nRST S:PIN40
+D<6> S:PIN30
+D<5> S:PIN31
+D<4> S:PIN32
+D<3> S:PIN33
+D<2> S:PIN34
+D<1> S:PIN36
+D<0> S:PIN37
+FDCCLK S:PIN23
+nDDEN S:PIN18
+nDOE S:PIN42
+nDSEN S:PIN5
+D<7> S:PIN29
+nINT S:PIN2
+nNMI S:PIN1
+DSA S:PIN6
+DSB S:PIN7
+HLT S:PIN22
+MOTCP S:PIN12
+nSIDE1 S:PIN8
+
+
+;The remaining section of the .gyd file is for documentation purposes only.
+;It shows where your internal equations were placed in the last successful fit.
+
+PARTITION FB1_8 nDOE_OBUF
+PARTITION FB1_14 nNMI_OBUF nINT_OBUF
+
+PARTITION FB2_1 headload_cnt<12> nINTRQ_IBUF$BUF0 headload_cnt<0> headload_cnt<2>
+		 DRQ_IBUF$BUF0 N0 headload_cnt<16> N0$BUF0
+		 N0$BUF1 headload_cnt<3> N0$BUF2 headload_cnt<4>
+		 headload_cnt<14> N0$BUF3 N0$BUF4 headload_cnt<5>
+		 EXP6_ headload_cnt<6>
+PARTITION FB3_1 EXP7_ nDSEN_OBUF
+PARTITION FB3_4 clk_divider<0> s_DSA s_HLDFLG s_CLKSTAT
+		 s_DSB s_SIDE1 motor_cnt<4> s_MOT
+		 clk_divider<1> s_DSEN motor_cnt<3> motor_cnt<2>
+		 nDDEN_OBUF motor_cnt<1> motor_cnt<0>
+PARTITION FB4_1 headload_cnt<9> EXP8_ EXP9_ headload_cnt<8>
+		 EXP10_ headload_cnt<10> headload_cnt<11> EXP11_
+		 headload_cnt<7> EXP12_ s_HLT headload_cnt<13>
+		 headload_cnt<15> clk_divider<2> headload_cnt<17> headload_cnt<18>
+		 headload_cnt<1> headload_cnt<19>
+

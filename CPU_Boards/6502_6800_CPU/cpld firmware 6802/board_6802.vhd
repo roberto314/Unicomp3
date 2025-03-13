@@ -2,6 +2,21 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.numeric_std.all;
 
+-- This is part of the UNICOMP Project
+-- Robert Offner 2024
+-- This file is for the 6802 CPU Board.
+-- Function:
+-- Generate PHI0 and NOT PHI0 for second CPU (divide by two from CLK),
+-- Gen. RD and WR Signals,
+-- Gen. BUSFREE Signal (CPUFREE now)
+-- Gen. E Signal to Bus
+-- 
+-- v0.1
+--
+-- Version History:
+-- v0.1: Initial
+--
+
 entity board_6802 is
     Port ( 
         A        : in std_logic_vector(15 downto 1);
@@ -41,14 +56,16 @@ architecture Behavioral of board_6802 is
 
 begin
 s_EVMA <= E_CPU AND VMA;
-E_Out <= s_EVMA;          --that works
+--E_Out <= s_EVMA;          --that works (MC6802 and MC6803)
+E_Out <= E_CPU;          --works on HD6303
 
 --s_nMRD <= NOT(RnW AND s_EVMA);       --try this again - doesn't work at all
---s_nMRD <= NOT(RnW AND E_CPU);          -- doesn't work at all
-s_nMRD <= NOT(RnW AND VMA);          -- test
+s_nMRD <= NOT(RnW AND E_CPU);          -- doesn't work at all (works on HD6303)
+--s_nMRD <= NOT(RnW AND VMA);          -- test (doesn't work on HD6303)
 
 --s_nMWR <= NOT((NOT RnW) AND VMA);    --works (not great)
-s_nMWR <= NOT((NOT RnW) AND s_EVMA); --works better!
+--s_nMWR <= NOT((NOT RnW) AND s_EVMA); --works better! (MC6803 and MC6802)
+s_nMWR <= NOT((NOT RnW) AND E_CPU); --works for HD6303
 
 --s_BUS <= nRST AND (NOT(s_PH0 OR s_BCLKWS) OR E_CPU); -- Reset must release bus bc. of STM32!
 --s_BUS <= nRST AND NOT s_BUSTEMP; --Test
@@ -56,7 +73,8 @@ s_nMWR <= NOT((NOT RnW) AND s_EVMA); --works better!
 
 --s_BUS <= nRST; --works fine
 --s_BUS <= nRST AND s_BCLKWS; -- works badly
-s_BUS <= nRST AND VMA; --works fine
+--s_BUS <= nRST AND VMA; --works fine
+s_BUS <= nRST AND E_CPU; --test
 
 nBUSFREE <= s_BUS;
 nAOE <= NOT(s_BUS); 
@@ -72,7 +90,7 @@ process (CLKF, E_CPU)
         if rising_edge(CLKF) then
             if E_CPU = '1' and s_ELEVEL = '0' then -- first high of E
                 s_ELEVEL <= '1';
-                clk_divider <= "0001"; -- sync cycle to 1
+                clk_divider <= "0000"; -- sync cycle to 1
                 --clk_divider <= (others => '0'); -- reset cycle
                 --clk_divider <= "0011"; -- set cycle to 3
             elsif E_CPU = '0' and s_ELEVEL = '1' then
@@ -102,10 +120,11 @@ PH0 <= s_CPUCLK;
 process (E_CPU)
     begin
         if rising_edge(E_CPU) then
+            nHALT <= '1';
             if nHALT_in = '1' then
-                nHALT <= '1';
+--                nHALT <= '1';
             else
-                nHALT <= '0';
+--                nHALT <= '0';
             end if;
         end if;
 end process;

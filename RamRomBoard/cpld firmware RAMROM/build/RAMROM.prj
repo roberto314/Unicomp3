@@ -1,0 +1,3 @@
+vhdl work "../RAMROM.vhd"
+vhdl work "../../../vhdl_components/spi_slave_in16.vhd"
+vhdl work "../../../vhdl_components/spi_slave_out16.vhd"

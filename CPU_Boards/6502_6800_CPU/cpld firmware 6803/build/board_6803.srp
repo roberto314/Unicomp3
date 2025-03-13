@@ -43,7 +43,9 @@ Optimization Effort                : 1
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6803/board_6803.vhd" in Library work.
+WARNING:HDLParsers:3607 - Unit work/board_6803 is now defined in a different file.  It was defined in "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6803/board_6803.vhd", and is now defined in "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6803/board_6803.vhd".
+WARNING:HDLParsers:3607 - Unit work/board_6803/Behavioral is now defined in a different file.  It was defined in "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6803/board_6803.vhd", and is now defined in "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6803/board_6803.vhd".
+Compiling vhdl file "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6803/board_6803.vhd" in Library work.
 Architecture behavioral of Entity board_6803 is up to date.
 
 =========================================================================
@@ -66,7 +68,7 @@ Entity <board_6803> analyzed. Unit <board_6803> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <board_6803>.
-    Related source file is "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6803/board_6803.vhd".
+    Related source file is "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6803/board_6803.vhd".
 WARNING:Xst:647 - Input <BA> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <A> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <VMA> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -158,15 +160,15 @@ Cell Usage :
 =========================================================================
 
 
-Total REAL time to Xst completion: 2.00 secs
-Total CPU time to Xst completion: 2.21 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 1.41 secs
  
 --> 
 
 
-Total memory usage is 495492 kilobytes
+Total memory usage is 495432 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   13 (   0 filtered)
+Number of warnings :   15 (   0 filtered)
 Number of infos    :    0 (   0 filtered)
 

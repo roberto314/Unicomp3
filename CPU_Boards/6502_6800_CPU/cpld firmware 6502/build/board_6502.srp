@@ -43,7 +43,7 @@ Optimization Effort                : 1
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6502/board_6502.vhd" in Library work.
+Compiling vhdl file "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6502/board_6502.vhd" in Library work.
 Architecture behavioral of Entity board_6502 is up to date.
 
 =========================================================================
@@ -66,7 +66,7 @@ Entity <board_6502> analyzed. Unit <board_6502> generated.
 Performing bidirectional port resolution...
 
 Synthesizing Unit <board_6502>.
-    Related source file is "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6502/board_6502.vhd".
+    Related source file is "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6502/board_6502.vhd".
 WARNING:Xst:1306 - Output <PHI1> is never assigned.
 WARNING:Xst:1306 - Output <PHI2> is never assigned.
 WARNING:Xst:647 - Input <A> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -152,12 +152,12 @@ Cell Usage :
 
 
 Total REAL time to Xst completion: 2.00 secs
-Total CPU time to Xst completion: 2.14 secs
+Total CPU time to Xst completion: 1.41 secs
  
 --> 
 
 
-Total memory usage is 494932 kilobytes
+Total memory usage is 494828 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   12 (   0 filtered)

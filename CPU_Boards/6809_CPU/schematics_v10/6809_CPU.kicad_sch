@@ -7,7 +7,7 @@
 	(title_block
 		(title "Unicomp v3 - 6809 Board")
 		(date "2023-06-29")
-		(rev "v1")
+		(rev "v1.0")
 		(company "100% Offner")
 		(comment 1 "v1: Initial")
 	)
@@ -13805,7 +13805,7 @@
 	)
 	(text "Poplate R25 and R26 for 6809.\n(~{DMA/BREQ} and MRDY)."
 		(exclude_from_sim no)
-		(at 92.71 109.855 0)
+		(at 84.074 114.3 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -13814,7 +13814,7 @@
 		)
 		(uuid "0042fe36-ee62-4f9d-96f3-61dfdf4661b6")
 	)
-	(text "6809 Signals:\nInputs:\n3(~{IRQ}), 2(~{NMI}), 4(~{FIRQ}), 37(~{RST}), 40(~{HALT}), 39(TSC/XTAL)\n\nOutputs:\n33(BUSY), 6(BA), 5(BS), 36(AVMA/MRDY)\n\nOutput on 6809E (and Input on 6809):\n34(E), 35(Q)\n38(LIC/EXTAL)\n33(BUSY/~{DMA})"
+	(text "6809 Signals:\nInputs on both:\n3(~{IRQ}), 2(~{NMI}), 4(~{FIRQ}), 37(~{RST}), 40(~{HALT}), 39(TSC/XTAL)\n\nOutputs on both:\n6(BA), 5(BS), \n\nDifferent signals \non 6809E and 6809:\n34(E - in), (E - out)\n35(Q - in), (Q - out)\n38(LIC - out), (EXTAL - in)\n33(BUSY - out), ~{DMA/BREQ} - in)\n36(AVMA - out), (MRDY - in)"
 		(exclude_from_sim no)
 		(at 185.166 51.308 0)
 		(effects

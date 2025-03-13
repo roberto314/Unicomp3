@@ -1,0 +1,8 @@
+V3 3
+FL /home/rob/Projects/Unicomp3/FloppyControllerBoards/cpld_firmware/dc5.vhd 2024/12/16.11:07:29 P.20131013
+EN work/dc5 1734343793 \
+      FL /home/rob/Projects/Unicomp3/FloppyControllerBoards/cpld_firmware/dc5.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/dc5/Behavioral 1734343794 \
+      FL /home/rob/Projects/Unicomp3/FloppyControllerBoards/cpld_firmware/dc5.vhd \
+      EN work/dc5 1734343793

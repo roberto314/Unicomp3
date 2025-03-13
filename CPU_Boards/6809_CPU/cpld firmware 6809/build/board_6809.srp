@@ -1,0 +1,181 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Reading design: board_6809.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "board_6809.prj"
+Input Format                       : mixed
+
+---- Target Parameters
+Output File Name                   : "board_6809.ngc"
+Output Format                      : NGC
+Target Device                      : XC9572XL-10-VQ44
+
+---- Source Options
+Top Module Name                    : board_6809
+
+=========================================================================
+
+WARNING:Xst:29 - Optimization Effort not specified
+The following parameters have been added:
+Optimization Goal                  : SPEED
+Optimization Effort                : 1
+
+=========================================================================
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "/home/rob/Projects/Unicomp3/CPU_Boards/6809_CPU/cpld firmware 6809/board_6809.vhd" in Library work.
+Entity <board_6809> compiled.
+Entity <board_6809> (Architecture <behavioral>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <board_6809> in library <work> (architecture <behavioral>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <board_6809> in library <work> (Architecture <behavioral>).
+Entity <board_6809> analyzed. Unit <board_6809> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <board_6809>.
+    Related source file is "/home/rob/Projects/Unicomp3/CPU_Boards/6809_CPU/cpld firmware 6809/board_6809.vhd".
+WARNING:Xst:647 - Input <BA> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <A> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <RES0> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <RES1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <s_ELEVEL> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 8x2-bit ROM for signal <clk_divider$rom0000>.
+    Found 3-bit up counter for signal <clk_divider>.
+    Found 1-bit register for signal <n_PH0>.
+    Found 1-bit register for signal <s_E>.
+    Found 1-bit register for signal <s_PH0>.
+    Found 1-bit register for signal <s_Q>.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   1 Counter(s).
+	inferred   4 D-type flip-flop(s).
+Unit <board_6809> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 8x2-bit ROM                                           : 1
+# Counters                                             : 1
+ 3-bit up counter                                      : 1
+# Registers                                            : 4
+ 1-bit register                                        : 4
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 1
+ 8x2-bit ROM                                           : 1
+# Counters                                             : 1
+ 3-bit up counter                                      : 1
+# Registers                                            : 4
+ Flip-Flops                                            : 4
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <board_6809> ...
+  implementation constraint: INIT=s	 : n_PH0
+  implementation constraint: INIT=s	 : s_Q
+  implementation constraint: INIT=s	 : s_PH0
+  implementation constraint: INIT=s	 : s_E
+INFO:Xst:2261 - The FF/Latch <s_PH0> in Unit <board_6809> is equivalent to the following FF/Latch, which will be removed : <clk_divider_0> 
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+Top Level Output File Name         : board_6809.ngc
+Output Format                      : NGC
+Optimization Goal                  : SPEED
+Keep Hierarchy                     : no
+Target Technology                  : XC9572XL-10-VQ44
+
+Design Statistics
+# IOs                              : 32
+
+Cell Usage :
+# BELS                             : 25
+#      AND2                        : 6
+#      AND3                        : 1
+#      INV                         : 10
+#      OR2                         : 6
+#      XOR2                        : 2
+# FlipFlops/Latches                : 6
+#      FD                          : 6
+# IO Buffers                       : 13
+#      IBUF                        : 3
+#      OBUF                        : 10
+=========================================================================
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 1.41 secs
+ 
+--> 
+
+
+Total memory usage is 495400 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    6 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
+

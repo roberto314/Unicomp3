@@ -1,2 +1,2 @@
-AR board_6803 behavioral "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6803/board_6803.vhd" sub00/vhpl01 1707766507
-EN board_6803 NULL "/home/rob/Data/rob/Projects/Unicomp2/6502_6802 Board v2/cpld firmware 6803/board_6803.vhd" sub00/vhpl00 1707766506
+AR board_6803 behavioral "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6803/board_6803.vhd" sub00/vhpl01 1734210546
+EN board_6803 NULL "/home/rob/Projects/Unicomp3/CPU_Boards/6502_6800_CPU/cpld firmware 6803/board_6803.vhd" sub00/vhpl00 1734210545

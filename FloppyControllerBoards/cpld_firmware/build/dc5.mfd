@@ -1,0 +1,1267 @@
+MDF Database:  version 1.0
+MDF_INFO | dc5 | XC9572XL-10-VQ44
+MACROCELL | 2 | 10 | s_MOT
+ATTRIBUTES | 4621058 | 0
+OUTPUTMC | 2 | 2 | 10 | 2 | 1
+INPUTS | 9 | MOTCP  | nRST  | nCE0  | E  | motor_cnt<0>  | motor_cnt<1>  | motor_cnt<2>  | motor_cnt<3>  | motor_cnt<4>
+INPUTMC | 6 | 2 | 10 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9
+INPUTP | 3 | 12 | 82 | 10
+EQ | 5 | 
+   MOTCP.T = MOTCP & !nRST
+	# !MOTCP & nRST & !nCE0 & E
+	# MOTCP & !motor_cnt<0> & !motor_cnt<1> & 
+	!motor_cnt<2> & !motor_cnt<3> & !motor_cnt<4>;
+   MOTCP.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 13 | clk_divider<2>
+ATTRIBUTES | 4490050 | 0
+OUTPUTMC | 1 | 3 | 12
+INPUTS | 21 | clk_divider<0>  | clk_divider<1>  | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<16>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | HLD  | s_HLDFLG
+INPUTMC | 19 | 2 | 3 | 2 | 11 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 1 | 6 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 2 | 5
+INPUTP | 2 | 12 | 13
+EXPORTS | 1 | 3 | 12
+EQ | 15 | 
+   FDCCLK.T = clk_divider<0> & clk_divider<1>;
+   FDCCLK.CLK = CLK8M;	// GCK
+   FDCCLK.CE = nRST;
+    clk_divider<2>.EXP  =  nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & headload_cnt<16> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & HLD & !s_HLDFLG
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 10 | s_HLT
+ATTRIBUTES | 4621062 | 0
+OUTPUTMC | 2 | 3 | 10 | 3 | 11
+INPUTS | 24 | nRST  | HLT  | HLD  | s_HLDFLG  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 22 | 3 | 10 | 2 | 5 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 2 | 12 | 13
+EXPORTS | 1 | 3 | 11
+EQ | 20 | 
+   HLT.T = !nRST & !HLT
+	# nRST & HLT & HLD & !s_HLDFLG
+	# !HLT & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<17> & !headload_cnt<18> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & !headload_cnt<19>;
+   HLT.CLK = CLK8M;	// GCK
+    s_HLT.EXP  =  nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & headload_cnt<14> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & headload_cnt<16> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 0 | 14 | nINT_OBUF
+ATTRIBUTES | 264962 | 0
+INPUTS | 4 | A3  | RW  | nCE0  | E
+INPUTP | 4 | 11 | 83 | 82 | 10
+EQ | 1 | 
+   !nINT = !A3 & RW & !nCE0 & E;
+
+MACROCELL | 0 | 13 | nNMI_OBUF
+ATTRIBUTES | 264962 | 0
+INPUTS | 3 | A3  | RW  | nCE0
+INPUTP | 3 | 11 | 83 | 82
+EQ | 1 | 
+   !nNMI = !A3 & !RW & !nCE0;
+
+MACROCELL | 1 | 2 | headload_cnt<0>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 26 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17 | 1 | 1 | 1 | 13 | 3 | 4 | 3 | 7 | 3 | 13
+INPUTS | 21 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 20 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 1 | 12
+EQ | 9 | 
+   !headload_cnt<0>.T = !nRST
+	# !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<17> & !headload_cnt<18> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & !headload_cnt<19>;
+   headload_cnt<0>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 5 | headload_cnt<10>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 25 | 3 | 10 | 1 | 2 | 3 | 4 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 3 | 17 | 1 | 1 | 3 | 1 | 3 | 9 | 3 | 13
+INPUTS | 18 | nRST  | headload_cnt<0>  | headload_cnt<15>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<19>  | headload_cnt<12>  | EXP10_.EXP  | headload_cnt<11>.EXP
+INPUTMC | 17 | 1 | 2 | 3 | 12 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 14 | 3 | 15 | 3 | 17 | 1 | 0 | 3 | 4 | 3 | 6
+INPUTP | 1 | 12
+IMPORTS | 2 | 3 | 4 | 3 | 6
+EQ | 47 | 
+   headload_cnt<10>.T = nRST & !headload_cnt<0> & headload_cnt<12> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<15> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<17> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<18> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & headload_cnt<19>
+;Imported pterms FB4_5
+	# nRST & !headload_cnt<0> & headload_cnt<10> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<11> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<13> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<14> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<16> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+;Imported pterms FB4_7
+	# nRST & !headload_cnt<0> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & HLD & !s_HLDFLG;
+   headload_cnt<10>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 6 | headload_cnt<11>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 25 | 3 | 10 | 1 | 2 | 3 | 4 | 3 | 1 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 3 | 17 | 1 | 1 | 3 | 9 | 3 | 13 | 3 | 5
+INPUTS | 19 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<15>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<19>  | HLD  | s_HLDFLG  | EXP11_.EXP
+INPUTMC | 17 | 1 | 2 | 3 | 5 | 3 | 12 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 14 | 3 | 15 | 3 | 17 | 2 | 5 | 3 | 7
+INPUTP | 2 | 12 | 13
+EXPORTS | 1 | 3 | 5
+IMPORTS | 1 | 3 | 7
+EQ | 51 | 
+   headload_cnt<11>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<15> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<17> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<18> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9> & 
+	headload_cnt<19>
+;Imported pterms FB4_8
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<11> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<12> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<13> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<14> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<16> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>;
+   headload_cnt<11>.CLK = CLK8M;	// GCK
+    headload_cnt<11>.EXP  =  nRST & !headload_cnt<0> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & HLD & !s_HLDFLG
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 1 | 0 | headload_cnt<12>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 23 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 1 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 3 | 17 | 3 | 9 | 3 | 13
+INPUTS | 19 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<15>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<19>  | headload_cnt<12>  | nINTRQ_IBUF$BUF0.EXP
+INPUTMC | 18 | 1 | 2 | 3 | 5 | 3 | 6 | 3 | 12 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 14 | 3 | 15 | 3 | 17 | 1 | 0 | 1 | 1
+INPUTP | 1 | 12
+IMPORTS | 1 | 1 | 1
+EQ | 42 | 
+   headload_cnt<12>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<12> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<15> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<17> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<18> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & headload_cnt<19>
+;Imported pterms FB2_2
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<13> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<14> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<16> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>;
+   headload_cnt<12>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 11 | headload_cnt<13>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 23 | 3 | 10 | 1 | 2 | 3 | 4 | 3 | 1 | 3 | 17 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 1 | 1 | 3 | 9 | 3 | 13
+INPUTS | 21 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<15>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<19>  | headload_cnt<13>  | s_HLT.EXP  | headload_cnt<15>.EXP
+INPUTMC | 20 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 12 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 14 | 3 | 15 | 3 | 17 | 3 | 11 | 3 | 10 | 3 | 12
+INPUTP | 1 | 12
+IMPORTS | 2 | 3 | 10 | 3 | 12
+EQ | 43 | 
+   headload_cnt<13>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & headload_cnt<13> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & headload_cnt<15> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & headload_cnt<17> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & headload_cnt<18> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & headload_cnt<19>
+;Imported pterms FB4_11
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & headload_cnt<14> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & headload_cnt<16> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+;Imported pterms FB4_13
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & HLD & !s_HLDFLG;
+   headload_cnt<13>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 1 | 12 | headload_cnt<14>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 21 | 3 | 10 | 1 | 2 | 3 | 4 | 3 | 1 | 3 | 17 | 3 | 9 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 1 | 3 | 13
+INPUTS | 21 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<15>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<19>  | headload_cnt<14>  | N0$BUF3.EXP
+INPUTMC | 20 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 3 | 12 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 14 | 3 | 15 | 3 | 17 | 1 | 12 | 1 | 13
+INPUTP | 1 | 12
+IMPORTS | 1 | 1 | 13
+EQ | 38 | 
+   headload_cnt<14>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	headload_cnt<14> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	headload_cnt<15> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	headload_cnt<17> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	headload_cnt<18> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9> & 
+	headload_cnt<19>
+;Imported pterms FB2_14
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	headload_cnt<16> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>;
+   headload_cnt<14>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 12 | headload_cnt<15>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 21 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 1 | 3 | 2 | 3 | 17 | 3 | 9
+INPUTS | 23 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<19>  | HLD  | s_HLDFLG  | clk_divider<2>.EXP
+INPUTMC | 21 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 14 | 3 | 15 | 3 | 17 | 2 | 5 | 3 | 13
+INPUTP | 2 | 12 | 13
+EXPORTS | 1 | 3 | 11
+IMPORTS | 1 | 3 | 13
+EQ | 43 | 
+   headload_cnt<15>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & headload_cnt<15> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & headload_cnt<17> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & headload_cnt<18> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & headload_cnt<19>
+;Imported pterms FB4_14
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & headload_cnt<16> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & HLD & !s_HLDFLG;
+   headload_cnt<15>.CLK = CLK8M;	// GCK
+    headload_cnt<15>.EXP  =  nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & HLD & !s_HLDFLG
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 1 | 6 | headload_cnt<16>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 20 | 3 | 10 | 1 | 2 | 3 | 4 | 3 | 1 | 3 | 17 | 3 | 9 | 1 | 1 | 1 | 13 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 3 | 13
+INPUTS | 21 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<17>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<18>  | headload_cnt<19>  | headload_cnt<16>
+INPUTMC | 20 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 3 | 14 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 15 | 3 | 17 | 1 | 6
+INPUTP | 1 | 12
+EQ | 25 | 
+   headload_cnt<16>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & headload_cnt<16> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & headload_cnt<17> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & headload_cnt<18> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & headload_cnt<19>;
+   headload_cnt<16>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 14 | headload_cnt<17>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 21 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 1 | 3 | 2 | 3 | 17 | 3 | 9
+INPUTS | 23 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<18>  | headload_cnt<19>  | HLD  | s_HLDFLG
+INPUTMC | 21 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 15 | 3 | 17 | 2 | 5
+INPUTP | 2 | 12 | 13
+EQ | 29 | 
+   headload_cnt<17>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	headload_cnt<17> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	headload_cnt<18> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9> & 
+	headload_cnt<19>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9> & HLD & 
+	!s_HLDFLG;
+   headload_cnt<17>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 15 | headload_cnt<18>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 21 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 1 | 3 | 2 | 3 | 17 | 3 | 9
+INPUTS | 23 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>  | HLD  | s_HLDFLG  | headload_cnt<18>
+INPUTMC | 21 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17 | 2 | 5 | 3 | 15
+INPUTP | 2 | 12 | 13
+EQ | 22 | 
+   headload_cnt<18>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<17> & headload_cnt<18> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<17> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & headload_cnt<19>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<17> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & HLD & !s_HLDFLG;
+   headload_cnt<18>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 16 | headload_cnt<1>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 26 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17 | 1 | 1 | 1 | 13 | 3 | 4 | 3 | 7 | 3 | 13
+INPUTS | 21 | headload_cnt<0>  | nRST  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 20 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 1 | 12
+EQ | 10 | 
+   !headload_cnt<1>.T = !nRST
+	# headload_cnt<0>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & !headload_cnt<19>;
+   headload_cnt<1>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 1 | 3 | headload_cnt<2>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 26 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17 | 1 | 1 | 1 | 13 | 3 | 4 | 3 | 7 | 3 | 13
+INPUTS | 21 | headload_cnt<1>  | headload_cnt<0>  | nRST  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 20 | 3 | 16 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 1 | 12
+EQ | 11 | 
+   !headload_cnt<2>.T = !nRST
+	# headload_cnt<0>
+	# headload_cnt<1>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9> & 
+	!headload_cnt<19>;
+   headload_cnt<2>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 1 | 9 | headload_cnt<3>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 26 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17 | 1 | 1 | 1 | 13 | 3 | 4 | 3 | 7 | 3 | 13
+INPUTS | 21 | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<0>  | nRST  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 20 | 3 | 16 | 1 | 3 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 1 | 12
+EQ | 11 | 
+   !headload_cnt<3>.T = !nRST
+	# headload_cnt<0>
+	# headload_cnt<1>
+	# headload_cnt<2>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & !headload_cnt<19>;
+   headload_cnt<3>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 1 | 11 | headload_cnt<4>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 26 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17 | 1 | 1 | 1 | 13 | 3 | 4 | 3 | 7 | 3 | 13
+INPUTS | 6 | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<0>  | nRST  | N0$BUF2.EXP
+INPUTMC | 5 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 2 | 1 | 10
+INPUTP | 1 | 12
+IMPORTS | 1 | 1 | 10
+EQ | 13 | 
+   !headload_cnt<4>.T = !nRST
+	# headload_cnt<0>
+	# headload_cnt<1>
+	# headload_cnt<2>
+	# headload_cnt<3>
+;Imported pterms FB2_11
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & !headload_cnt<19>;
+   headload_cnt<4>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 1 | 15 | headload_cnt<5>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 25 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 3 | 17 | 1 | 1 | 3 | 4 | 3 | 9 | 3 | 13
+INPUTS | 6 | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<0>  | N0$BUF4.EXP
+INPUTMC | 6 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 2 | 1 | 14
+IMPORTS | 1 | 1 | 14
+EQ | 14 | 
+   !headload_cnt<5>.T = headload_cnt<0>
+	# headload_cnt<1>
+	# headload_cnt<2>
+	# headload_cnt<3>
+	# headload_cnt<4>
+;Imported pterms FB2_15
+	# !nRST
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9> & 
+	!headload_cnt<19>;
+   headload_cnt<5>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 1 | 17 | headload_cnt<6>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 25 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 3 | 17 | 1 | 1 | 3 | 4 | 3 | 9 | 3 | 13
+INPUTS | 6 | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<0>  | EXP6_.EXP
+INPUTMC | 6 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 2 | 1 | 16
+IMPORTS | 1 | 1 | 16
+EQ | 14 | 
+   !headload_cnt<6>.T = headload_cnt<0>
+	# headload_cnt<1>
+	# headload_cnt<2>
+	# headload_cnt<3>
+	# headload_cnt<4>
+;Imported pterms FB2_17
+	# !nRST
+	# headload_cnt<5>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & !headload_cnt<19>;
+   headload_cnt<6>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 8 | headload_cnt<7>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 25 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 3 | 17 | 1 | 1 | 3 | 4 | 3 | 9 | 3 | 13
+INPUTS | 6 | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<0>  | EXP12_.EXP
+INPUTMC | 6 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 2 | 3 | 9
+IMPORTS | 1 | 3 | 9
+EQ | 15 | 
+   !headload_cnt<7>.T = headload_cnt<0>
+	# headload_cnt<1>
+	# headload_cnt<2>
+	# headload_cnt<3>
+	# headload_cnt<4>
+;Imported pterms FB4_10
+	# !nRST
+	# headload_cnt<5>
+	# headload_cnt<6>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & !headload_cnt<19>;
+   headload_cnt<7>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 3 | headload_cnt<8>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 26 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 3 | 17 | 1 | 1 | 3 | 1 | 3 | 4 | 3 | 9 | 3 | 13
+INPUTS | 6 | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<0>  | EXP9_.EXP
+INPUTMC | 6 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 2 | 3 | 2
+IMPORTS | 1 | 3 | 2
+EQ | 16 | 
+   !headload_cnt<8>.T = headload_cnt<0>
+	# headload_cnt<1>
+	# headload_cnt<2>
+	# headload_cnt<3>
+	# headload_cnt<4>
+;Imported pterms FB4_3
+	# !nRST
+	# headload_cnt<5>
+	# headload_cnt<6>
+	# headload_cnt<7>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<8> & !headload_cnt<9> & 
+	!headload_cnt<19>;
+   headload_cnt<8>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 0 | headload_cnt<9>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 26 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 1 | 13 | 3 | 17 | 1 | 1 | 3 | 1 | 3 | 4 | 3 | 9 | 3 | 13
+INPUTS | 7 | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<0>  | EXP8_.EXP  | headload_cnt<19>.EXP
+INPUTMC | 7 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 2 | 3 | 1 | 3 | 17
+IMPORTS | 2 | 3 | 1 | 3 | 17
+EQ | 21 | 
+   !headload_cnt<9>.T = headload_cnt<0>
+	# headload_cnt<1>
+	# headload_cnt<2>
+	# headload_cnt<3>
+	# headload_cnt<4>
+;Imported pterms FB4_2
+	# !nRST
+	# headload_cnt<8>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<9> & !headload_cnt<19> & !HLD
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<9> & !headload_cnt<19> & s_HLDFLG
+;Imported pterms FB4_18
+	# headload_cnt<5>
+	# headload_cnt<6>
+	# headload_cnt<7>;
+   headload_cnt<9>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 17 | motor_cnt<0>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 8 | 2 | 10 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9 | 2 | 0 | 2 | 15
+INPUTS | 11 | nRST  | nCE0  | motor_cnt<0>  | E  | motor_cnt<1>  | s_CLKSTAT  | CLK1  | motor_cnt<2>  | motor_cnt<3>  | motor_cnt<4>  | EXP7_.EXP
+INPUTMC | 7 | 2 | 17 | 2 | 16 | 2 | 6 | 2 | 14 | 2 | 13 | 2 | 9 | 2 | 0
+INPUTP | 4 | 12 | 82 | 10 | 65
+IMPORTS | 1 | 2 | 0
+EQ | 13 | 
+   motor_cnt<0>.T = nRST & !nCE0 & !motor_cnt<0> & E
+	# nRST & !motor_cnt<0> & motor_cnt<1> & !s_CLKSTAT & 
+	CLK1
+	# nRST & !motor_cnt<0> & motor_cnt<2> & !s_CLKSTAT & 
+	CLK1
+	# nRST & !motor_cnt<0> & motor_cnt<3> & !s_CLKSTAT & 
+	CLK1
+	# nRST & !motor_cnt<0> & motor_cnt<4> & !s_CLKSTAT & 
+	CLK1
+;Imported pterms FB3_1
+	# nRST & nCE0 & motor_cnt<0> & !s_CLKSTAT & CLK1
+	# nRST & motor_cnt<0> & !s_CLKSTAT & !E & CLK1;
+   motor_cnt<0>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 3 | 17 | headload_cnt<19>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 22 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 10 | 1 | 14 | 1 | 16 | 3 | 1 | 3 | 2 | 3 | 17 | 3 | 9 | 3 | 0
+INPUTS | 23 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | HLD  | s_HLDFLG  | headload_cnt<19>
+INPUTMC | 21 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 2 | 5 | 3 | 17
+INPUTP | 2 | 12 | 13
+EXPORTS | 1 | 3 | 0
+EQ | 18 | 
+   headload_cnt<19>.T = nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<17> & !headload_cnt<18> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & headload_cnt<19>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	!headload_cnt<14> & !headload_cnt<15> & !headload_cnt<16> & 
+	!headload_cnt<17> & !headload_cnt<18> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & HLD & !s_HLDFLG;
+   headload_cnt<19>.CLK = CLK8M;	// GCK
+    headload_cnt<19>.EXP  =  headload_cnt<5>
+	# headload_cnt<6>
+	# headload_cnt<7>
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 16 | motor_cnt<1>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 7 | 2 | 10 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9 | 2 | 15
+INPUTS | 11 | nRST  | nCE0  | motor_cnt<1>  | E  | motor_cnt<0>  | motor_cnt<2>  | s_CLKSTAT  | CLK1  | motor_cnt<3>  | motor_cnt<4>  | nDDEN_OBUF.EXP
+INPUTMC | 7 | 2 | 16 | 2 | 17 | 2 | 14 | 2 | 6 | 2 | 13 | 2 | 9 | 2 | 15
+INPUTP | 4 | 12 | 82 | 10 | 65
+IMPORTS | 1 | 2 | 15
+EQ | 13 | 
+   motor_cnt<1>.T = nRST & !nCE0 & !motor_cnt<1> & E
+	# nRST & !motor_cnt<0> & motor_cnt<1> & !s_CLKSTAT & 
+	!E & CLK1
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	motor_cnt<2> & !s_CLKSTAT & CLK1
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	motor_cnt<3> & !s_CLKSTAT & CLK1
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	motor_cnt<4> & !s_CLKSTAT & CLK1
+;Imported pterms FB3_16
+	# nRST & nCE0 & !motor_cnt<0> & motor_cnt<1> & 
+	!s_CLKSTAT & CLK1;
+   motor_cnt<1>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 14 | motor_cnt<2>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 6 | 2 | 10 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9
+INPUTS | 10 | nRST  | nCE0  | motor_cnt<2>  | E  | motor_cnt<0>  | motor_cnt<1>  | motor_cnt<3>  | s_CLKSTAT  | CLK1  | motor_cnt<4>
+INPUTMC | 6 | 2 | 14 | 2 | 17 | 2 | 16 | 2 | 13 | 2 | 6 | 2 | 9
+INPUTP | 4 | 12 | 82 | 10 | 65
+EQ | 10 | 
+   motor_cnt<2>.T = nRST & !nCE0 & !motor_cnt<2> & E
+	# nRST & nCE0 & !motor_cnt<0> & !motor_cnt<1> & 
+	motor_cnt<2> & !s_CLKSTAT & CLK1
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	motor_cnt<2> & !s_CLKSTAT & !E & CLK1
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	!motor_cnt<2> & motor_cnt<3> & !s_CLKSTAT & CLK1
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	!motor_cnt<2> & motor_cnt<4> & !s_CLKSTAT & CLK1;
+   motor_cnt<2>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 13 | motor_cnt<3>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 6 | 2 | 10 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9
+INPUTS | 10 | nRST  | nCE0  | motor_cnt<3>  | E  | motor_cnt<0>  | motor_cnt<1>  | motor_cnt<2>  | motor_cnt<4>  | s_CLKSTAT  | CLK1
+INPUTMC | 6 | 2 | 13 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 9 | 2 | 6
+INPUTP | 4 | 12 | 82 | 10 | 65
+EQ | 8 | 
+   motor_cnt<3>.T = nRST & !nCE0 & !motor_cnt<3> & E
+	# nRST & nCE0 & !motor_cnt<0> & !motor_cnt<1> & 
+	!motor_cnt<2> & motor_cnt<3> & !s_CLKSTAT & CLK1
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	!motor_cnt<2> & motor_cnt<3> & !s_CLKSTAT & !E & CLK1
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	!motor_cnt<2> & !motor_cnt<3> & motor_cnt<4> & !s_CLKSTAT & CLK1;
+   motor_cnt<3>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 3 | clk_divider<0>
+ATTRIBUTES | 4358976 | 0
+OUTPUTMC | 2 | 3 | 13 | 2 | 11
+INPUTS | 1 | nRST
+INPUTP | 1 | 12
+EQ | 3 | 
+   clk_divider<0>.T = Vcc;
+   clk_divider<0>.CLK = CLK8M;	// GCK
+   clk_divider<0>.CE = nRST;
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 9 | motor_cnt<4>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 6 | 2 | 10 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9
+INPUTS | 10 | nRST  | nCE0  | motor_cnt<4>  | E  | motor_cnt<0>  | motor_cnt<1>  | motor_cnt<2>  | motor_cnt<3>  | s_CLKSTAT  | CLK1
+INPUTMC | 6 | 2 | 9 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 6
+INPUTP | 4 | 12 | 82 | 10 | 65
+EQ | 4 | 
+   motor_cnt<4>.T = nRST & !nCE0 & motor_cnt<4> & E
+	# nRST & !motor_cnt<0> & !motor_cnt<1> & 
+	!motor_cnt<2> & !motor_cnt<3> & motor_cnt<4> & !s_CLKSTAT & CLK1;
+   motor_cnt<4>.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 6 | s_CLKSTAT
+ATTRIBUTES | 8553216 | 0
+OUTPUTMC | 8 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9 | 2 | 6 | 2 | 0 | 2 | 15
+INPUTS | 3 | nRST  | CLK1  | s_CLKSTAT
+INPUTMC | 1 | 2 | 6
+INPUTP | 2 | 12 | 65
+EQ | 3 | 
+   !s_CLKSTAT.D = nRST & !CLK1
+	# !nRST & !s_CLKSTAT;
+   s_CLKSTAT.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 5 | s_HLDFLG
+ATTRIBUTES | 8553216 | 0
+OUTPUTMC | 9 | 3 | 10 | 3 | 1 | 3 | 6 | 3 | 17 | 3 | 14 | 3 | 15 | 2 | 5 | 3 | 12 | 3 | 13
+INPUTS | 3 | nRST  | HLD  | s_HLDFLG
+INPUTMC | 1 | 2 | 5
+INPUTP | 2 | 12 | 13
+EQ | 3 | 
+   s_HLDFLG.D = nRST & HLD
+	# !nRST & s_HLDFLG;
+   s_HLDFLG.CLK = CLK8M;	// GCK
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 11 | clk_divider<1>
+ATTRIBUTES | 4358976 | 0
+OUTPUTMC | 1 | 3 | 13
+INPUTS | 2 | clk_divider<0>  | nRST
+INPUTMC | 1 | 2 | 3
+INPUTP | 1 | 12
+EQ | 3 | 
+   clk_divider<1>.T = clk_divider<0>;
+   clk_divider<1>.CLK = CLK8M;	// GCK
+   clk_divider<1>.CE = nRST;
+GLOBALS | 1 | 2 | CLK8M
+
+MACROCELL | 2 | 12 | s_DSEN
+ATTRIBUTES | 4326180 | 0
+OUTPUTMC | 2 | 2 | 12 | 2 | 1
+INPUTS | 7 | nRST  | s_DSEN  | A3  | RW  | nCE0  | D<7>.PIN  | E
+INPUTMC | 1 | 2 | 12
+INPUTP | 6 | 12 | 11 | 83 | 82 | 87 | 10
+EQ | 4 | 
+   s_DSEN.T = !nRST & !s_DSEN
+	# !A3 & !RW & !nCE0 & !s_DSEN & D<7>.PIN
+	# nRST & !A3 & !RW & !nCE0 & s_DSEN & !D<7>.PIN;
+   s_DSEN.CLK = !E;
+
+MACROCELL | 2 | 4 | s_DSA
+ATTRIBUTES | 4588322 | 0
+OUTPUTMC | 1 | 2 | 4
+INPUTS | 7 | nRST  | DSA  | A3  | RW  | nCE0  | D<0>.PIN  | E
+INPUTMC | 1 | 2 | 4
+INPUTP | 6 | 12 | 11 | 83 | 82 | 9 | 10
+EQ | 4 | 
+   DSA.T = !nRST & DSA
+	# !A3 & !RW & !nCE0 & DSA & !D<0>.PIN
+	# nRST & !A3 & !RW & !nCE0 & !DSA & D<0>.PIN;
+   DSA.CLK = !E;
+
+MACROCELL | 2 | 7 | s_DSB
+ATTRIBUTES | 4588322 | 0
+OUTPUTMC | 1 | 2 | 7
+INPUTS | 7 | nRST  | DSB  | A3  | RW  | nCE0  | D<1>.PIN  | E
+INPUTMC | 1 | 2 | 7
+INPUTP | 6 | 12 | 11 | 83 | 82 | 7 | 10
+EQ | 4 | 
+   DSB.T = !nRST & DSB
+	# !A3 & !RW & !nCE0 & DSB & !D<1>.PIN
+	# nRST & !A3 & !RW & !nCE0 & !DSB & D<1>.PIN;
+   DSB.CLK = !E;
+
+MACROCELL | 2 | 8 | s_SIDE1
+ATTRIBUTES | 4588322 | 0
+OUTPUTMC | 1 | 2 | 8
+INPUTS | 7 | nRST  | nSIDE1  | A3  | RW  | nCE0  | D<6>.PIN  | E
+INPUTMC | 1 | 2 | 8
+INPUTP | 6 | 12 | 11 | 83 | 82 | 88 | 10
+EQ | 4 | 
+   nSIDE1.T = !nRST & nSIDE1
+	# !A3 & !RW & !nCE0 & nSIDE1 & !D<6>.PIN
+	# nRST & !A3 & !RW & !nCE0 & !nSIDE1 & D<6>.PIN;
+   nSIDE1.CLK = !E;
+
+MACROCELL | 1 | 4 | DRQ_IBUF$BUF0
+ATTRIBUTES | 265986 | 0
+INPUTS | 6 | DRQ  | nRST  | A3  | RW  | nCE0  | E
+INPUTP | 6 | 52 | 12 | 11 | 83 | 82 | 10
+EQ | 2 | 
+   D<6> = DRQ;
+   D<6>.OE = nRST & !A3 & RW & !nCE0 & E;
+
+MACROCELL | 1 | 1 | nINTRQ_IBUF$BUF0
+ATTRIBUTES | 265986 | 0
+OUTPUTMC | 1 | 1 | 0
+INPUTS | 21 | nINTRQ  | nRST  | A3  | RW  | nCE0  | E  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<13>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<14>  | headload_cnt<16>
+INPUTMC | 15 | 1 | 2 | 3 | 5 | 3 | 6 | 3 | 11 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 1 | 12 | 1 | 6
+INPUTP | 6 | 50 | 12 | 11 | 83 | 82 | 10
+EXPORTS | 1 | 1 | 0
+EQ | 17 | 
+   D<7> = nINTRQ;
+   D<7>.OE = nRST & !A3 & RW & !nCE0 & E;
+    nINTRQ_IBUF$BUF0.EXP  =  nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<13> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<14> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & headload_cnt<16> & !headload_cnt<1> & 
+	!headload_cnt<2> & !headload_cnt<3> & !headload_cnt<4> & 
+	!headload_cnt<5> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9>
+
+MACROCELL | 0 | 7 | nDOE_OBUF
+ATTRIBUTES | 264962 | 0
+INPUTS | 3 | A3  | nCE0  | E
+INPUTP | 3 | 11 | 82 | 10
+EQ | 1 | 
+   !nDOE = A3 & !nCE0 & E;
+
+MACROCELL | 2 | 1 | nDSEN_OBUF
+ATTRIBUTES | 264962 | 0
+INPUTS | 2 | MOTCP  | s_DSEN
+INPUTMC | 2 | 2 | 10 | 2 | 12
+EQ | 1 | 
+   !nDSEN = MOTCP & !s_DSEN;
+
+MACROCELL | 1 | 5 | N0
+ATTRIBUTES | 265986 | 0
+INPUTS | 5 | nRST  | A3  | RW  | nCE0  | E
+INPUTP | 5 | 12 | 11 | 83 | 82 | 10
+EQ | 2 | 
+   D<5> = Gnd;
+   D<5>.OE = nRST & !A3 & RW & !nCE0 & E;
+
+MACROCELL | 1 | 7 | N0$BUF0
+ATTRIBUTES | 265986 | 0
+INPUTS | 5 | nRST  | A3  | RW  | nCE0  | E
+INPUTP | 5 | 12 | 11 | 83 | 82 | 10
+EQ | 2 | 
+   D<4> = Gnd;
+   D<4>.OE = nRST & !A3 & RW & !nCE0 & E;
+
+MACROCELL | 1 | 8 | N0$BUF1
+ATTRIBUTES | 265986 | 0
+INPUTS | 5 | nRST  | A3  | RW  | nCE0  | E
+INPUTP | 5 | 12 | 11 | 83 | 82 | 10
+EQ | 2 | 
+   D<3> = Gnd;
+   D<3>.OE = nRST & !A3 & RW & !nCE0 & E;
+
+MACROCELL | 1 | 10 | N0$BUF2
+ATTRIBUTES | 265986 | 0
+OUTPUTMC | 1 | 1 | 11
+INPUTS | 21 | nRST  | A3  | RW  | nCE0  | E  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 16 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 5 | 12 | 11 | 83 | 82 | 10
+EXPORTS | 1 | 1 | 11
+EQ | 8 | 
+   D<2> = Gnd;
+   D<2>.OE = nRST & !A3 & RW & !nCE0 & E;
+    N0$BUF2.EXP  =  !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & !headload_cnt<19>
+
+MACROCELL | 1 | 13 | N0$BUF3
+ATTRIBUTES | 265986 | 0
+OUTPUTMC | 1 | 1 | 12
+INPUTS | 20 | nRST  | A3  | RW  | nCE0  | E  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<16>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>
+INPUTMC | 15 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 6 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0
+INPUTP | 5 | 12 | 11 | 83 | 82 | 10
+EXPORTS | 1 | 1 | 12
+EQ | 8 | 
+   D<1> = Gnd;
+   D<1>.OE = nRST & !A3 & RW & !nCE0 & E;
+    N0$BUF3.EXP  =  nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	!headload_cnt<11> & !headload_cnt<12> & !headload_cnt<13> & 
+	headload_cnt<16> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+
+MACROCELL | 1 | 14 | N0$BUF4
+ATTRIBUTES | 265986 | 0
+OUTPUTMC | 1 | 1 | 15
+INPUTS | 20 | nRST  | A3  | RW  | nCE0  | E  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 15 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 5 | 12 | 11 | 83 | 82 | 10
+EXPORTS | 1 | 1 | 15
+EQ | 9 | 
+   D<0> = Gnd;
+   D<0>.OE = nRST & !A3 & RW & !nCE0 & E;
+    N0$BUF4.EXP  =  !nRST
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9> & 
+	!headload_cnt<19>
+
+MACROCELL | 2 | 15 | nDDEN_OBUF
+ATTRIBUTES | 264962 | 0
+OUTPUTMC | 1 | 2 | 16
+INPUTS | 7 | SSO  | nRST  | nCE0  | motor_cnt<0>  | motor_cnt<1>  | s_CLKSTAT  | CLK1
+INPUTMC | 3 | 2 | 17 | 2 | 16 | 2 | 6
+INPUTP | 4 | 21 | 12 | 82 | 65
+EXPORTS | 1 | 2 | 16
+EQ | 3 | 
+   nDDEN = !SSO;
+    nDDEN_OBUF.EXP  =  nRST & nCE0 & !motor_cnt<0> & motor_cnt<1> & 
+	!s_CLKSTAT & CLK1
+
+MACROCELL | 1 | 16 | EXP6_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 1 | 17
+INPUTS | 16 | nRST  | headload_cnt<5>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 15 | 1 | 15 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 1 | 12
+EXPORTS | 1 | 1 | 17
+EQ | 7 | 
+       EXP6_.EXP  =  !nRST
+	# headload_cnt<5>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<6> & !headload_cnt<7> & 
+	!headload_cnt<8> & !headload_cnt<9> & !headload_cnt<19>
+
+MACROCELL | 2 | 0 | EXP7_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 2 | 17
+INPUTS | 6 | nRST  | nCE0  | motor_cnt<0>  | s_CLKSTAT  | CLK1  | E
+INPUTMC | 2 | 2 | 17 | 2 | 6
+INPUTP | 4 | 12 | 82 | 65 | 10
+EXPORTS | 1 | 2 | 17
+EQ | 2 | 
+       EXP7_.EXP  =  nRST & nCE0 & motor_cnt<0> & !s_CLKSTAT & CLK1
+	# nRST & motor_cnt<0> & !s_CLKSTAT & !E & CLK1
+
+MACROCELL | 3 | 1 | EXP8_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 0
+INPUTS | 15 | nRST  | headload_cnt<8>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<9>  | headload_cnt<19>  | HLD  | s_HLDFLG
+INPUTMC | 13 | 3 | 3 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 0 | 3 | 17 | 2 | 5
+INPUTP | 2 | 12 | 13
+EXPORTS | 1 | 3 | 0
+EQ | 10 | 
+       EXP8_.EXP  =  !nRST
+	# headload_cnt<8>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<9> & !headload_cnt<19> & !HLD
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<9> & !headload_cnt<19> & s_HLDFLG
+
+MACROCELL | 3 | 2 | EXP9_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 3
+INPUTS | 16 | nRST  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 15 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 1 | 12
+EXPORTS | 1 | 3 | 3
+EQ | 9 | 
+       EXP9_.EXP  =  !nRST
+	# headload_cnt<5>
+	# headload_cnt<6>
+	# headload_cnt<7>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<8> & !headload_cnt<9> & 
+	!headload_cnt<19>
+
+MACROCELL | 3 | 4 | EXP10_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 5
+INPUTS | 16 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<11>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<16>
+INPUTMC | 15 | 1 | 2 | 3 | 5 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 6 | 3 | 11 | 1 | 12 | 1 | 6
+INPUTP | 1 | 12
+EXPORTS | 1 | 3 | 5
+EQ | 20 | 
+       EXP10_.EXP  =  nRST & !headload_cnt<0> & headload_cnt<10> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<11> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<13> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<14> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+	# nRST & !headload_cnt<0> & headload_cnt<16> & 
+	!headload_cnt<1> & !headload_cnt<2> & !headload_cnt<3> & 
+	!headload_cnt<4> & !headload_cnt<5> & !headload_cnt<6> & 
+	!headload_cnt<7> & !headload_cnt<8> & !headload_cnt<9>
+
+MACROCELL | 3 | 7 | EXP11_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 6
+INPUTS | 17 | nRST  | headload_cnt<0>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<1>  | headload_cnt<2>  | headload_cnt<3>  | headload_cnt<4>  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<16>
+INPUTMC | 16 | 1 | 2 | 3 | 5 | 3 | 6 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 1 | 0 | 3 | 11 | 1 | 12 | 1 | 6
+INPUTP | 1 | 12
+EXPORTS | 1 | 3 | 6
+EQ | 25 | 
+       EXP11_.EXP  =  nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<11> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<12> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<13> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<14> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+	# nRST & !headload_cnt<0> & !headload_cnt<10> & 
+	headload_cnt<16> & !headload_cnt<1> & !headload_cnt<2> & 
+	!headload_cnt<3> & !headload_cnt<4> & !headload_cnt<5> & 
+	!headload_cnt<6> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9>
+
+MACROCELL | 3 | 9 | EXP12_
+ATTRIBUTES | 2048 | 0
+OUTPUTMC | 1 | 3 | 8
+INPUTS | 16 | nRST  | headload_cnt<5>  | headload_cnt<6>  | headload_cnt<10>  | headload_cnt<11>  | headload_cnt<12>  | headload_cnt<13>  | headload_cnt<14>  | headload_cnt<15>  | headload_cnt<16>  | headload_cnt<17>  | headload_cnt<18>  | headload_cnt<7>  | headload_cnt<8>  | headload_cnt<9>  | headload_cnt<19>
+INPUTMC | 15 | 1 | 15 | 1 | 17 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 8 | 3 | 3 | 3 | 0 | 3 | 17
+INPUTP | 1 | 12
+EXPORTS | 1 | 3 | 8
+EQ | 8 | 
+       EXP12_.EXP  =  !nRST
+	# headload_cnt<5>
+	# headload_cnt<6>
+	# !headload_cnt<10> & !headload_cnt<11> & 
+	!headload_cnt<12> & !headload_cnt<13> & !headload_cnt<14> & 
+	!headload_cnt<15> & !headload_cnt<16> & !headload_cnt<17> & 
+	!headload_cnt<18> & !headload_cnt<7> & !headload_cnt<8> & 
+	!headload_cnt<9> & !headload_cnt<19>
+
+PIN | CLK8M | 4096 | 0 | N/A | 20 | 32 | 2 | 10 | 3 | 13 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 15 | 1 | 17 | 3 | 8 | 3 | 3 | 3 | 0 | 2 | 17 | 3 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 3 | 2 | 9 | 2 | 6 | 2 | 5 | 2 | 11
+PIN | nRST | 64 | 0 | N/A | 12 | 47 | 2 | 10 | 3 | 13 | 3 | 10 | 1 | 2 | 3 | 5 | 3 | 6 | 1 | 0 | 3 | 11 | 1 | 12 | 3 | 12 | 1 | 6 | 3 | 14 | 3 | 15 | 3 | 16 | 1 | 3 | 1 | 9 | 1 | 11 | 1 | 14 | 1 | 16 | 3 | 7 | 3 | 2 | 2 | 15 | 2 | 17 | 3 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 3 | 2 | 9 | 2 | 6 | 2 | 5 | 2 | 11 | 2 | 12 | 2 | 4 | 2 | 7 | 2 | 8 | 1 | 4 | 1 | 1 | 1 | 5 | 1 | 7 | 1 | 8 | 1 | 10 | 1 | 13 | 2 | 0 | 3 | 1 | 3 | 4 | 3 | 9
+PIN | E | 64 | 0 | N/A | 10 | 21 | 2 | 10 | 0 | 14 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9 | 2 | 12 | 2 | 4 | 2 | 7 | 2 | 8 | 1 | 4 | 1 | 1 | 0 | 7 | 1 | 5 | 1 | 7 | 1 | 8 | 1 | 10 | 1 | 13 | 1 | 14 | 2 | 0
+PIN | nCE0 | 64 | 0 | N/A | 82 | 23 | 2 | 10 | 0 | 14 | 0 | 13 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9 | 2 | 12 | 2 | 4 | 2 | 7 | 2 | 8 | 1 | 4 | 1 | 1 | 0 | 7 | 1 | 5 | 1 | 7 | 1 | 8 | 1 | 10 | 1 | 13 | 1 | 14 | 2 | 0 | 2 | 15
+PIN | HLD | 64 | 0 | N/A | 13 | 9 | 3 | 10 | 3 | 1 | 3 | 6 | 3 | 17 | 3 | 14 | 3 | 15 | 2 | 5 | 3 | 12 | 3 | 13
+PIN | A3 | 64 | 0 | N/A | 11 | 15 | 0 | 14 | 0 | 13 | 2 | 12 | 2 | 4 | 2 | 7 | 2 | 8 | 1 | 4 | 1 | 1 | 0 | 7 | 1 | 5 | 1 | 7 | 1 | 8 | 1 | 10 | 1 | 13 | 1 | 14
+PIN | RW | 64 | 0 | N/A | 83 | 14 | 0 | 14 | 0 | 13 | 2 | 12 | 2 | 4 | 2 | 7 | 2 | 8 | 1 | 4 | 1 | 1 | 1 | 5 | 1 | 7 | 1 | 8 | 1 | 10 | 1 | 13 | 1 | 14
+PIN | CLK1 | 64 | 0 | N/A | 65 | 8 | 2 | 17 | 2 | 16 | 2 | 14 | 2 | 13 | 2 | 9 | 2 | 6 | 2 | 0 | 2 | 15
+PIN | DRQ | 64 | 0 | N/A | 52 | 1 | 1 | 4
+PIN | nINTRQ | 64 | 0 | N/A | 50 | 1 | 1 | 1
+PIN | SSO | 64 | 0 | N/A | 21 | 1 | 2 | 15
+PIN | MOTCP | 536871040 | 0 | N/A | 46
+PIN | FDCCLK | 536871040 | 0 | N/A | 72
+PIN | HLT | 536871040 | 0 | N/A | 68
+PIN | nINT | 536871040 | 0 | N/A | 26
+PIN | nNMI | 536871040 | 0 | N/A | 24
+PIN | DSA | 536871040 | 0 | N/A | 31
+PIN | DSB | 536871040 | 0 | N/A | 33
+PIN | nSIDE1 | 536871040 | 0 | N/A | 38
+PIN | nDOE | 536871040 | 0 | N/A | 15
+PIN | nDSEN | 536871040 | 0 | N/A | 29
+PIN | D<5> | 536871040 | 0 | N/A | 89
+PIN | D<4> | 536871040 | 0 | N/A | 90
+PIN | D<3> | 536871040 | 0 | N/A | 92
+PIN | D<2> | 536871040 | 0 | N/A | 3
+PIN | nDDEN | 536871040 | 0 | N/A | 59
+PIN | D<6> | 536870976 | 0 | N/A | 88 | 1 | 2 | 8
+PIN | D<7> | 536870976 | 0 | N/A | 87 | 1 | 2 | 12
+PIN | D<1> | 536870976 | 0 | N/A | 7 | 1 | 2 | 7
+PIN | D<0> | 536870976 | 0 | N/A | 9 | 1 | 2 | 4

@@ -1,0 +1,330 @@
+MDF Database:  version 1.0
+MDF_INFO | RAMROM | XC9572XL-10-VQ44
+MACROCELL | 3 | 17 | spi_out/dat_reg<10>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 1 | 17
+INPUTS | 4 | spi_out/dat_reg<9>  | SCK  | nRWREQ  | D<10>
+INPUTMC | 1 | 2 | 17
+INPUTP | 3 | 65 | 59 | 12
+EQ | 4 | 
+   spi_out/dat_reg<10>.D = spi_out/dat_reg<9>;
+   spi_out/dat_reg<10>.CLK = !SCK;
+   spi_out/dat_reg<10>.AP = nRWREQ & D<10>;
+   spi_out/dat_reg<10>.AR = nRWREQ & !D<10>;
+
+MACROCELL | 1 | 17 | spi_out/dat_reg<11>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 1 | 16
+INPUTS | 4 | spi_out/dat_reg<10>  | SCK  | nRWREQ  | D<11>
+INPUTMC | 1 | 3 | 17
+INPUTP | 3 | 65 | 59 | 88
+EQ | 4 | 
+   spi_out/dat_reg<11>.D = spi_out/dat_reg<10>;
+   spi_out/dat_reg<11>.CLK = !SCK;
+   spi_out/dat_reg<11>.AP = nRWREQ & D<11>;
+   spi_out/dat_reg<11>.AR = nRWREQ & !D<11>;
+
+MACROCELL | 1 | 16 | spi_out/dat_reg<12>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 1 | 15
+INPUTS | 4 | spi_out/dat_reg<11>  | SCK  | nRWREQ  | D<12>
+INPUTMC | 1 | 1 | 17
+INPUTP | 3 | 65 | 59 | 9
+EQ | 4 | 
+   spi_out/dat_reg<12>.D = spi_out/dat_reg<11>;
+   spi_out/dat_reg<12>.CLK = !SCK;
+   spi_out/dat_reg<12>.AP = nRWREQ & D<12>;
+   spi_out/dat_reg<12>.AR = nRWREQ & !D<12>;
+
+MACROCELL | 1 | 15 | spi_out/dat_reg<13>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 1 | 14
+INPUTS | 4 | spi_out/dat_reg<12>  | SCK  | nRWREQ  | D<13>
+INPUTMC | 1 | 1 | 16
+INPUTP | 3 | 65 | 59 | 92
+EQ | 4 | 
+   spi_out/dat_reg<13>.D = spi_out/dat_reg<12>;
+   spi_out/dat_reg<13>.CLK = !SCK;
+   spi_out/dat_reg<13>.AP = nRWREQ & D<13>;
+   spi_out/dat_reg<13>.AR = nRWREQ & !D<13>;
+
+MACROCELL | 1 | 14 | spi_out/dat_reg<14>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 3 | 10
+INPUTS | 4 | spi_out/dat_reg<13>  | SCK  | D<14>  | nRWREQ
+INPUTMC | 1 | 1 | 15
+INPUTP | 3 | 65 | 90 | 59
+EQ | 4 | 
+   spi_out/dat_reg<14>.D = spi_out/dat_reg<13>;
+   spi_out/dat_reg<14>.CLK = !SCK;
+   spi_out/dat_reg<14>.AP = D<14> & nRWREQ;
+   spi_out/dat_reg<14>.AR = !D<14> & nRWREQ;
+
+MACROCELL | 1 | 13 | spi_out/dat_reg<1>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 0 | 17
+INPUTS | 4 | spi_out/dat_reg<0>  | SCK  | nRWREQ  | D<1>
+INPUTMC | 1 | 1 | 12
+INPUTP | 3 | 65 | 59 | 26
+EQ | 4 | 
+   spi_out/dat_reg<1>.D = spi_out/dat_reg<0>;
+   spi_out/dat_reg<1>.CLK = !SCK;
+   spi_out/dat_reg<1>.AP = nRWREQ & D<1>;
+   spi_out/dat_reg<1>.AR = nRWREQ & !D<1>;
+
+MACROCELL | 0 | 17 | spi_out/dat_reg<2>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 0 | 16
+INPUTS | 4 | spi_out/dat_reg<1>  | SCK  | nRWREQ  | D<2>
+INPUTMC | 1 | 1 | 13
+INPUTP | 3 | 65 | 59 | 27
+EQ | 4 | 
+   spi_out/dat_reg<2>.D = spi_out/dat_reg<1>;
+   spi_out/dat_reg<2>.CLK = !SCK;
+   spi_out/dat_reg<2>.AP = nRWREQ & D<2>;
+   spi_out/dat_reg<2>.AR = nRWREQ & !D<2>;
+
+MACROCELL | 0 | 16 | spi_out/dat_reg<3>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 0 | 15
+INPUTS | 4 | spi_out/dat_reg<2>  | SCK  | nRWREQ  | D<3>
+INPUTMC | 1 | 0 | 17
+INPUTP | 3 | 65 | 59 | 29
+EQ | 4 | 
+   spi_out/dat_reg<3>.D = spi_out/dat_reg<2>;
+   spi_out/dat_reg<3>.CLK = !SCK;
+   spi_out/dat_reg<3>.AP = nRWREQ & D<3>;
+   spi_out/dat_reg<3>.AR = nRWREQ & !D<3>;
+
+MACROCELL | 0 | 15 | spi_out/dat_reg<4>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 0 | 14
+INPUTS | 4 | spi_out/dat_reg<3>  | SCK  | nRWREQ  | D<4>
+INPUTMC | 1 | 0 | 16
+INPUTP | 3 | 65 | 59 | 31
+EQ | 4 | 
+   spi_out/dat_reg<4>.D = spi_out/dat_reg<3>;
+   spi_out/dat_reg<4>.CLK = !SCK;
+   spi_out/dat_reg<4>.AP = nRWREQ & D<4>;
+   spi_out/dat_reg<4>.AR = nRWREQ & !D<4>;
+
+MACROCELL | 0 | 14 | spi_out/dat_reg<5>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 0 | 13
+INPUTS | 4 | spi_out/dat_reg<4>  | SCK  | nRWREQ  | D<5>
+INPUTMC | 1 | 0 | 15
+INPUTP | 3 | 65 | 59 | 33
+EQ | 4 | 
+   spi_out/dat_reg<5>.D = spi_out/dat_reg<4>;
+   spi_out/dat_reg<5>.CLK = !SCK;
+   spi_out/dat_reg<5>.AP = nRWREQ & D<5>;
+   spi_out/dat_reg<5>.AR = nRWREQ & !D<5>;
+
+MACROCELL | 0 | 13 | spi_out/dat_reg<6>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 0 | 12
+INPUTS | 4 | spi_out/dat_reg<5>  | SCK  | nRWREQ  | D<6>
+INPUTMC | 1 | 0 | 14
+INPUTP | 3 | 65 | 59 | 38
+EQ | 4 | 
+   spi_out/dat_reg<6>.D = spi_out/dat_reg<5>;
+   spi_out/dat_reg<6>.CLK = !SCK;
+   spi_out/dat_reg<6>.AP = nRWREQ & D<6>;
+   spi_out/dat_reg<6>.AR = nRWREQ & !D<6>;
+
+MACROCELL | 0 | 12 | spi_out/dat_reg<7>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 0 | 11
+INPUTS | 4 | spi_out/dat_reg<6>  | SCK  | nRWREQ  | D<7>
+INPUTMC | 1 | 0 | 13
+INPUTP | 3 | 65 | 59 | 46
+EQ | 4 | 
+   spi_out/dat_reg<7>.D = spi_out/dat_reg<6>;
+   spi_out/dat_reg<7>.CLK = !SCK;
+   spi_out/dat_reg<7>.AP = nRWREQ & D<7>;
+   spi_out/dat_reg<7>.AR = nRWREQ & !D<7>;
+
+MACROCELL | 0 | 11 | spi_out/dat_reg<8>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 2 | 17
+INPUTS | 4 | spi_out/dat_reg<7>  | SCK  | nRWREQ  | D<8>
+INPUTMC | 1 | 0 | 12
+INPUTP | 3 | 65 | 59 | 7
+EQ | 4 | 
+   spi_out/dat_reg<8>.D = spi_out/dat_reg<7>;
+   spi_out/dat_reg<8>.CLK = !SCK;
+   spi_out/dat_reg<8>.AP = nRWREQ & D<8>;
+   spi_out/dat_reg<8>.AR = nRWREQ & !D<8>;
+
+MACROCELL | 2 | 17 | spi_out/dat_reg<9>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 3 | 17
+INPUTS | 4 | spi_out/dat_reg<8>  | SCK  | nRWREQ  | D<9>
+INPUTMC | 1 | 0 | 11
+INPUTP | 3 | 65 | 59 | 10
+EQ | 4 | 
+   spi_out/dat_reg<9>.D = spi_out/dat_reg<8>;
+   spi_out/dat_reg<9>.CLK = !SCK;
+   spi_out/dat_reg<9>.AP = nRWREQ & D<9>;
+   spi_out/dat_reg<9>.AR = nRWREQ & !D<9>;
+
+MACROCELL | 3 | 10 | spi_out/dat_reg<15>
+ATTRIBUTES | 8651698 | 0
+INPUTS | 4 | spi_out/dat_reg<14>  | SCK  | D<15>  | nRWREQ
+INPUTMC | 1 | 1 | 14
+INPUTP | 3 | 65 | 89 | 59
+EQ | 4 | 
+   MISO.D = spi_out/dat_reg<14>;
+   MISO.CLK = !SCK;
+   MISO.AP = D<15> & nRWREQ;
+   MISO.AR = !D<15> & nRWREQ;
+
+MACROCELL | 1 | 12 | spi_out/dat_reg<0>
+ATTRIBUTES | 8520624 | 0
+OUTPUTMC | 1 | 1 | 13
+INPUTS | 3 | SCK  | nRWREQ  | D<0>
+INPUTP | 3 | 65 | 59 | 13
+EQ | 4 | 
+   spi_out/dat_reg<0>.D = Gnd;
+   spi_out/dat_reg<0>.CLK = !SCK;
+   spi_out/dat_reg<0>.AP = nRWREQ & D<0>;
+   spi_out/dat_reg<0>.AR = nRWREQ & !D<0>;
+
+MACROCELL | 1 | 1 | nLB_OBUF
+ATTRIBUTES | 264962 | 0
+INPUTS | 3 | nMWR  | D<15>  | D<14>
+INPUTP | 3 | 82 | 89 | 90
+EQ | 1 | 
+   !nLB = !nMWR & !D<15> & !D<14>;
+
+MACROCELL | 3 | 4 | nDATRDY_OBUF
+ATTRIBUTES | 4621058 | 0
+OUTPUTMC | 1 | 3 | 4
+INPUTS | 9 | nDATRDY  | clk_divider<0>  | clk_divider<1>  | clk_divider<2>  | clk_divider<3>  | clk_divider<4>  | clk_divider<5>  | clk_divider<6>  | clk_divider<7>
+INPUTMC | 9 | 3 | 4 | 3 | 16 | 3 | 15 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 11 | 3 | 9 | 3 | 8
+EQ | 7 | 
+   nDATRDY.T = nDATRDY & clk_divider<0> & !clk_divider<1> & 
+	!clk_divider<2> & !clk_divider<3> & !clk_divider<4> & !clk_divider<5> & 
+	!clk_divider<6> & !clk_divider<7>
+	# !nDATRDY & !clk_divider<0> & clk_divider<1> & 
+	clk_divider<2> & !clk_divider<3> & !clk_divider<4> & !clk_divider<5> & 
+	!clk_divider<6> & !clk_divider<7>;
+   nDATRDY.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 3 | 16 | clk_divider<0>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 8 | 3 | 4 | 3 | 15 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 11 | 3 | 9 | 3 | 8
+INPUTS | 0
+EQ | 2 | 
+   clk_divider<0>.T = Vcc;
+   clk_divider<0>.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 3 | 15 | clk_divider<1>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 7 | 3 | 4 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 11 | 3 | 9 | 3 | 8
+INPUTS | 1 | clk_divider<0>
+INPUTMC | 1 | 3 | 16
+EQ | 2 | 
+   clk_divider<1>.T = clk_divider<0>;
+   clk_divider<1>.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 3 | 14 | clk_divider<2>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 6 | 3 | 4 | 3 | 13 | 3 | 12 | 3 | 11 | 3 | 9 | 3 | 8
+INPUTS | 2 | clk_divider<0>  | clk_divider<1>
+INPUTMC | 2 | 3 | 16 | 3 | 15
+EQ | 2 | 
+   clk_divider<2>.T = clk_divider<0> & clk_divider<1>;
+   clk_divider<2>.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 3 | 13 | clk_divider<3>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 5 | 3 | 4 | 3 | 12 | 3 | 11 | 3 | 9 | 3 | 8
+INPUTS | 3 | clk_divider<0>  | clk_divider<1>  | clk_divider<2>
+INPUTMC | 3 | 3 | 16 | 3 | 15 | 3 | 14
+EQ | 2 | 
+   clk_divider<3>.T = clk_divider<0> & clk_divider<1> & clk_divider<2>;
+   clk_divider<3>.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 3 | 12 | clk_divider<4>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 4 | 3 | 4 | 3 | 11 | 3 | 9 | 3 | 8
+INPUTS | 4 | clk_divider<0>  | clk_divider<1>  | clk_divider<2>  | clk_divider<3>
+INPUTMC | 4 | 3 | 16 | 3 | 15 | 3 | 14 | 3 | 13
+EQ | 3 | 
+   clk_divider<4>.T = clk_divider<0> & clk_divider<1> & clk_divider<2> & 
+	clk_divider<3>;
+   clk_divider<4>.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 3 | 11 | clk_divider<5>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 3 | 3 | 4 | 3 | 9 | 3 | 8
+INPUTS | 5 | clk_divider<0>  | clk_divider<1>  | clk_divider<2>  | clk_divider<3>  | clk_divider<4>
+INPUTMC | 5 | 3 | 16 | 3 | 15 | 3 | 14 | 3 | 13 | 3 | 12
+EQ | 3 | 
+   clk_divider<5>.T = clk_divider<0> & clk_divider<1> & clk_divider<2> & 
+	clk_divider<3> & clk_divider<4>;
+   clk_divider<5>.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 3 | 9 | clk_divider<6>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 2 | 3 | 4 | 3 | 8
+INPUTS | 6 | clk_divider<0>  | clk_divider<1>  | clk_divider<2>  | clk_divider<3>  | clk_divider<4>  | clk_divider<5>
+INPUTMC | 6 | 3 | 16 | 3 | 15 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 11
+EQ | 3 | 
+   clk_divider<6>.T = clk_divider<0> & clk_divider<1> & clk_divider<2> & 
+	clk_divider<3> & clk_divider<4> & clk_divider<5>;
+   clk_divider<6>.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 3 | 8 | clk_divider<7>
+ATTRIBUTES | 4358912 | 0
+OUTPUTMC | 1 | 3 | 4
+INPUTS | 7 | clk_divider<0>  | clk_divider<1>  | clk_divider<2>  | clk_divider<3>  | clk_divider<4>  | clk_divider<5>  | clk_divider<6>
+INPUTMC | 7 | 3 | 16 | 3 | 15 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 11 | 3 | 9
+EQ | 3 | 
+   clk_divider<7>.T = clk_divider<0> & clk_divider<1> & clk_divider<2> & 
+	clk_divider<3> & clk_divider<4> & clk_divider<5> & clk_divider<6>;
+   clk_divider<7>.CLK = CLK;	// GCK
+GLOBALS | 1 | 2 | CLK
+
+MACROCELL | 1 | 10 | nDATEN_OBUF
+ATTRIBUTES | 264962 | 0
+INPUTS | 4 | D<15>  | nMRD  | nMWR  | D<14>
+INPUTP | 4 | 89 | 83 | 82 | 90
+EQ | 2 | 
+   !nDATEN = !D<15> & !nMRD
+	# !nMWR & !D<15> & !D<14>;
+
+PIN | SCK | 64 | 0 | N/A | 65 | 16 | 3 | 17 | 1 | 17 | 1 | 16 | 1 | 15 | 1 | 14 | 1 | 13 | 0 | 17 | 0 | 16 | 0 | 15 | 0 | 14 | 0 | 13 | 0 | 12 | 0 | 11 | 2 | 17 | 3 | 10 | 1 | 12
+PIN | nRWREQ | 64 | 0 | N/A | 59 | 16 | 3 | 17 | 1 | 17 | 1 | 16 | 1 | 15 | 1 | 14 | 1 | 13 | 0 | 17 | 0 | 16 | 0 | 15 | 0 | 14 | 0 | 13 | 0 | 12 | 0 | 11 | 2 | 17 | 3 | 10 | 1 | 12
+PIN | D<10> | 64 | 0 | N/A | 12 | 1 | 3 | 17
+PIN | D<11> | 64 | 0 | N/A | 88 | 1 | 1 | 17
+PIN | D<12> | 64 | 0 | N/A | 9 | 1 | 1 | 16
+PIN | D<13> | 64 | 0 | N/A | 92 | 1 | 1 | 15
+PIN | D<14> | 64 | 0 | N/A | 90 | 3 | 1 | 14 | 1 | 1 | 1 | 10
+PIN | D<1> | 64 | 0 | N/A | 26 | 1 | 1 | 13
+PIN | D<2> | 64 | 0 | N/A | 27 | 1 | 0 | 17
+PIN | D<3> | 64 | 0 | N/A | 29 | 1 | 0 | 16
+PIN | D<4> | 64 | 0 | N/A | 31 | 1 | 0 | 15
+PIN | D<5> | 64 | 0 | N/A | 33 | 1 | 0 | 14
+PIN | D<6> | 64 | 0 | N/A | 38 | 1 | 0 | 13
+PIN | D<7> | 64 | 0 | N/A | 46 | 1 | 0 | 12
+PIN | D<8> | 64 | 0 | N/A | 7 | 1 | 0 | 11
+PIN | D<9> | 64 | 0 | N/A | 10 | 1 | 2 | 17
+PIN | D<15> | 64 | 0 | N/A | 89 | 3 | 3 | 10 | 1 | 1 | 1 | 10
+PIN | D<0> | 64 | 0 | N/A | 13 | 1 | 1 | 12
+PIN | nMWR | 64 | 0 | N/A | 82 | 2 | 1 | 1 | 1 | 10
+PIN | CLK | 16384 | 0 | N/A | 24 | 9 | 3 | 4 | 3 | 16 | 3 | 15 | 3 | 14 | 3 | 13 | 3 | 12 | 3 | 11 | 3 | 9 | 3 | 8
+PIN | nMRD | 64 | 0 | N/A | 83 | 1 | 1 | 10
+PIN | MISO | 536871040 | 0 | N/A | 68
+PIN | nLB | 536871040 | 0 | N/A | 87
+PIN | nDATRDY | 536871040 | 0 | N/A | 63
+PIN | nDATEN | 536871040 | 0 | N/A | 3

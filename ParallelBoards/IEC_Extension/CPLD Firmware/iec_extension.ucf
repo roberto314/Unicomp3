@@ -1,0 +1,48 @@
+NET "CNT"       LOC = "p39"  ;
+NET "SP"        LOC = "p40"  ;
+NET "_128_64"   LOC = "p41"  ;
+NET "RST_drv"   LOC = "p42"  ;
+NET "P43"       LOC = "p43"  ;
+NET "P44"       LOC = "p44"  ;
+NET "P1"        LOC = "p1"  ;
+NET "RST_in"    LOC = "p2"  ;--
+NET "ATN_out"   LOC = "p3"  ;--
+#-----------------------------
+NET "RST_out"   LOC = "p5"  ;--
+NET "FCLK_out"  LOC = "p6"  ;--
+NET "SCLK_out"  LOC = "p7"  ;--
+NET "SDAT_out"  LOC = "p8"  ;--
+NET "SDAT_in"   LOC = "p12"  ;--
+NET "FCLK_in"   LOC = "p13"  ;--
+NET "SCLK_in"   LOC = "p14"  ;--
+NET "ATN_in"    LOC = "p16"  ;--
+NET "Fout_Fin"  LOC = "p18"  ;
+#-----------------------------
+NET "SCLK_sens" LOC = "p19"  ;
+NET "SCLK_drv"  LOC = "p20"  ;
+NET "SDAT_sens" LOC = "p21"  ;
+NET "SDAT_drv"  LOC = "p22"  ;
+NET "ATN_sens"  LOC = "p23"  ;
+NET "ATN_drv"   LOC = "p27"  ;
+NET "P28"       LOC = "p28"  ;
+#-----------------------------
+NET "P29"       LOC = "p29"  ;
+NET "P30"       LOC = "p30"  ;
+NET "P31"       LOC = "p31"  ;
+NET "P32"       LOC = "p32"  ;
+NET "P33"       LOC = "p33"  ;
+NET "P34"       LOC = "p34"  ;
+NET "P36"       LOC = "p36"  ;
+NET "P37"       LOC = "p37"  ;
+NET "P38"       LOC = "p38"  ;
+
+# ; NET "GND" LOC = "p4"  ;
+# ; NET "TDI" LOC = "p9"  ;
+# ; NET "TMS" LOC = "p10" ;
+# ; NET "TCK" LOC = "p11" ;
+# ; NET "VCC" LOC = "p15" ;
+# ; NET "GND" LOC = "p17" ;
+# ; NET "TDO" LOC = "p24" ;
+# ; NET "GND" LOC = "p25" ;
+# ; NET "VCC" LOC = "p26" ;
+# ; NET "VCC" LOC = "p35" ;

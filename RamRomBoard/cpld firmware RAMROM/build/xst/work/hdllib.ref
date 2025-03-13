@@ -1,0 +1,6 @@
+EN spi_slave_out16 NULL /home/rob/Projects/Unicomp3/vhdl_components/spi_slave_out16.vhd sub00/vhpl02 1734032806
+AR spi_slave_out16 archi /home/rob/Projects/Unicomp3/vhdl_components/spi_slave_out16.vhd sub00/vhpl03 1734032807
+AR spi_slave_in16 archi /home/rob/Projects/Unicomp3/vhdl_components/spi_slave_in16.vhd sub00/vhpl01 1734032809
+AR ramrom behavioral "/home/rob/Projects/Unicomp3/RamRomBoard/cpld firmware RAMROM/RAMROM.vhd" sub00/vhpl05 1734032811
+EN spi_slave_in16 NULL /home/rob/Projects/Unicomp3/vhdl_components/spi_slave_in16.vhd sub00/vhpl00 1734032808
+EN ramrom NULL "/home/rob/Projects/Unicomp3/RamRomBoard/cpld firmware RAMROM/RAMROM.vhd" sub00/vhpl04 1734032810

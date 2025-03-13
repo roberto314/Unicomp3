@@ -1,7 +1,7 @@
 Release 8.1i - Fit P.20131013
 Copyright(c) 1995-2003 Xilinx Inc. All rights reserved
 
- 5-15-2024  9:11PM
+11-26-2024  4:12PM
 
 NOTE: This file is designed to be imported into a spreadsheet program
 such as Microsoft Excel for viewing, printing and sorting. The pipe '|'
@@ -10,7 +10,7 @@ This file is also designed to support parsing.
 
 Input file:  board_6502.ngd
 output file: board_6502.pad
-Part type:   xc9572xl
+Part type:   xc9536xl
 Speed grade: -10
 Package:     vq44
 
